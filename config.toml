@@ -1,3 +1,27 @@
-baseURL = "http://example.org/"
+baseURL = ""
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Reveries"
+theme = "slim"
+[params]
+  GithubID = "jeanhuit"
+  TwitterID = "jeanhuit"
+  LinkedInID =  "johnawotwi"
+  AnalyticsID = "UA-28573976-2"
+  DisqusShortname = "Your Disqus shortname"
+  Summary = false  # takes true or false
+  Content = false  # takes true or false
+  # if both are set to true, summary is shown.
+   FooterMsg = "Powered by Hugo. Theme: Slim"
+
+[[menu.main]]
+name =  "About Me"
+url = "/page/about-me"
+
+[[menu.main]]
+name = "Publicity"
+url = "/page/publicity"
+
+[[menu.main]]
+name = "Blog"
+url = "/"
+weight = "500"
