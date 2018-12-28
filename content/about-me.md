@@ -1,7 +1,7 @@
 ---
 title: "About me"
 ---
-![Image of myself](/moi.jpg)
+![Image of myself](/moi.png)
 
 # Employment Trail
 

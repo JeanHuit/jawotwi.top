@@ -34,7 +34,7 @@ googleAnalytics = "UA-28573976-2"
   footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
   # gitUrl = "https://github.com/Someone/SomeRepo/commit/" # Prefix of link to the git commit detail page. GitInfo must be enabled.
   justifyContent = false  # Set "text-align: justify" to .content, requires extended version of Hugo
-  # bgImg = ""  #  Homepage background-image URL
+  bgImg = "/fore.jpg"  #  Homepage background-image URL
 
   # Social Icons
   # Check https://github.com/Track3/hermit#social-icons for more info.
@@ -61,5 +61,10 @@ googleAnalytics = "UA-28573976-2"
     name = "About"
     url = "/about-me/"
     weight = 20
+
+  [[menu.main]]
+    name = "Publicity"
+    url = "publicity"
+    weight = "30"
 
 
