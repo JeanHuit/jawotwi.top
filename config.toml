@@ -64,7 +64,8 @@ googleAnalytics = "UA-28573976-2"
 
   [[menu.main]]
     name = "Publicity"
-    url = "publicity"
+    url = "/publicity/"
+
     weight = "30"
 
 
