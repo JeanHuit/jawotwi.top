@@ -1,27 +1,65 @@
 baseURL = ""
 languageCode = "en-us"
+defaultContentLanguage = "en"
 title = "Reveries"
-theme = "slim"
+theme = "hermit"
+# enableGitInfo = true
+pygmentsCodefences  = true
+pygmentsUseClasses  = true
+hasCJKLanguage = false  # If there're Chinese/Japanese/Korean Languages in the content, enable this.
+rssLimit = 10  # Maximum number of items in the RSS feed.
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
+enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
+googleAnalytics = "UA-28573976-2"
+# disqusShortname = "yourdiscussshortname"
+
+[author]
+  name = "John Awotwi"
+
+[blackfriday]
+  hrefTargetBlank = true
+
+[taxonomies]
+  tag = "tags"
+  category = ""  # Categories are disabled by default.
+
 [params]
-  GithubID = "jeanhuit"
-  TwitterID = "jeanhuit"
-  LinkedInID =  "johnawotwi"
-  AnalyticsID = "UA-28573976-2"
-  DisqusShortname = "Your Disqus shortname"
-  Summary = false  # takes true or false
-  Content = false  # takes true or false
-  # if both are set to true, summary is shown.
-   FooterMsg = "Powered by Hugo. Theme: Slim"
+  date        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
 
-[[menu.main]]
-name =  "About Me"
-url = "/page/about-me"
+  # themeColor = "#494f5c"  # Theme color in meta tags.
+  homeSubtitle = "I am pleasantly lost"
+  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+  # gitUrl = "https://github.com/Someone/SomeRepo/commit/" # Prefix of link to the git commit detail page. GitInfo must be enabled.
+  justifyContent = false  # Set "text-align: justify" to .content, requires extended version of Hugo
+  # bgImg = ""  #  Homepage background-image URL
 
-[[menu.main]]
-name = "Publicity"
-url = "/page/publicity"
+  # Social Icons
+  # Check https://github.com/Track3/hermit#social-icons for more info.
+  [[params.social]]
+    name = "twitter"
+    url = "https://twitter.com/jeanhuit"
 
-[[menu.main]]
-name = "Blog"
-url = "/"
-weight = "500"
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/johnawotwi/"
+
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/jeanhuit"
+
+[menu]
+
+  [[menu.main]]
+    name = "Posts"
+    url = "/post/"
+    weight = 10
+
+  [[menu.main]]
+    name = "About"
+    url = "/about-me/"
+    weight = 20
+
+

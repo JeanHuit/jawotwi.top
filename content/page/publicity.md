@@ -1,3 +1,0 @@
----
-title: " Projects, Talks & Presentations"
----
