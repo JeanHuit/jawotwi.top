@@ -55,6 +55,8 @@ title: "About me"
 
 ````
 
+- Internet Society
+  Network Operations & DNS, Network Services & Monitoring (2018)
 - CompTIA
   Security + (2017)
 - Ghana Institute of Management &amp; Public Administration
@@ -79,5 +81,5 @@ title: "About me"
 <ul>
   <li>Community lead, for Google Developer Group Accra from 2013 till date.</li>
   <li>Country mentor for Ghana, Liberia, Sierre Leone &amp; The Gambia.</li>
-  <li>General &amp; Financial Secretary for St.Thomas Aquinas Youth Association.</li>
+  <li><del></del>General &amp; Financial Secretary for St.Thomas Aquinas Youth Association.</del></li>
 </ul>
