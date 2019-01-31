@@ -81,5 +81,5 @@ title: "About me"
 <ul>
   <li>Community lead, for Google Developer Group Accra from 2013 till date.</li>
   <li>Country mentor for Ghana, Liberia, Sierre Leone &amp; The Gambia.</li>
-  <li><del></del>General &amp; Financial Secretary for St.Thomas Aquinas Youth Association.</del></li>
+  <li><del>General &amp; Financial Secretary for St.Thomas Aquinas Youth Association.</del></li>
 </ul>
