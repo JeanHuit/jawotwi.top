@@ -31,6 +31,7 @@ draft: false
 **Note:** Heroku requires bundler version 2.
 
 - In your `Config.ru` file,
+
 ```ruby
 # Config.ru
 
