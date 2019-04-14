@@ -16,5 +16,4 @@ These are the steps I take to upload a wordpress installation.
 6. Upload your websites directory/src/folder to the root of your production server. ```http:\\newdomain.com```
 7. Your website should be up and running, no messy plugins needed.
 
-<b>Do not forget to change the password you used in development.
-</b>
+**Do not forget to change the password you used in development.**
