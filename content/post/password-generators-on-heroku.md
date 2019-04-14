@@ -10,12 +10,13 @@ With this in mind, I put together a password generator to get you up when you ar
 
 Find it at [https://passg.herokuapp.com/](https://passg.herokuapp.com/.)
 
-### Here is how:
-```
+### Here is how
+
 - Visit the site
--  Choose from the 4 levels of complexity
-   - Normal: this should give you a mix of alphabets. Both Upper and Lower case.] and numbers
-   - Adequate Strength: This uses Normal mode + special characters
-   - Above Average: This uses a mix of numbers and characters
-   - Nobody Can stop me yet: This mixes up, numbers, alphabets,and special characters.
+
+- Choose from the 4 levels of complexity
+  - Normal: this should give you a mix of alphabets. Both Upper and Lower case.] and numbers
+  - Adequate Strength: This uses Normal mode + special characters
+  - Above Average: This uses a mix of numbers and characters
+  - Nobody Can stop me yet: This mixes up, numbers, alphabets,and special characters.
 - Next, choose the password length by dragging the bar, [longer passowrds to the right] and select submit.
