@@ -1,5 +1,5 @@
 ---
-title: "Uploading Wordpress to a Live Server"
+title: "Uploading A Wordpress Site to a Live Server"
 date: 2019-04-14T21:33:59Z
 draft: false
 ---
