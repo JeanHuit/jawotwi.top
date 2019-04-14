@@ -12,7 +12,7 @@ These are the steps I take to upload a wordpress installation.
 2. Cleanup your website, i.e get rid of all unused plugins and media files, this causes unneccessary bloat.
 3. Create a database on your production (live) server and upload the backup of your datebase (done in step 1), ```something.sql```
 4. On your production server database, replace all instances of  ```http:\\localhost``` with  ```http:\\newdomain.com``` in database uploaded in step 3.
-5. Edit your ```config.php``` file with the credentials  of your production server, i.e  ["DB_NAME", "DB_USER", "DB_PASSWORD", "DB_HOST"]
+5. Edit your ```wp-config.php``` file with the credentials  of your production server, i.e  ["DB_NAME", "DB_USER", "DB_PASSWORD", "DB_HOST"]
 6. Upload your websites directory/src/folder to the root of your production server. ```http:\\newdomain.com```
 7. Your website should be up and running, no messy plugins needed.
 
