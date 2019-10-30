@@ -6,7 +6,7 @@ title: "About me"
 # Employment Trail
 
 ````
-  [1]. La Dade-Kotopon Municipal Assembly [current]
+  [1]. La Dade-Kotopon Municipal Assembly
        Snr. IT Officer : 3+ years
   [2]. Ghana Tech. Uni. College | COTVET &amp; MESTI
        Developer | Researcher : 1 year
