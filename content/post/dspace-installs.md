@@ -9,7 +9,7 @@ I have spent over three weeks in trying to get dspace set up. It has been one he
 
 DSpace is an open source repository software package typically used for creating open access repositories for scholarly and/or published digital content. While DSpace shares some feature overlap with content management systems and document management systems, the DSpace repository software serves a specific need as a digital archives system, focused on the long-term storage, access and preservation of digital content. - [Wikipedia reference](https://en.wikipedia.org/wiki/DSpace)
 
-To make get this working, you need:
+To get this working, you need:
 
 - Apache Ant
 - Apache Maven
@@ -28,9 +28,9 @@ Funny enough, only certain specific versions get to work well with each other.
 - DSpace src-release v6.1
 - postgresql admin interface (pgadmin v3 or v4)
 
-This magic formula was concucted by [Dr. Santosh Gupta](https://www.youtube.com/watch?v=I-lmBHp6pDE)
+This magic formula was concocted by [Dr. Santosh Gupta](https://www.youtube.com/watch?v=I-lmBHp6pDE)
 
-Even the comments give him that praise.
+Even in the comments peopole give him praise.
 
 ### Installation
 
