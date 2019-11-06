@@ -91,10 +91,9 @@ enableGitInfo = true
   quality = 99
 
 [params]
-  description = "Be pleasantly lost "
-  homeMetaContent = "##John Awotwi is my  name and this is my part of the internet. I used Hugo and  this theme is an accessibility-friendly Hugo theme, ported from the original Cupper project."
+  description = "Community Development | IT Specialist | Information Security - Be pleasantly lost "
+  homeMetaContent = "John Awotwi is my  name and this is my part of the internet. I used Hugo and  this theme is an accessibility-friendly Hugo theme, ported from the original Cupper project."
   footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme)"
-  # For more date formats see https://gohugo.io/functions/format/
   dateFormat = "Jan 2, 2006"
   codePenUser = "John Awotwi"
   katex = true
