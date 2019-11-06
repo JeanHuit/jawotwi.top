@@ -109,7 +109,7 @@ enableGitInfo = true
     weight = 2
   [[menu.nav]]
     name = "Publicity"
-    url = "/publications/"
+    url = "/publicity/"
     weight = 3
   [[menu.nav]]
     name = "RSS"
