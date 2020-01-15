@@ -4,7 +4,7 @@
 ````
   [1]. La Dade-Kotopon Municipal Assembly
        Snr. IT Officer : 3+ years
-  [2]. Ghana Tech. Uni. College | COTVET &amp; MESTI
+  [2]. Ghana Tech. Uni. College | COTVET & MESTI
        Developer | Researcher : 1 year
   [3]. Ghana Tech. Uni. College
        Teachers Assistant : 1 year
