@@ -1,4 +1,3 @@
-![Image of myself-Photo by Garrhet Sampson on Unsplash](/banner.svg)
 
 # Employment Trail
 
