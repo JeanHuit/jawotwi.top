@@ -80,7 +80,7 @@ sudo service tomcat8 restart
 Install & setup the databse
 
 ```
-  sudo sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 libpg-java -y 
+  sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 libpg-java -y 
 
 ```
 
@@ -106,8 +106,8 @@ sudo service postgresql restart
 
 Create the dspace database user
 ```
-sudo su postgres createuser dspace 
-createdb dspace -E UNICODE
+sudo su postgres createuser dspace   or sudo -u postgres createuser dspace
+createdb dspace -E UNICODE        or sudo -u postgres createdb dspace -E UNICODE
 ```
 
 
@@ -167,7 +167,7 @@ Copy the files from your installation or point them to the webapps folder of tom
 
 ```
 cd /var/lib/tomcat8/webapps s
-udo cp -r /dspace/webapps/oai/ /var/lib/tomcat8/webapps 
+sudo cp -r /dspace/webapps/oai/ /var/lib/tomcat8/webapps 
 sudo cp -r /dspace/webapps/solr/ /var/lib/tomcat8/webapps 
 sudo cp -r /dspace/webapps/sword/ /var/lib/tomcat8/webapps 
 sudo cp -r /dspace/webapps/rest/ /var/lib/tomcat8/webapps 
