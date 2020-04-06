@@ -1,7 +1,9 @@
 ---
 title: "About me"
+date: 2020-01-14T15:07:25Z
+
 ---
-![Image of myself](/moi.png)
+
 
 # Employment Trail
 
@@ -78,8 +80,7 @@ title: "About me"
 ````
 
 # Volunteer(ing)
-<ul>
-  <li>Community lead, for Google Developer Group Accra from 2013 till date.</li>
-  <li>Country mentor for Ghana, Liberia, Sierre Leone &amp; The Gambia.</li>
-  <li><del>General &amp; Financial Secretary for St.Thomas Aquinas Youth Association.</del></li>
-</ul>
+*   Community lead, for Google Developer Group Accra from 2013 till date.
+*   Country mentor for Ghana, Liberia, Sierre Leone & The Gambia.
+*   General & Financial Secretary for St.Thomas Aquinas Youth Association.
+

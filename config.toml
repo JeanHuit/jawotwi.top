@@ -2,42 +2,37 @@ baseURL = "https://johnawotwi.me"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Reveries"
-theme = "cupper-hugo-theme"
-googleAnalytics = "UA-28573976-2"
-disqusShortname = "yourdiscussshortname"
+theme = "hugo-paper"
 enableGitInfo = true
 
-[taxonomies]
-  tag = "tags"
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
 
-[permalinks]
-  post = "/:filename/"
+summaryLength = 30
 
-[imaging]
-  quality = 99
+
+enableEmoji =  true
 
 [params]
-  description = "Community Development | IT Specialist | Information Security - Be pleasantly lost "
-  homeMetaContent = "John Awotwi is my  name and this is my part of the internet. I used Hugo and  this theme is an accessibility-friendly Hugo theme, ported from the original Cupper project."
-  footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme)"
-  dateFormat = "Jan 2, 2006"
-  codePenUser = "John Awotwi"
-  katex = true
+  google_analytics_id="UA-28573976-2"
 
-[menu]
-  [[menu.nav]]
-    name = "About"
-    url = "/"
-    weight = 1
-  [[menu.nav]]
-    name = "Blog"
-    url = "/post"
-    weight = 2
-  [[menu.nav]]
-    name = "Publicity"
-    url = "/publicity/"
-    weight = 3
-  [[menu.nav]]
-    name = "RSS"
-    url = "/index.xml"
-    weight = 4
+  ## You can enable to add anchor links to header elements
+   #enable_anchor_link = true
+
+
+
+
+  
+[[menu.main]]
+  name = "Blog"
+  url = "/post"
+  weight = 1
+[[menu.main]]
+  name = "About"
+  url = "/about-me"
+  weight = 2
+[[menu.main]]
+  name = "Publicity"
+  url = "/publicity/"
+  weight = 3
