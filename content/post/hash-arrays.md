@@ -36,9 +36,6 @@ matrix =
 Ever wondered how to traverse an array/hash like this?
 code snippet below will output :  ``` "5.0km" ```
 
-```
-  matrix[:rows][0][:elements][0][:distance][:text]
-
-```
+``` matrix[:rows][0][:elements][0][:distance][:text]```
 
 Think on it !!
