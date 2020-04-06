@@ -166,7 +166,7 @@ Answer the questions that follow.
 Copy the files from your installation or point them to the webapps folder of tomcat.
 
 ```
-cd /var/lib/tomcat8/webapps s
+cd /var/lib/tomcat8/webapps
 sudo cp -r /dspace/webapps/oai/ /var/lib/tomcat8/webapps 
 sudo cp -r /dspace/webapps/solr/ /var/lib/tomcat8/webapps 
 sudo cp -r /dspace/webapps/sword/ /var/lib/tomcat8/webapps 
