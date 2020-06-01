@@ -72,11 +72,9 @@ title: "About me"
 
 ````
 - wineloya.com [FrontEnd]
-- comestudyinternational.com [wp]
 - johnawotwi.me [static | ghost | theming| firebase| hugo]
-- dafgh.org [static]
-- ladma.gov.gh [static]
-- prefaesgh.com [static]
+- ladma.gov.gh [static][wp]
+- insti.csir.org.gh [static]
 - twinbrookconsult.com [wp]
 ````
 
