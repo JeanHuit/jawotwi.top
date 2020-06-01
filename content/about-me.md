@@ -2,13 +2,12 @@
 title: "About me"
 ---
 
-{{linkedin}}
 
 # Employment Trail
 
 ````
-  [1].Institute for Scientific & Technological Information
-      Technical Officer : Current
+  [1]. Institute for Scientific & Technological Information
+       Technical Officer : Current
   [2]. La Dade-Kotopon Municipal Assembly
        Snr. IT Officer : 3+ years
   [3]. Ghana Tech. Uni. College | COTVET &amp; MESTI
