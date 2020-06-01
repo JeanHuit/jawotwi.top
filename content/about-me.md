@@ -2,19 +2,22 @@
 title: "About me"
 ---
 
+{{linkedin}}
 
 # Employment Trail
 
 ````
-  [1]. La Dade-Kotopon Municipal Assembly
+  [1].Institute for Scientific & Technological Information
+      Technical Officer : Current
+  [2]. La Dade-Kotopon Municipal Assembly
        Snr. IT Officer : 3+ years
-  [2]. Ghana Tech. Uni. College | COTVET &amp; MESTI
+  [3]. Ghana Tech. Uni. College | COTVET &amp; MESTI
        Developer | Researcher : 1 year
-  [3]. Ghana Tech. Uni. College
+  [4]. Ghana Tech. Uni. College
        Teachers Assistant : 1 year
-  [4]. Google Mobile Services Training
+  [5]. Google Mobile Services Training
        Trainer : 1 year
-  [5]. TopDog Communication ~ TopDog Africa
+  [6]. TopDog Communication ~ TopDog Africa
        Marketer | Technical Supervisor : 2 years
 ````
 
@@ -80,5 +83,4 @@ title: "About me"
 # Volunteer(ing)
 *   Community lead, for Google Developer Group Accra from 2013 till date.
 *   Country mentor for Ghana, Liberia, Sierre Leone & The Gambia.
-*   General & Financial Secretary for St.Thomas Aquinas Youth Association.
 
