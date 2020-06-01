@@ -4,7 +4,7 @@ date: 2020-04-06T01:16:26Z
 draft: false
 ---
 Man got stuck working with Google matric Api to determine distance, duration of travel etc from two points on the map.
-values the api spat out was a jumple of hash values that took me a while to understand how to traverse it.
+values the api spat out was a jumble of hash values that took me a while to understand how to traverse it.
 
 ```ruby
 
