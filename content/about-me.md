@@ -20,7 +20,6 @@ title: "About me"
        Marketer | Technical Supervisor : 2 years
 ````
 
-# XP +years
 
 <table>
   <tr>
