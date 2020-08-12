@@ -22,10 +22,7 @@ sudo nano /etc/default/tomcat8
 
 Uncomment **#AUTHBIND=no** and change to **AUTHBIND=yes**
 
-Edit the JAVA_OPTS to match the line below. This will help with Memory mangement issues.
-```
-JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"
-```
+Edit the JAVA_OPTS to match the line below. This will help with Memory mangement issues. ```JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"```
 
 Run the follow commands to sort out binding ports from the default 8080 to 80.
 
@@ -119,12 +116,16 @@ Create a DB as well, in our case named **dspace**
 createdb dspace
 ```
 
-Grant permissions to dspace user on dspace database
+Grant permissions to dspace user on dspace database and create the pgcyrpto extension.
 ```
-psql -d dspace CREATE EXTENSION pgcrypto; 
+psql
 ALTER ROLE dspace WITH PASSWORD 'db-password-here'; (e.g dspace) 
 ALTER DATABASE dspace OWNER TO dspace; 
 GRANT ALL PRIVILEGES ON DATABASE dspace TO dspace; 
+psql \c dspace
+CREATE EXTENSION pgcrypto; 
+\q
+\q
 exit
 ```
 
@@ -164,7 +165,7 @@ Things to take note of, the  databse username and password, port for solr, from 
 Dspace name, etc etc
 
 ```
-cd config
+cd target/dspace-installer
 cp local.cfg.EXAMPLE local.cfg
 sudo nano local.cfg
 ```
