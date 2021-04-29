@@ -20,6 +20,11 @@ enableEmoji =  true
   ## You can enable to add anchor links to header elements
    #enable_anchor_link = true
 
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
 
 
 
