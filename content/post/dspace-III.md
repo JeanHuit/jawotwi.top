@@ -24,6 +24,8 @@ Uncomment **#AUTHBIND=no** and change to **AUTHBIND=yes**
 
 Edit the JAVA_OPTS to match the line below. This will help with Memory mangement issues. ```JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC"```
 
+***Update 8-7-21***, changed ``MaxPermSize=256m`` to ``MaxPermSize=512m``
+
 Run the follow commands to sort out binding ports from the default 8080 to 80.
 
 ```
