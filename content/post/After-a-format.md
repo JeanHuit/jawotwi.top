@@ -1,5 +1,5 @@
 ---
-title: "After a Fortmat"
+title: "After a Format"
 date: 2017-09-10T11:50:28Z
 draft: false
 ---
