@@ -41,17 +41,17 @@ math:
 
 comment:
   # Options: disqus, commento, valine and utterances.
-  handler: disqus
+  handler: utterances
 
-  disqus:
-     shortname: jawotwi-top
+  # disqus:
+    #  shortname: jawotwi-top
 
   # utterances:
   #   # Browse https://utteranc.es/ to see the options available.
   #   # If you want the color scheme of utterances to follow eureka's, you can set `theme: eureka`.
-  #   repo:
-  #   issue-term:
-  #   theme:
+  repo: JeanHuit / jawotwi.top
+  issue-term: title
+  theme: eureka
 
   # commento:
   #   # If self-hosting, please enter the url (e.g. https://commento.example.com) here. Otherwise leave empty.
