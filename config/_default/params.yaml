@@ -46,12 +46,13 @@ comment:
   # disqus:
     #  shortname: jawotwi-top
 
-  # utterances:
+utterances:
   #   # Browse https://utteranc.es/ to see the options available.
   #   # If you want the color scheme of utterances to follow eureka's, you can set `theme: eureka`.
-  repo: "JeanHuit / jawotwi.top"
-  issue-term: "title"
-  theme: eureka
+  repo: 'JeanHuit / jawotwi.top'
+  issue-term: 'title'
+  theme: 'eureka'
+  label: Comments
 
   # commento:
   #   # If self-hosting, please enter the url (e.g. https://commento.example.com) here. Otherwise leave empty.
