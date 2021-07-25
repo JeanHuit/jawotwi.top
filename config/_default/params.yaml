@@ -51,8 +51,8 @@ utterances:
   #   # If you want the color scheme of utterances to follow eureka's, you can set `theme: eureka`.
   repo: JeanHuit/jawotwi.top
   issue-term: title
-  theme: eureka
-  label: Comments
+  theme: github-dark-orange
+  label: blog-comments
 
   # commento:
   #   # If self-hosting, please enter the url (e.g. https://commento.example.com) here. Otherwise leave empty.
