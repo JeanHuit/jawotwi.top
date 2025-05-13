@@ -4,7 +4,7 @@ date: 2017-09-10T11:50:28Z
 draft: false
 ---
 Something I do regulary to any machine I work with is a regular format.
-<!--more-->
+ <!--more-->
 I find, that with regular use, a MacOS | Win | Linux box gathers dust - remanants of software installed, uninstalled, used-no-more, forgotten among other things, that clutter or clog ones workflow.
 
 Formatting a computer to me, sort of gives your machine a new breath of life. This month, was no different.
