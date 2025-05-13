@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribalism and Nepotism | Reveries</title>
+
+    
+  
+    <link href="/images/Ouroboros.svg" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="http://localhost:1313/posts/tribalism-and-nepotism/" />
+
+
+
+<meta name="author" content="jeanhuit" />
+<meta name="description" content="Day in day out, we hear of wars up and around us.
+" />
+
+
+<meta name="keywords" content="">
+
+
+
+<meta name="generator" content="Hugo 0.147.2">
+
+
+<meta property="og:url" content="http://localhost:1313/posts/tribalism-and-nepotism/">
+  <meta property="og:site_name" content="Reveries">
+  <meta property="og:title" content="Tribalism and Nepotism">
+  <meta property="og:description" content="Day in day out, we hear of wars up and around us.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2010-04-22T13:05:55+00:00">
+    <meta property="article:modified_time" content="2010-04-22T13:05:55+00:00">
+    <meta property="og:image" content="http://localhost:1313/images/global-background.jpg">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/global-background.jpg">
+  <meta name="twitter:title" content="Tribalism and Nepotism">
+  <meta name="twitter:description" content="Day in day out, we hear of wars up and around us.">
+
+
+
+
+<link rel="stylesheet" href="/css/output.css" />
+
+
+
+
+    
+
+
+<style>
+  pre {
+    padding: 1em;
+    overflow: auto;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav class="mt-4 lg:mt-8 py-4">
+
+  
+  <div class="container flex justify-between px-4">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="/moi.png" alt="Reveries" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="http://localhost:1313/" class="text-lg font-semibold cursor-pointer">
+          Reveries
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">Till I die, I&#39;d aspire to inspire</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
+  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/posts" title="Archives">
+  <ion-icon class="group-hover:text-primary-content" name="archive"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/categories" title="All Categories">
+  <ion-icon class="group-hover:text-primary-content" name="grid"></ion-icon>
+</a>
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/tags" title="All Tags">
+  <ion-icon class="group-hover:text-primary-content" name="pricetags"></ion-icon>
+</a>
+
+
+      
+
+      
+
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
+  <div class="hidden lg:block">
+    
+  </div>
+
+  <div class="lg:col-span-2">
+    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+      
+  <meta itemprop="name" content="Tribalism and Nepotism">
+  <meta itemprop="description" content="Day in day out, we hear of wars up and around us.">
+  <meta itemprop="datePublished" content="2010-04-22T13:05:55+00:00">
+  <meta itemprop="dateModified" content="2010-04-22T13:05:55+00:00">
+  <meta itemprop="wordCount" content="2273">
+  <meta itemprop="image" content="http://localhost:1313/images/global-background.jpg">
+
+      <header>
+        <h1 itemprop="headline">Tribalism and Nepotism</h1>
+        <p class="text-sm">
+          
+            Thursday, Apr 22, 2010
+          
+
+          | <span>11 minute read</span>
+
+          
+          | <span>Updated at
+            
+              Thursday, Apr 22, 2010
+            </span>
+          
+        </p>
+
+        
+        <div class="flex justify-between">
+          
+            <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+          
+
+          <div class="flex items-center gap-2">
+  
+  
+
+  
+  
+  
+  
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://x.com/intent/post?text=Tribalism%20and%20Nepotism&amp;url=http://localhost:1313/posts/tribalism-and-nepotism/" target="_blank" rel="noopener noreferrer"
+      title="Share on X">
+      <ion-icon class="group-hover:text-primary-content" name="logo-x"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/tribalism-and-nepotism/" target="_blank" rel="noopener noreferrer"
+      title="Share on Facebook">
+      <ion-icon class="group-hover:text-primary-content" name="logo-facebook"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://wa.me/?text=Tribalism%20and%20Nepotism%20http://localhost:1313/posts/tribalism-and-nepotism/" target="_blank" rel="noopener noreferrer"
+      title="Share on WhatsApp">
+      <ion-icon class="group-hover:text-primary-content" name="logo-whatsapp"></ion-icon>
+    </a>
+  
+
+  
+  
+</div>
+
+        </div>
+      </header>
+
+      <section id="dream-single-post-content" itemprop="articleBody">
+        
+
+        <p>Day in day out, we hear of wars up and around us.</p>
+<p>Thinking that it’s not affecting us, we just shrug the issue of and continue with our daily lives. All these wars begun as a result of something, most of these being tribal conflicts. We may consider a tribal war as gnat on the toe of a giant, but these petty wars could explode into something greater, take for example the civil war in Liberia; it all started as a result of tribal conflicts. Ghana has a similar case on its soil, we should be careful about how we handle the issue of the northern conflict.<br>
+This paper is also an appeal to the powers that be, that they may hurry to solve these conflicts and that the people themselves take a stand to end the war.<br>
+To get a better understanding of what this paper is all about we would need to ask ourselves several questions such as ;<br>
+What is Tribalism? What is Nepotism? Do they exist? Why do people feel so superior about their tribes over others? On the other hand, why are some high level educated citizens caught in this uncivilized tradition?<br>
+The objectives of this paper are to show that tribalism and nepotism are first of all serious problems that are being ignored in our country and that they have crude consequences. It also aims to show possible causes, effects and solutions of these vices. It is the aim of this project to highlight and examine all these questions, and again look at it from an ethical and moral point of view.<br>
+This paper hopes to discuss, the issues concerning the topics at hand, happening in and around Africa, centering on Ghana.<br>
+At the end of this paper, we should be able to:<br>
+1. Define and explain the two main concepts discussed in this paper; Tribalism and Nepotism.<br>
+2. Discuss the problems, effects and possible solutions surrounding these issues.<br>
+3. Point out issues of the same caliber, and discuss them.<br>
+4. Discuss other various ethical issues and take their stand on these issues.<br>
+According to wikipedia.org (an online based encyclopedia), Tribalism is behavior, attitudes that are based on being loyal to a tribe or other social group. It is the very first social system that human beings have lived in. Tribalism can also be said as the possession of a strong cultural or ethnic identity that separates a person as a member of a one group from members of another group. The Merriam-Webster dictionary also defines tribalism (among other definitions) as the exaltation of one’s tribe above others. In other words tribalism is the feeling that one’s tribe is superior to some other tribe or all tribes. As a result the tribalists have a disdain and often disrespect for the tribes they think are inferior to their tribe. Such people therefore discourage association in any form be it marriage, work, or friendship with tribes they deem to be inferior. In most cases they have derogatory names for the tribes they deem to be inferior. In Ghana almost every tribe has such names for other tribes. Words like &rsquo;tani&rsquo;, &lsquo;kabonga&rsquo; &lsquo;habanaseni&rsquo; etc are all examples of such derogatory words used to demean and disrespect people of other tribes<br>
+Nepotism on the other hand is the showing of favoritism for relatives or friends based upon that relationship, rather than on an objective evaluation of ability or suitability, for instance by offering employment to a relative, despite the fact that there are others who are better qualified and willing and able to perform the job. The word nepotism is from the Latin word Nepos meaning “nephew” or “grandchild“. Simply put: We will define Tribalism as the exaltation of one’s tribe over others, and then Nepotism as simply “square pegs in round holes”.<br>
+These two concepts are intertwined; you cannot speak of one without mentioning the other. They have been in existence since time immemorial and would continue to be, if nothing is done to check these concepts.</p>
+<p>As Africans, we must know how deep Tribalism and Nepotism has gotten into our society and the effect it’s having on our development as a continent and as Ghanaians we ’s not consider these concepts to be something farfetched, in fact the trickle down effects of tribalism and nepotism are still prominent and ongoing in our country today.<br>
+First and foremost, let’s take a peek into our family situation. In today’s Ghana, there are some families from particular tribes that do not allow socialization of their members with other tribes. One may doubt the existence of such ideas in modern times, but it does truly exist , with parents telling their children right from their infancy not to bring certain people of a particular tribe home ”in other words for marriage”<br>
+Next, we look at the just ended presidential elections and its associated chaos it plunged this country into. Clearly this was as a result of tribalism and nepotism. With one political party pulling a faction of the populace due its tribal affiliations whiles another tribal faction leaning towards a political party. With the determining power lying with another tribal faction.<br>
+Furthermore, the current situation in our northern region is glaring proof that tribalism and nepotism are eminent in our beloved country today. All the trouble there at the moment is as a result of differences in two tribes.<br>
+Thankfully our sister country Liberia is at peace now, but looking at the root cause of all the war and strife that happened was also as a result of conflict between two ethnic groups /tribes.<br>
+Thus we can clearly state that the state of affairs concerning tribalism and nepotism is as it was in the past if not, has even worsened.</p>
+<p>Considering ethical issues we would like to divide the topics into various sectors and look at them in terms of the problems that take place in those areas. Ethical issues or problems are found in areas listed below.<br>
+Areas like; Family (inter-marriages)<br>
+Work and employment<br>
+News agencies (news houses)<br>
+Politics (politicians)<br>
+Keep in mind, there cannot be anything ethical unless an issue of doing right or wrong is debated. Within the family, ethical issues arise as to when parents strictly warn their children not to bring any person from a particular tribe home in term of marriage.” you would find similar cases in Ashanti homes, when parents tell their children not to bring people especially “ewe’s “home”. This character is passed onto the children from a very tender age. Hence our serious tribal differences, division of Ghana – not into regions but rather tribal sectors.<br>
+Furthermore, the issue of employment is a really serious one. Nowadays getting a job is no longer about qualification but rather about “who you know”. i.e. (if someone is from your tribe, you have a higher chance of attaining a job). The negative effects of tribalism in Ghana of tribalism in Ghana are not farfetched. First of all tribalism breeds nepotism. Once people feel that their tribesmen are better than people from other tribes they tend to surround themselves with their tribesmen when get into positions of trust. The tribalists are willing to hire people from their tribe who may not otherwise be the best candidate for the given job. Such actions deprive the nation of the right people for the right job. That is square pegs in round holes. (Putting unqualified persons in positions due to tribal relations.)<br>
+In addition, let’s take a look at the role new agencies play in propagating ethical division (tribalism &amp; nepotism). Journalists who engage in tribalism. It is the most worrying trend in politics of Ghana today. The media which is the objective fourth arm of government is supposed to be an objective observer of politicians and put them on their toes. The media is the ear of society and it‘s work imparts greatly on the national psyche. The media&rsquo;s objective reportage of the news helps the electorate to know the going on in the government and the realms of politics. Therefore it just so sad that some of our journalists have thrown good journalism to the dogs and have chosen to join the tribal bandwagon. It is a pity that our journalists have not learnt from Rwandown the drain because of their engagement in senseless tribal journalism. Looking back to the election 2008, the media played a role in psyching up the friction that was already brewing within the country. The media in general was leaning heavily towards tribal affiliation; publicly stating, that one political party was geared towards a particular tribe (group), whiles another faction belonged to another political party. In other sense, one could claim that the news houses (media). Are at the forefront of this ethical issue, nepotism and tribalism.<br>
+Last but not the least is the ethical issues raised by Politics. Politicians in general are major contributors to these ethical issues. During elections these politicians tend to rely on the public’s weakness when it’s directed towards their tribal affiliations. Politicians know that they have nothing better to offer when it comes to issues of national development so by playing the tribal card they are able to skip the issues at stake. They fail to recognize that their actions cause more harm to the very state they want to govern thus looking at the same incidence of elections 2008, all the disturbances caused was by political parties. Another incidence was the rife in Liberia caused by Charles Taylor, in actual fact the wars really started as tribal differences between the Gio tribe, from which Charles Taylor originally was from and the krahan tribe (the ruling party at the time) that were against him, later the mandigo tribe also joined the krahan tribe in pursuit against Charles Taylor. These petty quarrels among tribes lead to the all out war Liberia was plunged into for several decades.<br>
+All these and others are some of the ethical issues that arise when the issue of tribalism and nepotism come about.<br>
+Stated above are ethical problems in line with tribalism and nepotism. Take note that tribalism and nepotism is tightly woven together, you cannot speak of one concept without mentioning the other. Here I would like to briefly state some possible causes.<br>
+Possible causes:<br>
+• Bad leadership<br>
+• Selfishness by serving personal interests instead of the needs of the people<br>
+• Corruption<br>
+• Contribution from our political leaders – careless utterances and incitement by politicians<br>
+• Polarized political issues.<br>
+• Political manipulation.</p>
+<p>As long as there are problems, the effects of these problems would be felt in the long run. Effects such as these:<br>
+• Discriminations against members of different tribes which in turn Encourages hatred among people of different tribes, which in turn could lead to all out wars. Contributing to social disintegration, and thus makes the resort to violence more likely-and more deadly.<br>
+• Brings corruption –if only tribe members are given certain privileges, people who are even qualified but do not belong the said tribe would resort to paying bribes to attain the said privileges.<br>
+• Promotes selfishness.<br>
+• Contributes in slowing down the economy, since only people of the same tribe want to help each other as the rest suffer. - Negative growths of the economy as people serve their own interests and those of their relatives.<br>
+• Erodes prospects for development<br>
+• Unequal distribution of resources<br>
+• Undermines security<br>
+• Lead to fight for power because everyone wants to enrich himself by serving his selfish needs and those of his relatives.</p>
+<p>As long as we recognize something as a problem, then definitely there is a solution. Since we as a group recognize tribalism and nepotism as a problem, we have outlined certain possible solutions, stated below:<br>
+1. Tolerance / peaceful coexistence – the ability to accept another’s faults, view and opinion, without hate or malice.<br>
+2. Encourage inter-tribal marriages – this would create a mixed tribe, offspring’s of the union would not have specific tribal alliances.<br>
+3. Look for competence not tribe – in employing, employers should look out for competence and not tribal similarities.<br>
+4. Fair distribunot discriminate against certain tribes in sharing resources, but rather give them out, in needed measure.<br>
+5. Free and fair selections of employees, applicants into government, private institutions will all help reduce and eventually solve the problem of Tribalism and Nepotism.</p>
+<p>Tribalism and Nepotism are issues that our country faces and has to keep up with. Both lower the levels of development as they are the breeding grounds for corruption. Ironically, our leaders who are supposed to show us the right path and lead us to success as they work with us to develop and improve our economy are the biggest participants in it. Doing unto others what we would want done to us and acknowledging that justice emerges when negotiating without social differentiation<br>
+We see ourselves as tribal before national…its high time we see ourselves as national before tribal…<br>
+With one mind and one accord let’s be one people.</p>
+<p>Recommendations:<br>
+a) Tribalism:<br>
+• Formation of an inter-tribal union: This would seek to address and solve problems between the tribes involved through dialogue.<br>
+• Organizing of annual inter-tribal games.<br>
+• Love: We should learn to develop the virtue of for one another irrespective of one’s tribal association.</p>
+<p>b) Nepotism:<br>
+• Practice of the “do unto others what you want done unto you” rule.<br>
+• Development of patriotism spirit.<br>
+• Ensure compliance to standards required in order to be employed by the leaders of organizations.</p>
+<p>Reference<br>
+• . <a href="http://elections.peacefmonline.com/politics/200909/26299.php" target="_blank">http://elections.peacefmonline.com/politics/200909/26299.php</a>
+<br>
+• <a href="http://www.gmiservices.com/modules.php?name=News&amp;file;=article&amp;sid;=145" target="_blank">http://www.gmiservices.com/modules.php?name=News&amp;file;=article&amp;sid;=145</a>
+<br>
+• <a href="http://wwwghanapolitics.blogspot.com/2009/06/uprooting-tribalism-from-ghanaian.html" target="_blank">http://wwwghanapolitics.blogspot.com/2009/06/uprooting-tribalism-from-ghanaian.html</a>
+<br>
+• <a href="https://www.all4africa.com" target="_blank">www.all4africa.com</a>
+<br>
+• <a href="https://www.Ghananews.com" target="_blank">www.Ghananews.com</a>
+<br>
+• <a href="https://www.google.com" target="_blank">www.google.com</a>
+<br>
+• <a href="https://www.wikipedia.com" target="_blank">www.wikipedia.com</a>
+</p>
+
+        
+      </section>
+
+      
+
+      
+      <div class="divider"></div>
+
+      <section class="space-y-4">
+        
+<article>
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+        this.page.identifier = '\/posts\/tribalism-and-nepotism\/';
+        this.page.title = 'Tribalism and Nepotism';
+        this.page.url = 'http:\/\/localhost:1313\/posts\/tribalism-and-nepotism\/';
+
+        
+    };
+    function initDisqus() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jawotwi-top" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    };
+    setTimeout(() => {
+        initDisqus();
+    }, 3000);
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+
+
+
+
+
+
+
+
+
+      </section>
+      
+    </article>
+  </div>
+
+  <div
+    x-data="tocHighlighter()"
+    @scroll.window="debouncedScroll"
+    class="hidden lg:flex lg:flex-col lg:items-end">
+    
+  </div>
+</div>
+
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="dream-grid dream-grid-about">
+  
+  
+  
+  <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+    <article
+      class="card bg-base-100 hover:bg-base-content/10 shadow-xl dark:border dark:border-base-content/30"
+    >
+      <div class="card-body">
+        <div class="card-title">Me</div>
+
+        <div class="prose dark:prose-invert">
+          <h2 id="self-introduction">Self Introduction</h2>
+<p>Passionate about people &amp; technology. With a plethora of experience managing both people and technology. I am  currently a Technical Officer with the Communications Division of CSIR - Institute for Scientific and Technological Information. Here, I am responsible for transforming research outputs into software, tools, equipments and communication systems as tools for national development.</p>
+<p>I am BIG about community and have spent the better part of the last decade; growing and managing various tech communities in Ghana. Most recent being the Google Developer Group (GDG). I ASPIRE to INSPIRE.</p>
+<p>I like to dabble in a lot of technology related things; from code to Rpi&rsquo;s.</p>
+
+        </div>
+      </div>
+    </article>
+  </div>
+  
+  
+
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+
+  
+  
+  <script src="/js/grid.js"></script>
+
+
+
+
+<script src="/js/main.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/toc.js"></script>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJTYJ9Z50"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4EJTYJ9Z50');
+        }
+      </script>
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>

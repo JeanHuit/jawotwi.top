@@ -1,0 +1,54 @@
+baseURL = "https://jawotwi.top"
+title = "Reveries"
+theme = "dream"
+defaultContentLanguage = "en"
+
+enableRobotsTXT = true
+
+
+[services]
+[services.googleAnalytics]
+ID = "G-4EJTYJ9Z50"
+
+[services.disqus]
+shortname = "jawotwi-top"
+
+
+[markup]
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false
+[markup.goldmark.parser.attribute]
+block = true
+[markup.goldmark.renderer]
+unsafe = true
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)'], ['$', '$']]
+[markup.highlight]
+noClasses = false
+
+# [taxonomies]
+# category = "categories"
+# tag = "tags"
+# series = "series"
+
+
+
+[params]
+
+lightTheme = "emerald"
+darkTheme = "forest"
+images = ["images/global-background.jpg"]
+
+author = "jeanhuit"
+description = "The life record of g1eny0ung is presented here."
+avatar = "moi.png"
+headerTitle = "Reveries"
+motto = "Till I die, I'd aspire to inspire"
+
+
+rss = true
+favicon = "images/Ouroboros.svg"
+
