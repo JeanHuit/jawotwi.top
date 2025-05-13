@@ -3,5 +3,5 @@
   publish = "public"
 
 [context.production.environment]
-  HUGO_VERSION = "0.83.1"
+  HUGO_VERSION = "0.147.2"
   GIT_SUBMODULE_STRATEGY = "recursive"
