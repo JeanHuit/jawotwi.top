@@ -148,5 +148,7 @@
   </url><url>
     <loc>http://localhost:1313/posts/tribalism-and-nepotism/</loc>
     <lastmod>2010-04-22T13:05:55+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>

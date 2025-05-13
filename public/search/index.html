@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search | Reveries</title>
+
+    
+  
+    <link href="/images/Ouroboros.svg" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="http://localhost:1313/search/" />
+
+
+
+<meta name="author" content="jeanhuit" />
+<meta name="description" content="The life record of g1eny0ung is presented here." />
+
+
+
+<meta name="generator" content="Hugo 0.147.2">
+
+
+<meta property="og:url" content="http://localhost:1313/search/">
+  <meta property="og:site_name" content="Reveries">
+  <meta property="og:title" content="Reveries">
+  <meta property="og:description" content="The life record of g1eny0ung is presented here.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+    <meta property="og:image" content="http://localhost:1313/images/global-background.jpg">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/global-background.jpg">
+  <meta name="twitter:title" content="Reveries">
+  <meta name="twitter:description" content="The life record of g1eny0ung is presented here.">
+      <meta name="twitter:site" content="@jeanhuit">
+
+
+
+
+<link rel="stylesheet" href="/css/output.css" />
+
+
+
+
+     
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between px-4">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="/moi.png" alt="Reveries" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="http://localhost:1313/" class="text-lg font-semibold cursor-pointer">
+          Reveries
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">Till I die, I&#39;d aspire to inspire</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    
+    <ion-icon name="logo-github"></ion-icon>
+    
+    GitHub
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+
+
+
+  
+  <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    <ion-icon class="group-hover:text-primary-content" name="logo-github"></ion-icon>
+  </a>
+  
+
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+
+
+<div class="mt-8 lg:mt-12 px-4"
+
+x-data="{
+  search: '',
+  get posts() { return this.search !== '' ? window.fuse.search(this.search) : [] },
+}">
+  <label for="search" class="input w-full">
+    <input id="search" name="search" type="text" class="grow" placeholder="Search" x-model.debounce="search" />
+    <ion-icon name="search"></ion-icon>
+  </label>
+
+  <div class="mt-8 space-y-4">
+  <template x-for="post in posts">
+    <a class="card bg-base-100 hover:bg-base-content/10 cursor-pointer border border-base-content/30" :href="post.item.url">
+      <div class="card-body">
+        <h2 class="card-title" x-text="post.item.title"></h2>
+
+        <div x-html="post.item.description"></div>
+
+        <div class="card-actions justify-between items-center mt-4">
+          <div class="flex items-center">
+            <template x-if="post.item.avatar">
+            <div class="avatar mr-1">
+              <div class="w-8 rounded-full">
+                <img class="my-0" :src="post.item.avatar" :alt="post.item.author" />
+              </div>
+            </div>
+            </template>
+            <template x-if="!post.item.avatar">
+            <span>@</span>
+            </template>
+
+            <template x-if="post.item.author">
+            <span x-text="post.item.author"></span>
+            </template>
+            <template x-if="!post.item.author">
+            <span>jeanhuit</span>
+            </template>
+            </span>
+          </div>
+
+          <div class="inline-flex items-center">
+            <ion-icon name="time" class="mr-1"></ion-icon>
+            <span><span x-text="post.item.readingTime"></span> minute read</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </template>
+  </div>
+</div>
+
+
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="dream-grid dream-grid-about">
+  
+  
+  
+  <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+    <article
+      class="card bg-base-100 hover:bg-base-content/10 shadow-xl dark:border dark:border-base-content/30"
+    >
+      <div class="card-body">
+        <div class="card-title">Me</div>
+
+        <div class="prose dark:prose-invert">
+          <h2 id="self-introduction">Self Introduction</h2>
+<p>Passionate about people &amp; technology. With a plethora of experience managing both people and technology. I am  currently a Technical Officer with the Communications Division of CSIR - Institute for Scientific and Technological Information. Here, I am responsible for transforming research outputs into software, tools, equipments and communication systems as tools for national development.</p>
+<p>I am BIG about community and have spent the better part of the last decade; growing and managing various tech communities in Ghana. Most recent being the Google Developer Group (GDG). I ASPIRE to INSPIRE.</p>
+<p>I like to dabble in a lot of technology related things; from code to Rpi&rsquo;s.</p>
+
+        </div>
+      </div>
+    </article>
+  </div>
+  
+  
+
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+
+  
+  
+  <script src="/js/grid.js"></script>
+
+
+
+
+<script src="/js/main.js"></script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" integrity="sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=" crossorigin="anonymous"></script>
+<script>
+  var fuseData = [{"author":"Author Name","avatar":null,"categories":["category1"],"description":"\u003cp\u003eCut out summary from your post content here.\u003c/p\u003e","readingTime":1,"tags":["tag1","tag2"],"title":"Article Title","url":"/posts/article-title/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThe mobile phones continued growth is evident and shows no clear sign of stopping.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Auditing Your Phone","url":"/posts/auditing-your-phone/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003e\u003cstrong\u003eNB: Heroku is no longer free\u003c/strong\u003e\u003c/p\u003e","readingTime":1,"tags":null,"title":"Heroku Ruby App","url":"/posts/heroku-ruby-app/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eInstalling Dspace on Digital Ocean. Using Ubuntu 18.04\u003c/p\u003e","readingTime":3,"tags":null,"title":"Dspace III","url":"/posts/dspace-iii/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eMany are the reasons I choose to setup JupyterLabs with a Ruby Kernel, I will however not disclose those reasons :)\u003c/p\u003e","readingTime":1,"tags":null,"title":" Setting Up Jupyterlab With Ruby Kernel (MacOS)","url":"/posts/jupyterlab-with-ruby-kernel/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eDiscovered a simple script that allows you to monitor your server in a quick glance.\u003c/p\u003e","readingTime":1,"tags":null,"title":"Easy Server Monitoring","url":"/posts/easy-server-monitoring/"},{"author":null,"avatar":null,"categories":null,"description":"\u003ch4 id=\"os-ubuntu-server-2004\"\u003eOs: Ubuntu Server 20.04\u003c/h4\u003e\n\u003cp\u003eIf you ever find yourself unable to log-in or connect to your newly created MySQL server, with errors such as these being thrown around,\u003c/p\u003e","readingTime":2,"tags":null,"title":"Making MySQL Accessible remotely","url":"/posts/remotesql/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eMan got stuck working with Google matric Api to determine distance, duration of travel etc from two points on the map.\u003c/p\u003e","readingTime":1,"tags":null,"title":"Hash Arrays","url":"/posts/hash-arrays/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eInstalling Dspace on Linux. Using Ubuntu 16.04\u003c/p\u003e","readingTime":3,"tags":null,"title":"Dspace Installs II","url":"/posts/dspace-ii/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eI have spent over three weeks in trying to get dspace set up.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Dspace Installs","url":"/posts/dspace-installs/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThere are a thousand and one tutorials on the internet that teach how to go about this (title of post).\u003c/p\u003e","readingTime":1,"tags":null,"title":"Uploading A Wordpress Site to a Live Server","url":"/posts/uploading-wordpress-to-a-live-server/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003e\u003cstrong\u003eNB: This is no longer active or maintained. Heroku is no longer free\u003c/strong\u003e\u003c/p\u003e","readingTime":2,"tags":null,"title":"Hosting a Simple Sinatra App on Heroku","url":"/posts/hosting-a-sinatra-app-on-heroku/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThere is a password storm brewing and it all started with Google announcing a chrome extension that will inform users if their passwords have been used or shared online or are insecure,\u003c/p\u003e","readingTime":1,"tags":null,"title":"Password Generators","url":"/posts/password-generators-on-heroku/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThe year is 2019 and if you have a thought process in any way similar to mine, you\u0026rsquo;d most likely prefer to start the year on a clean slate.\u003c/p\u003e","readingTime":1,"tags":null,"title":"Open Source Alternatives","url":"/posts/open-source-alternatives/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eDid you know the world has 15% of its inhabitants being disabled and that 2-4% of the 15% have significantly high levels in functioning?\u003c/p\u003e","readingTime":2,"tags":null,"title":"Building for the World","url":"/posts/building-for-the-world/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eAn upcoming travel opportunity had me searching for a VPN service I could use whiles away from 127.0.0.1 .\u003c/p\u003e","readingTime":1,"tags":null,"title":"An Outline of Outline","url":"/posts/an-outline-of-outline/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eEver encountered the issue of setting up an\u003c/p\u003e","readingTime":1,"tags":null,"title":"Setup Wordpress Ftp for Local Development","url":"/posts/setup-wordpress-ftp-for-local-development/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eGMail keeps getting feature rich day in day out.\u003c/p\u003e","readingTime":1,"tags":null,"title":"Gmails Got a Confidential Mode","url":"/posts/gmails-got-a-confidential-mode/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eIf \u003ccode\u003efree\u003c/code\u003e is a requirement to hosting your code amidst running a continuous integration and delivery setup.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Github : Codeship :Firebase Hosting ","url":"/posts/github-codeship-firebase-hosting/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThis is a blog post, that is meant to paint in broad strokes an understanding of what GDPR is.\u003c/p\u003e","readingTime":3,"tags":null,"title":"What the Heck Is Gdpr","url":"/posts/what-the-heck-is-gdpr/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThe alternate symbol (vertical bar) on the backslash key, on the standard US keyboard: is known as the pipe.\u003c/p\u003e","readingTime":1,"tags":null,"title":"The Pipe","url":"/posts/the-pipe/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eFor some reason, I just do not remmeber why, I decided to find out if my one off blog could find another home.\u003c/p\u003e","readingTime":1,"tags":null,"title":"The Move to Firebase","url":"/posts/the-move-to-firebase/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eSomething I do regulary to any machine I work with is a regular format.\u003c/p\u003e","readingTime":1,"tags":null,"title":"After a Format","url":"/posts/after-a-format/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eAnother linux command, I find very useful,\u003c/p\u003e","readingTime":2,"tags":null,"title":"Grep","url":"/posts/grep/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cblockquote\u003e\n    \u003cp\u003eThis post is the beginning of a series I\u0026rsquo;d tag nlc to talk about linux commands that I come across.\u003c/p\u003e\n  \u003c/blockquote\u003e","readingTime":1,"tags":null,"title":"Nifty Linux Commands","url":"/posts/nifty-linux-commands/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eSo what do you with \u003cstrong\u003e$300\u003c/strong\u003e you cannot spend.\u003cbr\u003e\nWell except on the platform that gave you the cash, albeit virtual.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Running Ghost on Google Compute Engine","url":"/posts/running-ghost-on-google-compute-engine/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003e“There is an app for that” is a phrase that 2016 saw and heard in abundance.\u003c/p\u003e","readingTime":2,"tags":null,"title":"Apps Unbecoming","url":"/posts/apps-unbecoming/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eFor some weird reason, Some android phones do not have Gapps \u003c/p\u003e\n\\[Google Apps\\]\u003cp\u003e installed on them.\u003c/p\u003e","readingTime":2,"tags":null,"title":"Gapps on Chinese Phones","url":"/posts/gapps-on-chinese-phones/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eHi there,\u003c/p\u003e\n\u003cp\u003eYes, you. The period of silence on this blog has been loud.\u003c/p\u003e","readingTime":1,"tags":null,"title":"Know Your Node","url":"/posts/know-your-node/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eSo I got in late to the Humans of Ghana party.\u003c/p\u003e","readingTime":2,"tags":null,"title":"To Copy or Not to Copy","url":"/posts/to-copy-or-not-to-copy/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eRecently, I had the opportunity to attend a validation meeting on the right to access information in Ghana.\u003c/p\u003e","readingTime":2,"tags":null,"title":"The Right to Information","url":"/posts/the-right-to-information/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eLife, in its living is froth with pain, joy, sadness, tears, smiles and many other words\u003c/p\u003e","readingTime":2,"tags":null,"title":"To Each His Own","url":"/posts/to-each-his-own/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThere are a lot of things Gmail is capable of that doesn’t come to light.\u003c/p\u003e","readingTime":2,"tags":null,"title":"Gmails Hidden Secrets","url":"/posts/gmails-hidden-secrets/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eI knew the title of my post, I knew the plot my post was going to take,\u003c/p\u003e","readingTime":2,"tags":null,"title":"Wifite","url":"/posts/wifite/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eOnce you get Ghost up and running, next comes the theme.\u003c/p\u003e","readingTime":2,"tags":null,"title":"Ghost Adventures 2","url":"/posts/ghost-adventures-2/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eThese adventures follow Jean in his quest to get a blog up and running the open source way.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Ghost Adventures 1","url":"/posts/ghost-adventures-1/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eColor me surprised!\u003cbr\u003e\nWith bold strong strokes my face is covered in deep tones of surprise. Ask me not what color I speak of.\u003c/p\u003e","readingTime":3,"tags":null,"title":"Open Source in SSA Schools","url":"/posts/open-source-in-ssa-schools/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eTake a second look at this posts title, I urge you, take a second look.\u003c/p\u003e","readingTime":2,"tags":null,"title":"I Just Want to Say Linux Is","url":"/posts/i-just-want-to-say-linux-is/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eWhat is privacy ? -one may ask.\u003c/p\u003e","readingTime":2,"tags":null,"title":"There Is Nothing Like Privacy","url":"/posts/there-is-nothing-like-privacy/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eWarning:\u003c/p\u003e\n\u003ch3 id=\"mild-explicit-content-within\"\u003eMild Explicit content within*\u003c/h3\u003e","readingTime":2,"tags":null,"title":"Oh Sh*t I Cannot Believe I Just Sent That Mail","url":"/posts/oh-i-cannot-believe-i-just-sent-that-mail/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eWith the world heading on to becoming a global village as most like to say\u003c/p\u003e","readingTime":5,"tags":null,"title":"Open Source Alts","url":"/posts/open-source-alts/"},{"author":null,"avatar":null,"categories":null,"description":"\u003cp\u003eDay in day out, we hear of wars up and around us.\u003c/p\u003e","readingTime":11,"tags":null,"title":"Tribalism and Nepotism","url":"/posts/tribalism-and-nepotism/"}];
+  var fuseOptions = {
+    keys: [
+      "title",
+    ]
+  };
+
+  var fuse = new Fuse(fuseData, fuseOptions);
+</script>
+
+
+
+    
+
+    
+
+    
+
+    
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJTYJ9Z50"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4EJTYJ9Z50');
+        }
+      </script>
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>
