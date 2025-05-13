@@ -1,6 +1,7 @@
 ---
 title: " Setting Up Jupyterlab With Ruby Kernel (MacOS)"
 date: 2020-06-28T02:52:22Z
+cover: /images/jupyter.png
 draft: false
 ---
 

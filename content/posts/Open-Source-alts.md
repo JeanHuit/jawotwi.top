@@ -1,6 +1,7 @@
 ---
 title: "Open Source Alts"
 date: 2012-02-18T12:33:19Z
+cover: /images/opensource.webp
 draft: false
 ---
 

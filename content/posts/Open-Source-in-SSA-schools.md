@@ -1,6 +1,7 @@
 ---
 title: "Open Source in SSA Schools"
 date: 2013-06-27T12:31:48Z
+cover: /images/opensource.webp
 draft: false
 ---
 

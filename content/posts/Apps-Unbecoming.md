@@ -1,6 +1,7 @@
 ---
 title: "Apps Unbecoming"
 date: 2016-12-30T11:52:12Z
+cover: /images/apps.jpg
 draft: false
 ---
 

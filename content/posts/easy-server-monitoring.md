@@ -1,6 +1,7 @@
 ---
 title: "Easy Server Monitoring"
 date: 2020-06-11T07:31:49Z
+cover: /images/monitor.png
 draft: false
 ---
 

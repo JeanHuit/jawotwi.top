@@ -1,6 +1,7 @@
 ---
 title: "Dspace III"
 date: 2020-06-29T06:36:08Z
+cover: /images/dspace.png
 draft: false
 ---
 

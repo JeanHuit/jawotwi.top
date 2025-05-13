@@ -1,6 +1,7 @@
 ---
 title: "Wifite"
 date: 2015-06-02T13:08:58Z
+cover: /images/wifite.png
 draft: false
 ---
 

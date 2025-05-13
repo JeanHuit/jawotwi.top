@@ -1,6 +1,7 @@
 ---
 title: "Tribalism and Nepotism"
 date: 2010-04-22T13:05:55Z
+cover: /images/tribal.jpg
 draft: false
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Setup Wordpress Ftp for Local Development"
 date: 2018-08-25T11:42:25Z
+cover: /images/wordpress.png
 draft: false
 ---
 Ever encountered the issue of setting up an

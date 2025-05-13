@@ -1,6 +1,7 @@
 ---
 title: "Gmails Hidden Secrets"
 date: 2015-07-02T12:18:41Z
+cover: /images/gmail.png
 draft: false
 ---
 

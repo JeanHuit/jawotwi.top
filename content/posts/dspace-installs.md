@@ -1,6 +1,7 @@
 ---
 title: "Dspace Installs"
 date: 2019-10-30T15:15:28Z
+cover: /images/dspace.png
 draft: false
 ---
 I have spent over three weeks in trying to get dspace set up.

@@ -1,6 +1,7 @@
 ---
 title: "The Right to Information"
 date: 2015-10-11T13:00:22Z
+cover: /images/info.jpeg
 draft: false
 ---
 Recently, I had the opportunity to attend a validation meeting on the right to access information in Ghana. 

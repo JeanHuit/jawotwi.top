@@ -1,6 +1,7 @@
 ---
 title: "Password Generators"
 date: 2019-02-08T17:07:59Z
+cover: /images/heroku.png
 draft: false
 ---
 

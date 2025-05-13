@@ -1,6 +1,7 @@
 ---
 title: "An Outline of Outline"
 date: 2018-10-08T11:44:56Z
+cover: /images/outline.png
 draft: false
 ---
 An upcoming travel opportunity had me searching for a VPN service I could use whiles away from 127.0.0.1 .

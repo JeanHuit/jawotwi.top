@@ -1,6 +1,7 @@
 ---
 title: "The Pipe"
 date: 2018-04-18T12:58:58Z
+cover: /images/linux.png
 draft: false
 ---
 

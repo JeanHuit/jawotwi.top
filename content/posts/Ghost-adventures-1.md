@@ -1,6 +1,7 @@
 ---
 title: "Ghost Adventures 1"
 date: 2015-03-20T12:10:06Z
+cover: /images/ghost.png
 draft: false
 ---
 These adventures follow Jean in his quest to get a blog up and running the open source way.

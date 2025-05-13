@@ -1,6 +1,7 @@
 ---
 title: "Nifty Linux Commands"
 date: 2017-07-04T12:23:37Z
+cover: /images/linux.png
 draft: false
 ---
 

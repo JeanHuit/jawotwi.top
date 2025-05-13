@@ -1,6 +1,7 @@
 ---
 title: "What the Heck Is Gdpr"
 date: 2018-05-14T13:07:37Z
+cover: /images/gdpr.jpeg
 draft: false
 ---
 This is a blog post, that is meant to paint in broad strokes an understanding of what GDPR is.

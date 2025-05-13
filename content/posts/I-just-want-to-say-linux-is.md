@@ -1,6 +1,7 @@
 ---
 title: "I Just Want to Say Linux Is"
 date: 2013-05-07T12:25:54Z
+cover: /images/linux.png
 draft: false
 ---
 

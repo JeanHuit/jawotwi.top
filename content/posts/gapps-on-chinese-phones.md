@@ -1,6 +1,7 @@
 ---
 title: "Gapps on Chinese Phones"
 date: 2016-11-25T12:08:15Z
+cover: /images/google.webp
 draft: false
 ---
 For some weird reason, Some android phones do not have Gapps \[Google Apps\] installed on them. 

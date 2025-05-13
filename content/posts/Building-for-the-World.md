@@ -1,6 +1,7 @@
 ---
 title: "Building for the World"
 date: 2018-10-08T12:05:53Z
+cover: /images/access.png
 draft: false
 ---
 

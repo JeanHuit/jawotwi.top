@@ -1,6 +1,7 @@
 ---
 title: "Gmails Got a Confidential Mode"
 date: 2018-08-24T12:16:50Z
+cover: /images/gmail.png
 draft: false
 ---
 GMail keeps getting feature rich day in day out.

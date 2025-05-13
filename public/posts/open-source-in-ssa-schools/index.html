@@ -51,6 +51,7 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
   <meta name="twitter:title" content="Open Source in SSA Schools">
   <meta name="twitter:description" content="Color me surprised!
 With bold strong strokes my face is covered in deep tones of surprise. Ask me not what color I speak of.">
+      <meta name="twitter:site" content="@jeanhuit">
 
 
 
@@ -90,7 +91,10 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
     <div id="dream-global-bg"></div>
 
     
-<nav class="mt-4 lg:mt-8 py-4">
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
 
   
   <div class="container flex justify-between px-4">
@@ -117,6 +121,8 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
     </section>
 
     
+    
+      
     
 
     <div class="dropdown dropdown-end sm:hidden">
@@ -150,12 +156,18 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
 
 
 
+
+
+
 <li>
-  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
-    <ion-icon name="logo-rss"></ion-icon>
-    RSS
+  <a class="inline-flex items-center p-2 cursor-pointer" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    
+    <ion-icon name="logo-github"></ion-icon>
+    
+    GitHub
   </a>
 </li>
+
 
 
 
@@ -190,6 +202,28 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
 
 
 
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       </ul>
@@ -197,6 +231,8 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
     <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
       
 
+      
+      
       
       
 
@@ -218,36 +254,81 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
 
       
       
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
-  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
-</a>
 
 
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/posts" title="Archives">
-  <ion-icon class="group-hover:text-primary-content" name="archive"></ion-icon>
-</a>
 
+  
+  <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    <ion-icon class="group-hover:text-primary-content" name="logo-github"></ion-icon>
+  </a>
+  
 
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/categories" title="All Categories">
-  <ion-icon class="group-hover:text-primary-content" name="grid"></ion-icon>
-</a>
-
-
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/tags" title="All Tags">
-  <ion-icon class="group-hover:text-primary-content" name="pricetags"></ion-icon>
-</a>
 
 
       
 
-      
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
 
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+
+          
+        </ul>
+      </div>
       
     </section>
   </div>
@@ -346,6 +427,8 @@ With bold strong strokes my face is covered in deep tones of surprise. Ask me no
 
       <section id="dream-single-post-content" itemprop="articleBody">
         
+          <img class="w-full z-30" src="/images/opensource.webp" alt="Open Source in SSA Schools" />
+        
 
         <p>Color me surprised!<br>
 With bold strong strokes my face is covered in deep tones of surprise. Ask me not what color I speak of.</p>
@@ -376,6 +459,29 @@ Yours truly, am out.</p>
         
       </section>
 
+      
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/ghost-adventures-1/" title="Ghost Adventures 1">
+          <ion-icon name="chevron-back"></ion-icon>
+          <div class="inline-flex flex-col items-start">
+            <span class="text-base-content/60 text-xs font-normal">Previous page</span>
+            <span class="max-w-48 truncate">Ghost Adventures 1</span>
+          </div>
+        </a>
+        
+
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/i-just-want-to-say-linux-is/" title="I Just Want to Say Linux Is">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next page</span>
+            <span class="max-w-48 truncate">I Just Want to Say Linux Is</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        
+      </div>
       
 
       
@@ -429,6 +535,8 @@ Yours truly, am out.</p>
     x-data="tocHighlighter()"
     @scroll.window="debouncedScroll"
     class="hidden lg:flex lg:flex-col lg:items-end">
+    
+      <nav id="TableOfContents"></nav>
     
   </div>
 </div>
@@ -599,6 +707,16 @@ Yours truly, am out.</p>
 
 <script src="/js/toc.js"></script>
 
+
+  
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  
 
 
 

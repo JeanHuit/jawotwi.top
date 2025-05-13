@@ -1,6 +1,7 @@
 ---
 title: "Auditing Your Phone"
 date: 2021-10-16T16:59:49Z
+cover: /images/phones.jpg
 draft: false
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "The Move to Firebase"
 date: 2017-12-14T12:57:25Z
+cover: /images/firebase.png
 draft: false
 ---
 

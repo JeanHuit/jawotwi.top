@@ -1,6 +1,7 @@
 ---
 title: "After a Format"
 date: 2017-09-10T11:50:28Z
+cover: /images/format.jpg
 draft: false
 ---
 Something I do regulary to any machine I work with is a regular format.

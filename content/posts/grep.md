@@ -1,6 +1,7 @@
 ---
 title: "Grep"
 date: 2017-09-02T12:20:27Z
+cover: /images/linux.png
 draft: false
 ---
 Another linux command, I find very useful, 

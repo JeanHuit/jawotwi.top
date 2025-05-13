@@ -1,6 +1,7 @@
 ---
 title: "Oh Sh*t I Cannot Believe I Just Sent That Mail"
 date: 2013-03-25T12:28:33Z
+cover: /images/gmail.png
 draft: false
 ---
 Warning:

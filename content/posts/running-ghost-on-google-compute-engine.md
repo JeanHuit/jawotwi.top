@@ -1,6 +1,7 @@
 ---
 title: "Running Ghost on Google Compute Engine"
 date: 2017-07-01T12:34:35Z
+cover: /images/ghost.png
 draft: false
 ---
 So what do you with **$300** you cannot spend.  

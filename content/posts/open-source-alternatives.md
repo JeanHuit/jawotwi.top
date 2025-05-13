@@ -1,6 +1,7 @@
 ---
 title: "Open Source Alternatives"
 date: 2019-02-04T15:56:20Z
+cover: /images/opensource.webp
 draft: false
 ---
 

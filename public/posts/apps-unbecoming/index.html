@@ -48,6 +48,7 @@
   <meta name="twitter:image" content="http://localhost:1313/images/global-background.jpg">
   <meta name="twitter:title" content="Apps Unbecoming">
   <meta name="twitter:description" content="“There is an app for that” is a phrase that 2016 saw and heard in abundance.">
+      <meta name="twitter:site" content="@jeanhuit">
 
 
 
@@ -87,7 +88,10 @@
     <div id="dream-global-bg"></div>
 
     
-<nav class="mt-4 lg:mt-8 py-4">
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
 
   
   <div class="container flex justify-between px-4">
@@ -114,6 +118,8 @@
     </section>
 
     
+    
+      
     
 
     <div class="dropdown dropdown-end sm:hidden">
@@ -147,12 +153,18 @@
 
 
 
+
+
+
 <li>
-  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
-    <ion-icon name="logo-rss"></ion-icon>
-    RSS
+  <a class="inline-flex items-center p-2 cursor-pointer" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    
+    <ion-icon name="logo-github"></ion-icon>
+    
+    GitHub
   </a>
 </li>
+
 
 
 
@@ -187,6 +199,28 @@
 
 
 
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       </ul>
@@ -194,6 +228,8 @@
     <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
       
 
+      
+      
       
       
 
@@ -215,36 +251,81 @@
 
       
       
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
-  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
-</a>
 
 
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/posts" title="Archives">
-  <ion-icon class="group-hover:text-primary-content" name="archive"></ion-icon>
-</a>
 
+  
+  <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    <ion-icon class="group-hover:text-primary-content" name="logo-github"></ion-icon>
+  </a>
+  
 
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/categories" title="All Categories">
-  <ion-icon class="group-hover:text-primary-content" name="grid"></ion-icon>
-</a>
-
-
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/tags" title="All Tags">
-  <ion-icon class="group-hover:text-primary-content" name="pricetags"></ion-icon>
-</a>
 
 
       
 
-      
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
 
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+
+          
+        </ul>
+      </div>
       
     </section>
   </div>
@@ -342,6 +423,8 @@
 
       <section id="dream-single-post-content" itemprop="articleBody">
         
+          <img class="w-full z-30" src="/images/apps.jpg" alt="Apps Unbecoming" />
+        
 
         <p>“There is an app for that” is a phrase that 2016 saw and heard in abundance.</p>
 <p>Almost every facet of our lives has been permeated by a plethora of apps. Most notably mobile applications, spurred on by the constant growth of the smartphone market and the need for connected devices.</p>
@@ -366,6 +449,29 @@ Tell me what apps you can and should do away with before we start the new year.!
         
       </section>
 
+      
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/running-ghost-on-google-compute-engine/" title="Running Ghost on Google Compute Engine">
+          <ion-icon name="chevron-back"></ion-icon>
+          <div class="inline-flex flex-col items-start">
+            <span class="text-base-content/60 text-xs font-normal">Previous page</span>
+            <span class="max-w-48 truncate">Running Ghost on Google Compute Engine</span>
+          </div>
+        </a>
+        
+
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/gapps-on-chinese-phones/" title="Gapps on Chinese Phones">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next page</span>
+            <span class="max-w-48 truncate">Gapps on Chinese Phones</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        
+      </div>
       
 
       
@@ -419,6 +525,8 @@ Tell me what apps you can and should do away with before we start the new year.!
     x-data="tocHighlighter()"
     @scroll.window="debouncedScroll"
     class="hidden lg:flex lg:flex-col lg:items-end">
+    
+      <nav id="TableOfContents"></nav>
     
   </div>
 </div>
@@ -589,6 +697,16 @@ Tell me what apps you can and should do away with before we start the new year.!
 
 <script src="/js/toc.js"></script>
 
+
+  
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  
 
 
 

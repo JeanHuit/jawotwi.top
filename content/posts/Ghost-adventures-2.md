@@ -1,6 +1,7 @@
 ---
 title: "Ghost Adventures 2"
 date: 2015-03-25T12:10:59Z
+cover: /images/ghost.png
 draft: false
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "There Is Nothing Like Privacy"
 date: 2013-04-22T13:01:51Z
+cover: /images/gdpr.jpeg
 draft: false
 ---
 What is privacy ? -one may ask.

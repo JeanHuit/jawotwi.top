@@ -1,6 +1,7 @@
 ---
 title: "Know Your Node"
 date: 2016-11-10T12:22:07Z
+cover: /images/node.png
 draft: false
 ---
 Hi there,

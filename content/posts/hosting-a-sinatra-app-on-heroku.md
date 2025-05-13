@@ -1,6 +1,7 @@
 ---
 title: "Hosting a Simple Sinatra App on Heroku"
 date: 2019-02-12T13:56:16Z
+cover: /images/heroku.png
 draft: false
 ---
 **NB: This is no longer active or maintained. Heroku is no longer free**

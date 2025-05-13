@@ -1,6 +1,7 @@
 ---
 title: "Making MySQL Accessible remotely"
 date: 2020-06-10T22:37:25Z
+cover: /images/sql.png
 draft: false
 ---
 

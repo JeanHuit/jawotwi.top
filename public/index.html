@@ -41,6 +41,7 @@
   <meta name="twitter:image" content="http://localhost:1313/images/global-background.jpg">
   <meta name="twitter:title" content="Reveries">
   <meta name="twitter:description" content="The life record of g1eny0ung is presented here.">
+      <meta name="twitter:site" content="@jeanhuit">
 
 
 
@@ -64,7 +65,10 @@
     <div id="dream-global-bg"></div>
 
     
-<nav class="mt-4 lg:mt-8 py-4">
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
 
   
   <div class="container flex justify-between px-4">
@@ -91,6 +95,8 @@
     </section>
 
     
+    
+      
     
 
     <div class="dropdown dropdown-end sm:hidden">
@@ -124,12 +130,18 @@
 
 
 
+
+
+
 <li>
-  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
-    <ion-icon name="logo-rss"></ion-icon>
-    RSS
+  <a class="inline-flex items-center p-2 cursor-pointer" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    
+    <ion-icon name="logo-github"></ion-icon>
+    
+    GitHub
   </a>
 </li>
+
 
 
 
@@ -142,6 +154,34 @@
 </li>
 
 
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
 
 
 
@@ -167,6 +207,8 @@
 
       
       
+      
+      
 
 
 
@@ -186,36 +228,81 @@
 
       
       
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/index.xml" title="RSS">
-  <ion-icon class="group-hover:text-primary-content" name="logo-rss"></ion-icon>
-</a>
-
-
-      
-      
-<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/posts" title="Archives">
-  <ion-icon class="group-hover:text-primary-content" name="archive"></ion-icon>
-</a>
-
-
-      
-      
 
 
 
-
-
-      
-      
-
-
+  
+  <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    <ion-icon class="group-hover:text-primary-content" name="logo-github"></ion-icon>
+  </a>
+  
 
 
 
       
 
-      
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
 
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+
+          
+        </ul>
+      </div>
       
     </section>
   </div>
@@ -234,29 +321,123 @@
 <div class="dream-grid opacity-0">
   
     <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
-      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/open-source-alternatives/">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/article-title/">
   
   <figure>
     
-    
-    <picture>
-      <source srcset="/images/default1_hu_33478ca164b4fce4.webp" type="image/webp" />
-      <img src="/images/default1.jpg" alt="/images/default1.jpg" />
-    </picture>
+    <img src="/img/cover.jpg" alt="Article Title" />
     
   </figure>
   
 
   <div class="card-body">
-    <h2 class="card-title">Open Source Alternatives</h2>
+    <h2 class="card-title">Article Title</h2>
 
     <p class="date text-base-content/60">
     
-      Monday, Feb 4, 2019
+      Tuesday, May 13, 2025
     
     </p>
 
-    <p>The year is 2019 and if you have a thought process in any way similar to mine, you&rsquo;d most likely prefer to start the year on a clean slate.</p>
+    <p>Cut out summary from your post content here.</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    
+      <span itemprop="name">Author Name</span>
+    
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>1 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/auditing-your-phone/">
+  
+  <figure>
+    
+    <img src="/images/phones.jpg" alt="Auditing Your Phone" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Auditing Your Phone</h2>
+
+    <p class="date text-base-content/60">
+    
+      Saturday, Oct 16, 2021
+    
+    </p>
+
+    <p>The mobile phones continued growth is evident and shows no clear sign of stopping.</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>3 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/heroku-ruby-app/">
+  
+  <figure>
+    
+    <img src="/images/heroku.png" alt="Heroku Ruby App" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Heroku Ruby App</h2>
+
+    <p class="date text-base-content/60">
+    
+      Thursday, Feb 11, 2021
+    
+    </p>
+
+    <p><strong>NB: Heroku is no longer free</strong></p>
 
     
     <div class="card-actions justify-between items-center mt-4">
@@ -286,29 +467,25 @@
     </div>
   
     <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
-      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/open-source-alts/">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/dspace-iii/">
   
   <figure>
     
-    
-    <picture>
-      <source srcset="/images/default4_hu_ae815e0f1649c253.webp" type="image/webp" />
-      <img src="/images/default4.jpg" alt="/images/default4.jpg" />
-    </picture>
+    <img src="/images/dspace.png" alt="Dspace III" />
     
   </figure>
   
 
   <div class="card-body">
-    <h2 class="card-title">Open Source Alts</h2>
+    <h2 class="card-title">Dspace III</h2>
 
     <p class="date text-base-content/60">
     
-      Saturday, Feb 18, 2012
+      Monday, Jun 29, 2020
     
     </p>
 
-    <p>With the world heading on to becoming a global village as most like to say</p>
+    <p>Installing Dspace on Digital Ocean. Using Ubuntu 18.04</p>
 
     
     <div class="card-actions justify-between items-center mt-4">
@@ -329,7 +506,296 @@
 
       <div class="flex items-center">
         <ion-icon name="time" class="mr-1"></ion-icon>
-        <span>5 minute read</span>
+        <span>3 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/jupyterlab-with-ruby-kernel/">
+  
+  <figure>
+    
+    <img src="/images/jupyter.png" alt=" Setting Up Jupyterlab With Ruby Kernel (MacOS)" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title"> Setting Up Jupyterlab With Ruby Kernel (MacOS)</h2>
+
+    <p class="date text-base-content/60">
+    
+      Sunday, Jun 28, 2020
+    
+    </p>
+
+    <p>Many are the reasons I choose to setup JupyterLabs with a Ruby Kernel, I will however not disclose those reasons :)</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>1 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/easy-server-monitoring/">
+  
+  <figure>
+    
+    <img src="/images/monitor.png" alt="Easy Server Monitoring" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Easy Server Monitoring</h2>
+
+    <p class="date text-base-content/60">
+    
+      Thursday, Jun 11, 2020
+    
+    </p>
+
+    <p>Discovered a simple script that allows you to monitor your server in a quick glance.</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>1 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/remotesql/">
+  
+  <figure>
+    
+    <img src="/images/sql.png" alt="Making MySQL Accessible remotely" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Making MySQL Accessible remotely</h2>
+
+    <p class="date text-base-content/60">
+    
+      Wednesday, Jun 10, 2020
+    
+    </p>
+
+    <h4 id="os-ubuntu-server-2004">Os: Ubuntu Server 20.04</h4>
+<p>If you ever find yourself unable to log-in or connect to your newly created MySQL server, with errors such as these being thrown around,</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>2 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/hash-arrays/">
+  
+  <figure>
+    
+    <img src="/images/hash.png" alt="Hash Arrays" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Hash Arrays</h2>
+
+    <p class="date text-base-content/60">
+    
+      Monday, Apr 6, 2020
+    
+    </p>
+
+    <p>Man got stuck working with Google matric Api to determine distance, duration of travel etc from two points on the map.</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>1 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/dspace-ii/">
+  
+  <figure>
+    
+    <img src="/images/dspace.png" alt="Dspace Installs II" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Dspace Installs II</h2>
+
+    <p class="date text-base-content/60">
+    
+      Tuesday, Jan 14, 2020
+    
+    </p>
+
+    <p>Installing Dspace on Linux. Using Ubuntu 16.04</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>3 minute read</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+    </div>
+  
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+      <a class="card bg-base-100 hover:bg-base-content/10 shadow-xl cursor-pointer dark:border dark:border-base-content/30" href="/posts/dspace-installs/">
+  
+  <figure>
+    
+    <img src="/images/dspace.png" alt="Dspace Installs" />
+    
+  </figure>
+  
+
+  <div class="card-body">
+    <h2 class="card-title">Dspace Installs</h2>
+
+    <p class="date text-base-content/60">
+    
+      Wednesday, Oct 30, 2019
+    
+    </p>
+
+    <p>I have spent over three weeks in trying to get dspace set up.</p>
+
+    
+    <div class="card-actions justify-between items-center mt-4">
+      
+        <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    <span itemprop="name">jeanhuit</span>
+  
+  </span>
+</div>
+
+      
+
+      <div class="flex items-center">
+        <ion-icon name="time" class="mr-1"></ion-icon>
+        <span>3 minute read</span>
       </div>
     </div>
   </div>
@@ -340,6 +806,22 @@
 </div>
 
 
+
+<div class="flex justify-center mt-8">
+  <div class="join grid grid-cols-2">
+  
+  <button class="join-item btn btn-outline btn-sm" disabled>
+    Previous page
+  </button>
+  
+  
+  <a href="/page/2/" title="Next page" class="join-item btn btn-outline btn-sm">
+    Next page
+  </a>
+  
+</div>
+
+</div>
 
 
 

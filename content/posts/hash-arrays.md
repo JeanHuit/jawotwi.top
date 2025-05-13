@@ -1,6 +1,7 @@
 ---
 title: "Hash Arrays"
 date: 2020-04-06T01:16:26Z
+cover: /images/hash.png
 draft: false
 ---
 Man got stuck working with Google matric Api to determine distance, duration of travel etc from two points on the map.

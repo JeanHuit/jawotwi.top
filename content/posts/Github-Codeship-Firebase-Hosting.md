@@ -1,6 +1,7 @@
 ---
 title: "Github : Codeship :Firebase Hosting "
 date: 2018-06-05T12:13:20Z
+cover: /images/codeship.png
 draft: false
 ---
 

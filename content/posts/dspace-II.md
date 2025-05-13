@@ -1,6 +1,7 @@
 ---
 title: "Dspace Installs II"
 date: 2020-01-14T15:07:25Z
+cover: /images/dspace.png
 draft: false
 ---
 

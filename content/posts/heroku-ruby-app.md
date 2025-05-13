@@ -1,6 +1,7 @@
 ---
 title: "Heroku Ruby App"
 date: 2021-02-11T12:27:33Z
+cover: /images/heroku.png
 draft: false
 ---
 **NB: Heroku is no longer free**
