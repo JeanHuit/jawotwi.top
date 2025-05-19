@@ -17,7 +17,7 @@ tags:
   - mikrobot
 # nolastmod: true
 # math: true
-draft: true
+draft: false
 ---
 
 From **April 28th to 30th, 2025**, about **30 bright-eyed students** (Class 4 to 6) at **Holy Spirit Preparatory School, Tarkwa**, got a taste of the future—thanks to a **collaboration between CSIR-INSTI and Mikrobot Academy**.  
