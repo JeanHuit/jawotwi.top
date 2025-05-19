@@ -6,20 +6,48 @@
     <description>Recent content in Tags on Reveries</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 13 May 2025 17:00:09 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 May 2025 17:34:06 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Tag1</title>
-      <link>http://localhost:1313/tags/tag1/</link>
-      <pubDate>Tue, 13 May 2025 17:00:09 +0000</pubDate>
-      <guid>http://localhost:1313/tags/tag1/</guid>
+      <title>Bootcamp</title>
+      <link>http://localhost:1313/tags/bootcamp/</link>
+      <pubDate>Mon, 19 May 2025 17:34:06 +0000</pubDate>
+      <guid>http://localhost:1313/tags/bootcamp/</guid>
       <description></description>
     </item>
     <item>
-      <title>Tag2</title>
-      <link>http://localhost:1313/tags/tag2/</link>
-      <pubDate>Tue, 13 May 2025 17:00:09 +0000</pubDate>
-      <guid>http://localhost:1313/tags/tag2/</guid>
+      <title>Mikrobot</title>
+      <link>http://localhost:1313/tags/mikrobot/</link>
+      <pubDate>Mon, 19 May 2025 17:34:06 +0000</pubDate>
+      <guid>http://localhost:1313/tags/mikrobot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Robotics</title>
+      <link>http://localhost:1313/tags/robotics/</link>
+      <pubDate>Mon, 19 May 2025 17:34:06 +0000</pubDate>
+      <guid>http://localhost:1313/tags/robotics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tarkwa</title>
+      <link>http://localhost:1313/tags/tarkwa/</link>
+      <pubDate>Mon, 19 May 2025 17:34:06 +0000</pubDate>
+      <guid>http://localhost:1313/tags/tarkwa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hiatus</title>
+      <link>http://localhost:1313/tags/hiatus/</link>
+      <pubDate>Tue, 13 May 2025 23:09:18 +0000</pubDate>
+      <guid>http://localhost:1313/tags/hiatus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>New Begining</title>
+      <link>http://localhost:1313/tags/new-begining/</link>
+      <pubDate>Tue, 13 May 2025 23:09:18 +0000</pubDate>
+      <guid>http://localhost:1313/tags/new-begining/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en"
+  x-data
+  :class="$store.darkMode.class()"
+  :data-theme="$store.darkMode.theme()">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robots in Tarkwa | Reveries</title>
+
+    
+  
+    <link href="/images/Ouroboros.svg" rel="icon" type="image/x-icon" />
+  
+
+
+<link rel="canonical" href="http://localhost:1313/posts/bootcamp-tarkwa/" />
+
+
+
+<meta name="author" content="Jean Huit" />
+<meta name="description" content="From April 28th to 30th, 2025, about 30 bright-eyed students (Class 4 to 6) at Holy Spirit Preparatory School, Tarkwa, got a taste of the future—thanks to a collaboration between CSIR-INSTI and Mikrobot Academy.
+" />
+
+
+<meta name="keywords" content="Tarkwa,Robotics,Bootcamp,Mikrobot">
+
+
+
+<meta name="generator" content="Hugo 0.147.2">
+
+
+<meta property="og:url" content="http://localhost:1313/posts/bootcamp-tarkwa/">
+  <meta property="og:site_name" content="Reveries">
+  <meta property="og:title" content="Robots in Tarkwa">
+  <meta property="og:description" content="From April 28th to 30th, 2025, about 30 bright-eyed students (Class 4 to 6) at Holy Spirit Preparatory School, Tarkwa, got a taste of the future—thanks to a collaboration between CSIR-INSTI and Mikrobot Academy.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-19T17:34:06+00:00">
+    <meta property="article:modified_time" content="2025-05-19T17:34:06+00:00">
+    <meta property="article:tag" content="Tarkwa">
+    <meta property="article:tag" content="Robotics">
+    <meta property="article:tag" content="Bootcamp">
+    <meta property="article:tag" content="Mikrobot">
+    <meta property="og:image" content="http://localhost:1313/images/global-background.jpg">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/global-background.jpg">
+  <meta name="twitter:title" content="Robots in Tarkwa">
+  <meta name="twitter:description" content="From April 28th to 30th, 2025, about 30 bright-eyed students (Class 4 to 6) at Holy Spirit Preparatory School, Tarkwa, got a taste of the future—thanks to a collaboration between CSIR-INSTI and Mikrobot Academy.">
+      <meta name="twitter:site" content="@jeanhuit">
+
+
+
+
+<link rel="stylesheet" href="/css/output.css" />
+
+
+
+
+    
+
+
+<style>
+  pre {
+    padding: 1em;
+    overflow: auto;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+    
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" integrity="sha256-PtHu0lJIiSHfZeNj1nFd6wTX+Squ255SGZ/fc8seCtM=" crossorigin="anonymous"></script>
+  </head>
+
+  <body x-data="{
+    flip: false,
+  }">
+    
+    <div id="dream-global-bg"></div>
+
+    
+<nav x-data="{ isSticky: false }"
+  x-init="window.addEventListener('scroll', () => { isSticky = window.scrollY > 30 })"
+  class="sticky top-0 z-30 mt-4 lg:mt-8 py-4"
+  :class="{ 'bg-base-100 shadow-lg dark:border-b dark:border-base-content/30': isSticky }">
+
+  
+  <div class="container flex justify-between px-4">
+  
+    <section class="flex items-center gap-4">
+      <div class="avatar cursor-pointer hover:avatar-online" @click="flip = !flip" title="Flip it!">
+        <div class="h-10 rounded-full">
+          <img src="/moi.png" alt="Reveries" />
+        </div>
+      </div>
+
+      
+      <div>
+        
+        <a href="http://localhost:1313/" class="text-lg font-semibold cursor-pointer">
+          Reveries
+        </a>
+        
+        
+        <div class="text-base-content/60 text-sm">Till I die, I&#39;d aspire to inspire</div>
+        
+      </div>
+      
+    </section>
+
+    
+    
+      
+    
+
+    <div class="dropdown dropdown-end sm:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Select an option">
+        <ion-icon name="menu" class="text-2xl"></ion-icon>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-md">
+        
+
+
+
+
+
+
+
+<li>
+  <div role="link" tabindex="0" class="inline-flex items-center p-2 cursor-pointer" @click="flip = !flip" title="About">
+    <ion-icon name="information-circle"></ion-icon>About</div>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="group inline-flex items-center p-2 cursor-pointer" href="/search" title="Search">
+    <ion-icon name="search"></ion-icon>
+    Search
+  </a>
+</li>
+
+
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    
+    <ion-icon name="logo-github"></ion-icon>
+    
+    GitHub
+  </a>
+</li>
+
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+
+
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </div>
+    <section class="hidden sm:flex sm:items-center sm:gap-2 md:gap-4">
+      
+
+      
+      
+      
+      
+
+
+
+
+<div role="link" tabindex="0" class="text-sm font-semibold cursor-pointer hover:underline" @click="flip = !flip" title="About">About</div>
+
+
+
+
+
+      
+      
+<a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="/search" title="Search">
+  <ion-icon class="group-hover:text-primary-content" name="search"></ion-icon>
+</a>
+
+
+      
+      
+
+
+
+  
+  <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" href="https://github.com/jeanhuit" target="_blank" title="GitHub">
+    <ion-icon class="group-hover:text-primary-content" name="logo-github"></ion-icon>
+  </a>
+  
+
+
+
+      
+
+      <div class="dropdown dropdown-end dropdown-hover">
+        <div tabindex="0" role="button" class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary" aria-label="Select an option">
+          <ion-icon class="group-hover:text-primary-content text-xl" name="menu"></ion-icon>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu w-36 bg-base-100 rounded-box z-1 shadow-xl">
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/posts" title="Archives">
+    <ion-icon name="archive"></ion-icon>
+    Archives
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/categories" title="All Categories">
+    <ion-icon name="grid"></ion-icon>
+    All Categories
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/tags" title="All Tags">
+    <ion-icon name="pricetags"></ion-icon>
+    All Tags
+  </a>
+</li>
+
+
+          
+          
+<li>
+  <a class="inline-flex items-center p-2 cursor-pointer" href="/index.xml" title="RSS">
+    <ion-icon name="logo-rss"></ion-icon>
+    RSS
+  </a>
+</li>
+
+
+          
+
+          
+          
+
+
+
+
+
+
+
+
+
+
+          
+        </ul>
+      </div>
+      
+    </section>
+  </div>
+</nav>
+
+
+    <div class="flip-container" :class="{ 'flip-it': flip }">
+      <div class="flipper">
+        <div class="front">
+          <div class="container">
+            
+<div class="lg:grid lg:grid-cols-4 gap-4 mt-4 px-4">
+  <div class="hidden lg:block">
+    
+  </div>
+
+  <div class="lg:col-span-2">
+    <article class="mx-auto prose prose-quoteless dark:prose-invert" id="dream-single-post-main" itemscope itemtype="http://schema.org/Article">
+      
+  <meta itemprop="name" content="Robots in Tarkwa">
+  <meta itemprop="description" content="From April 28th to 30th, 2025, about 30 bright-eyed students (Class 4 to 6) at Holy Spirit Preparatory School, Tarkwa, got a taste of the future—thanks to a collaboration between CSIR-INSTI and Mikrobot Academy.">
+  <meta itemprop="datePublished" content="2025-05-19T17:34:06+00:00">
+  <meta itemprop="dateModified" content="2025-05-19T17:34:06+00:00">
+  <meta itemprop="wordCount" content="308">
+  <meta itemprop="image" content="http://localhost:1313/images/global-background.jpg">
+  <meta itemprop="keywords" content="Tarkwa,Robotics,Bootcamp,Mikrobot">
+
+      <header>
+        <h1 itemprop="headline">Robots in Tarkwa</h1>
+        <p class="text-sm">
+          
+            Monday, May 19, 2025
+          
+
+          | <span>2 minute read</span>
+
+          
+          | <span>Updated at
+            
+              Monday, May 19, 2025
+            </span>
+          
+        </p>
+
+        
+        <div class="flex justify-between">
+          
+            <div class="flex items-center">
+  
+  <span>@</span>
+  
+
+  <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+  
+    
+      <span itemprop="name">Jean Huit</span>
+    
+  
+  </span>
+</div>
+
+          
+
+          <div class="flex items-center gap-2">
+  
+  
+
+  
+  
+  
+  
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://x.com/intent/post?text=Robots%20in%20Tarkwa&amp;url=http://localhost:1313/posts/bootcamp-tarkwa/" target="_blank" rel="noopener noreferrer"
+      title="Share on X">
+      <ion-icon class="group-hover:text-primary-content" name="logo-x"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://facebook.com/sharer/sharer.php?u=http://localhost:1313/posts/bootcamp-tarkwa/" target="_blank" rel="noopener noreferrer"
+      title="Share on Facebook">
+      <ion-icon class="group-hover:text-primary-content" name="logo-facebook"></ion-icon>
+    </a>
+  
+    <a class="group inline-flex items-center p-2 rounded-full cursor-pointer hover:bg-primary"
+      href="https://wa.me/?text=Robots%20in%20Tarkwa%20http://localhost:1313/posts/bootcamp-tarkwa/" target="_blank" rel="noopener noreferrer"
+      title="Share on WhatsApp">
+      <ion-icon class="group-hover:text-primary-content" name="logo-whatsapp"></ion-icon>
+    </a>
+  
+
+  
+  
+</div>
+
+        </div>
+      </header>
+
+      <section id="dream-single-post-content" itemprop="articleBody">
+        
+          <img class="w-full z-30" src="/images/mikrobot.jpg" alt="Robots in Tarkwa" />
+        
+
+        <p>From <strong>April 28th to 30th, 2025</strong>, about <strong>30 bright-eyed students</strong> (Class 4 to 6) at <strong>Holy Spirit Preparatory School, Tarkwa</strong>, got a taste of the future—thanks to a <strong>collaboration between CSIR-INSTI and Mikrobot Academy</strong>.</p>
+<p>As is tradition, we kicked things off with the <strong>Creation Story</strong>—but not in the way you might expect. We used it as a launchpad to introduce robotics. Just as God created man, man now creates machines. And just like us, robots have <em>senses</em> (sensors), <em>brains</em> (processors), and <em>bodies</em> (actuators). Drawing this parallel helped the students make sense of robotics in a way that was both meaningful and memorable.</p>
+<ul>
+<li>Our <strong>senses</strong> ↔ A robot’s <strong>sensors</strong></li>
+<li>Our <strong>brain</strong> ↔ A robot’s <strong>CPU/processor</strong></li>
+<li>Our <strong>actions</strong> ↔ A robot’s <strong>actuators</strong></li>
+</ul>
+<p>It was the perfect <strong>intro to robotics</strong>, breaking down complex ideas into bite-sized, relatable concepts. (And yes, the kids <em>loved</em> the analogy.)</p>
+<p>From this foundation, we dived into two days of hands-on learning. And trust me, it got exciting.</p>
+<h3 id="day-2-and-3-robots-that-see-follow-and-compete">Day 2 and 3: Robots That See, Follow, and Compete</h3>
+<p>We used <strong>ultrasonic sensors</strong> to build a robot that could follow a person around—always a crowd-pleaser. Then came the <strong>line-following challenge</strong>, using <strong>light sensors</strong>, which ties into this year’s <strong>RISE competition</strong>. Through these activities, we introduced key ideas like <strong>error detection and correction</strong> and a whole lot of <strong>patience</strong> —big concepts, taught through play.</p>
+<p>We also made a strong case for <strong>teamwork</strong>. Each group had three students, and together they tackled the robot builds, programmed responses, and worked toward completing specific challenges. These aren’t just classroom exercises—they’re prep for the <strong>team-based competitions</strong> the <strong>Ghana Robotics Foundation</strong> engages in throughout the year.</p>
+<p>By the end, most of the kids were confidently explaining what sensors do, troubleshooting their own code, and showing off their builds. Safe to say: they <em>got it</em>.</p>
+<p>And honestly?
+<strong>The future? Bright. The kids? Even brighter.</strong> 🌟</p>
+
+        
+      </section>
+
+      
+      <div class="divider"></div>
+      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+        
+        <div></div>
+        
+
+        
+        <a role="button" class="btn btn-outline h-12" href="/posts/hiatus-over/" title="Hiatus Over">
+          <div class="inline-flex flex-col items-end">
+            <span class="text-base-content/60 text-xs font-normal">Next page</span>
+            <span class="max-w-48 truncate">Hiatus Over</span>
+          </div>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </a>
+        
+      </div>
+      
+
+      
+      <div class="divider"></div>
+
+      <section class="space-y-4">
+        
+<article>
+  <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+        this.page.identifier = '\/posts\/bootcamp-tarkwa\/';
+        this.page.title = 'Robots in Tarkwa';
+        this.page.url = 'http:\/\/localhost:1313\/posts\/bootcamp-tarkwa\/';
+
+        
+    };
+    function initDisqus() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "jawotwi-top" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    };
+    setTimeout(() => {
+        initDisqus();
+    }, 3000);
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>
+
+
+
+
+
+
+
+
+
+
+      </section>
+      
+    </article>
+  </div>
+
+  <div
+    x-data="tocHighlighter()"
+    @scroll.window="debouncedScroll"
+    class="hidden lg:flex lg:flex-col lg:items-end">
+    
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#day-2-and-3-robots-that-see-follow-and-compete">Day 2 and 3: Robots That See, Follow, and Compete</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    
+  </div>
+</div>
+
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+        <div class="back">
+          <div class="container">
+            
+            <div class="dream-grid dream-grid-about">
+  
+  
+  
+  <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 dream-column">
+    <article
+      class="card bg-base-100 hover:bg-base-content/10 shadow-xl dark:border dark:border-base-content/30"
+    >
+      <div class="card-body">
+        <div class="card-title">Me</div>
+
+        <div class="prose dark:prose-invert">
+          <h2 id="self-introduction">Self Introduction</h2>
+<p>Passionate about people &amp; technology. With a plethora of experience managing both people and technology. I am  currently a Technical Officer with the Communications Division of CSIR - Institute for Scientific and Technological Information. Here, I am responsible for transforming research outputs into software, tools, equipments and communication systems as tools for national development.</p>
+<p>I am BIG about community and have spent the better part of the last decade; growing and managing various tech communities in Ghana. Most recent being the Google Developer Group (GDG). I ASPIRE to INSPIRE.</p>
+<p>I like to dabble in a lot of technology related things; from code to Rpi&rsquo;s.</p>
+
+        </div>
+      </div>
+    </article>
+  </div>
+  
+  
+
+  
+
+  
+</div>
+
+            
+
+            
+<footer class="flex justify-between items-center gap-2 px-4 py-12">
+
+  <div>
+  
+  <p>© 2025 Reveries</p>
+  
+
+  
+  <p class="text-sm">
+    🌱
+    <span class="text-base-content/60">
+      Powered by <a class="hover:underline" href="https://gohugo.io/" target="_blank">Hugo</a> with theme
+      <a class="hover:underline" href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</span
+    >
+  </p>
+  
+</div>
+
+  <div
+  x-data="{ icons: [
+    { name: 'sunny', status: 'n' },
+    { name: 'moon', status: 'y' },
+    { name: 'desktop', status: 'auto' }
+  ] }"
+  class="flex items-center gap-2 h-[32px] px-2 bg-base-100 border border-base-content/30 rounded-full"
+>
+  <template x-for="icon in icons">
+    <div
+      role="button"
+      tabindex="0"
+      :aria-label="'Select ' + icon.name + ' mode'"
+      class="group inline-flex justify-center items-center p-1 rounded-full cursor-pointer hover:bg-primary"
+      :class="$store.darkMode.icon() === icon.name && 'bg-primary'"
+      @click="$store.darkMode.toggle(icon.status)"
+    >
+      <ion-icon
+        :name="`${icon.name}-outline`"
+        class="group-hover:text-primary-content"
+        :class="$store.darkMode.icon() === icon.name && 'text-primary-content'"
+      >
+      </ion-icon>
+    </div>
+  </template>
+</div>
+
+</footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+  window.lightTheme = "emerald"
+  window.darkTheme = "forest"
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+
+  
+  
+  <script src="/js/grid.js"></script>
+
+
+
+
+<script src="/js/main.js"></script>
+
+    
+
+
+
+
+
+
+
+<script src="/js/toc.js"></script>
+
+
+  
+    <script type="module">
+      import mediumZoom from 'https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/+esm';
+      mediumZoom('#dream-single-post-content img', {
+        background: 'oklch(var(--b1))',
+        margin: 24,
+      })
+    </script>
+  
+
+
+
+
+
+
+    
+
+    
+
+    
+
+    
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJTYJ9Z50"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4EJTYJ9Z50');
+        }
+      </script>
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.esm.js" integrity="sha256-/IFmi82bIhdYWctu0UddSlJqpnzWm7Vh2C4CM32wF/k=" crossorigin="anonymous"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.4.0/dist/ionicons/ionicons.js" integrity="sha256-mr7eJMX3VC3F7G32mk4oWp1C6a2tlMYxUdptfT7uKI8=" crossorigin="anonymous"></script>
+  </body>
+</html>
