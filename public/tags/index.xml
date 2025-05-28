@@ -6,8 +6,22 @@
     <description>Recent content in Tags on Reveries</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 May 2025 17:34:06 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 May 2025 18:24:32 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stockapp</title>
+      <link>http://localhost:1313/tags/stockapp/</link>
+      <pubDate>Wed, 28 May 2025 18:24:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/stockapp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vibecoding</title>
+      <link>http://localhost:1313/tags/vibecoding/</link>
+      <pubDate>Wed, 28 May 2025 18:24:32 +0000</pubDate>
+      <guid>http://localhost:1313/tags/vibecoding/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Bootcamp</title>
       <link>http://localhost:1313/tags/bootcamp/</link>

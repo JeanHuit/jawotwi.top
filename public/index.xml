@@ -6,8 +6,15 @@
     <description>Recent content on Reveries</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 19 May 2025 17:34:06 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 May 2025 18:24:32 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Built a Stock Tracker by Accident - A Series (Pt.1)</title>
+      <link>http://localhost:1313/posts/stock_tracker_pt1/</link>
+      <pubDate>Wed, 28 May 2025 18:24:32 +0000</pubDate>
+      <guid>http://localhost:1313/posts/stock_tracker_pt1/</guid>
+      <description>&lt;p&gt;You know those tweets that go like &lt;em&gt;“I built an app in 4 hours using only my left hand and AI!”&lt;/em&gt; or _“Finished a SaaS in 3 minutes while sipping coffee”?&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Robots in Tarkwa</title>
       <link>http://localhost:1313/posts/bootcamp-tarkwa/</link>

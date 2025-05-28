@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dvelopment on Reveries</title>
+    <link>http://localhost:1313/categories/dvelopment/</link>
+    <description>Recent content in Dvelopment on Reveries</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 28 May 2025 18:24:32 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/dvelopment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Built a Stock Tracker by Accident - A Series (Pt.1)</title>
+      <link>http://localhost:1313/posts/stock_tracker_pt1/</link>
+      <pubDate>Wed, 28 May 2025 18:24:32 +0000</pubDate>
+      <guid>http://localhost:1313/posts/stock_tracker_pt1/</guid>
+      <description>&lt;p&gt;You know those tweets that go like &lt;em&gt;“I built an app in 4 hours using only my left hand and AI!”&lt;/em&gt; or _“Finished a SaaS in 3 minutes while sipping coffee”?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
