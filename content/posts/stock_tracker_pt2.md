@@ -2,7 +2,7 @@
 title: Vibe Coding, Part II- Now With Deployment Drama
 date: 2025-09-01T23:00:35Z
 lastmod: 2025-09-01T23:00:35Z
-author: Author Name
+author: Jean Huit
 # avatar: /img/author.jpg
 # authorlink: https://author.site
 cover: /images/vibes.jpg
