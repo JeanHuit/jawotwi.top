@@ -1,7 +1,5 @@
 ---
-title: Me
-date: 2025-05-13T16:03:31Z
-draft: false
+title: About Me
 ---
 
 
