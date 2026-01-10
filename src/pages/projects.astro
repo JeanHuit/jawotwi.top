@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+---
+
+<BaseLayout>
+  <span slot="title">Projects</span>
+
+  <section class="container">
+    <h1>Selected Projects</h1>
+
+    <div class="grid grid-2">
+      <ProjectCard
+        name="HPC Cluster Setup"
+        desc="Multi-node compute cluster with parallel processing."
+        stack="Linux · MPI · R · Python"
+      />
+      <ProjectCard
+        name="Institutional Web Platform"
+        desc="Internal management system for research workflows."
+        stack="PHP · JS · MySQL"
+      />
+    </div>
+  </section>
+</BaseLayout>

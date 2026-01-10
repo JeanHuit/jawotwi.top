@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+---
+
+<BaseLayout>
+  <span slot="title">Services</span>
+
+  <section class="container">
+    <h1>Services</h1>
+
+    <div class="grid grid-2">
+      <ServiceCard
+        title="Web Development"
+        desc="Websites, dashboards, and internal tools built for performance and clarity."
+      />
+      <ServiceCard
+        title="Systems Setup"
+        desc="Linux servers, compute environments, and secure deployments."
+      />
+      <ServiceCard
+        title="Networking"
+        desc="Local and remote network design, setup, and maintenance."
+      />
+      <ServiceCard
+        title="DevOps"
+        desc="CI/CD pipelines, containerization, and automated deployments."
+      />
+      <ServiceCard
+        title="IT as a Service"
+        desc="Ongoing IT support and system management for organizations."
+      />
+    </div>
+  </section>
+</BaseLayout>
