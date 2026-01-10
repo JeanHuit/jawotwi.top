@@ -4,27 +4,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Contact">
   <section class="container">
-    <h1>Contact</h1>
+    <h1 class="section-title">Get in Touch</h1>
 
-    <form name="contact" method="POST" data-netlify="true">
+    <form name="contact" method="POST" data-netlify="true" class="contact-form">
       <input type="hidden" name="form-name" value="contact" />
 
       <p>
-        <label>Name<br />
-        <input type="text" name="name" required /></label>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
       </p>
 
       <p>
-        <label>Email<br />
-        <input type="email" name="email" required /></label>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
       </p>
 
       <p>
-        <label>Message<br />
-        <textarea name="message" rows="5"></textarea></label>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5"></textarea>
       </p>
 
-      <button type="submit">Send</button>
+      <button type="submit">Send Message</button>
     </form>
   </section>
 </BaseLayout>

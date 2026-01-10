@@ -3,28 +3,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About">
-  <section class="container grid grid-2" style="align-items:center">
-    <div>
-      <img
-        src="/moi.png"
-        alt="John Awotwi"
-        width="200"
-        height="200"
-        style="max-width:200px"
-      />
-    </div>
+  <section class="container about-section">
+    <div class="grid grid-2" style="align-items:center">
+      <div>
+        <img
+          src="/moi.png"
+          alt="John Awotwi"
+          width="200"
+          height="200"
+          style="max-width:200px; border-radius: 50%;"
+        />
+      </div>
 
-    <div>
-      <h1>John Awotwi</h1>
-      <p><strong>Technical Officer</strong></p>
-      <p class="muted">
-        Community Development · IT Specialist · Information Security
-      </p>
+      <div>
+        <h1>John Awotwi</h1>
+        <p><strong>Technical Officer</strong></p>
+        <p class="muted">
+          Community Development · IT Specialist · Information Security
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="container">
-    <h2>Self Introduction</h2>
+    <h2 class="section-title">Self Introduction</h2>
 
     <p>
       I am passionate about people and technology, with extensive experience
@@ -54,7 +56,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <section class="container">
-    <h2>Affiliation</h2>
+    <h2 class="section-title">Affiliation</h2>
     <p>
       <a href="http://insti.csir.org.gh/" target="_blank" rel="noopener">
         CSIR – Institute for Scientific and Technological Information (CSIR-INSTI)
@@ -63,8 +65,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <section class="container">
-    <h2>Connect</h2>
-    <ul>
+    <h2 class="section-title">Connect</h2>
+    <ul class="social-links">
       <li>
         <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">
           LinkedIn
@@ -72,7 +74,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </li>
       <li>
         <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">
-          Twitter (X) - @JeanHuit
+          Twitter (X)
         </a>
       </li>
       <li>
