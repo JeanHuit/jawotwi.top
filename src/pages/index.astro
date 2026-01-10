@@ -1,32 +1,173 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
 ---
 
-<BaseLayout title="Home">
-  <section class="container hero-section">
-    <h1>Building reliable digital systems.</h1>
-    <p class="muted">
-      Web development, systems setup, networking, DevOps, and IT as a Service.
-    </p>
-    <a href="/services" class="cta-button">View Services →</a>
-  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>John Awotwi</title>
+</head>
 
-  <section class="container">
-    <h2 class="section-title">Services</h2>
+<body>
+  <main class="container grid grid-2">
 
-    <div class="grid grid-3">
-      <div class="service-item">
-        <h3>Web Development</h3>
-        <p>Fast, accessible, and maintainable websites and systems.</p>
+    <!-- LEFT COLUMN -->
+    <aside>
+      <h1 style="font-size:3rem; margin-bottom:0.5rem;">John Awotwi</h1>
+      <p style="font-size:1.1rem;">
+        Technical Officer at CSIR-INSTI
+      </p>
+
+      <p class="muted" style="margin-top:1.5rem;">
+        Community Development · IT Specialist · Information Security
+      </p>
+
+      <p style="margin-top:1.5rem; max-width:420px;">
+        I transform research outputs into practical software, systems,
+        and communication tools for national development. I am passionate
+        about technology, people, and building sustainable communities.
+      </p>
+
+      <!-- SECTION NAV -->
+      <nav style="margin-top:3rem;">
+        <div><small>01</small> — <a href="#" data-section="projects" class="nav-link active">PROJECTS</a></div>
+        <div><small>02</small> — <a href="#" data-section="services" class="nav-link">SERVICES</a></div>
+        <div><small>03</small> — <a href="#" data-section="programs" class="nav-link">PROGRAMS</a></div>
+      </nav>
+
+      <!-- SOCIALS -->
+      <div class="social-links" style="margin-top:4rem;">
+        <img src="/moi.png" alt="John Awotwi" width="42" height="42" />
+        <a href="https://twitter.com/JeanHuit" target="_blank">Twitter</a>
+        <a href="https://github.com/JeanHuit" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank">LinkedIn</a>
       </div>
-      <div class="service-item">
-        <h3>Systems & DevOps</h3>
-        <p>Linux servers, automation, CI/CD, and infrastructure.</p>
+    </aside>
+
+    <!-- RIGHT COLUMN -->
+    <section id="content-area">
+      <!-- PROJECTS SECTION -->
+      <div id="projects-content" class="section-content active">
+        <div class="card">
+          <small>TYPESCRIPT / SYSTEMS</small>
+          <h3>HPC Cluster Deployment</h3>
+          <p class="muted">
+            Multi-node compute cluster for scientific simulations and parallel workloads.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>WEB / SYSTEMS</small>
+          <h3>Institutional Web Platform</h3>
+          <p class="muted">
+            Internal research management system with dashboards and reporting.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>DEVOPS</small>
+          <h3>CI/CD & Infrastructure Automation</h3>
+          <p class="muted">
+            Automated deployments, containerized services, and system monitoring.
+          </p>
+        </div>
       </div>
-      <div class="service-item">
-        <h3>IT as a Service</h3>
-        <p>Reliable IT support for organizations that outsource.</p>
+
+      <!-- SERVICES SECTION -->
+      <div id="services-content" class="section-content">
+        <div class="card">
+          <small>SERVICES</small>
+          <h3>Web Development</h3>
+          <p class="muted">
+            Websites, dashboards, and internal tools built for performance and clarity.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>SERVICES</small>
+          <h3>Systems Setup</h3>
+          <p class="muted">
+            Linux servers, compute environments, and secure deployments.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>SERVICES</small>
+          <h3>Networking</h3>
+          <p class="muted">
+            Local and remote network design, setup, and maintenance.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>SERVICES</small>
+          <h3>DevOps</h3>
+          <p class="muted">
+            CI/CD pipelines, containerization, and automated deployments.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>SERVICES</small>
+          <h3>IT as a Service</h3>
+          <p class="muted">
+            Ongoing IT support and system management for organizations.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
-</BaseLayout>
+
+      <!-- PROGRAMS SECTION -->
+      <div id="programs-content" class="section-content">
+        <div class="card">
+          <small>EVENT / 2023</small>
+          <h3>Google Developer Group (GDG) Leadership</h3>
+          <p class="muted">
+            Organized and led technology community events and workshops in Ghana.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>PROGRAM / 2022</small>
+          <h3>CSIR-INSTI Tech Initiative</h3>
+          <p class="muted">
+            Led digital transformation projects for research communication systems.
+          </p>
+        </div>
+
+        <div class="card">
+          <small>WORKSHOP / 2021</small>
+          <h3>Community Tech Bootcamp</h3>
+          <p class="muted">
+            Facilitated hands-on training for local developers and researchers.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Section switching functionality
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetSection = this.getAttribute('data-section');
+
+        // Update active nav link
+        document.querySelectorAll('.nav-link').forEach(nav => {
+          nav.classList.remove('active');
+        });
+        this.classList.add('active');
+
+        // Show target content section
+        document.querySelectorAll('.section-content').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(`${targetSection}-content`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
