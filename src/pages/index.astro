@@ -2,27 +2,25 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout>
-  <span slot="title">Home</span>
-
-  <section class="container">
+<BaseLayout title="Home">
+  <section class="container hero-section">
     <h1>Building reliable digital systems.</h1>
     <p class="muted">
       Web development, systems setup, networking, DevOps, and IT as a Service.
     </p>
-    <a href="/services">View Services →</a>
+    <a href="/services" class="cta-button">View Services →</a>
   </section>
 
-  <section class="container grid grid-3">
-    <div>
+  <section class="container services-grid">
+    <div class="service-item">
       <h3>Web Development</h3>
       <p>Fast, accessible, and maintainable websites and systems.</p>
     </div>
-    <div>
+    <div class="service-item">
       <h3>Systems & DevOps</h3>
       <p>Linux servers, automation, CI/CD, and infrastructure.</p>
     </div>
-    <div>
+    <div class="service-item">
       <h3>IT as a Service</h3>
       <p>Reliable IT support for organizations that outsource.</p>
     </div>
