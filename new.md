@@ -1,159 +1,115 @@
-Below is a **clean, high-quality design prompt** you can paste directly into a **design AI, code generator, or UI assistant** (or reuse internally as a design brief). It is written to be explicit, unambiguous, and aligned with the **Sarah Dayan one-page, multi-mode layout** you referenced.
+2. Layout Characteristics
 
----
+Appears in the right-hand column of a split layout
 
-## DESIGN PROMPT
+Content is vertically stacked
 
-Design a **one-page personal website** for **jawotwi.top** inspired by the visual and interaction style of **sarahdayan.dev**.
+Cards are aligned in a single column (or narrow two-column on large screens)
 
-### Overall Style & Structure
+Consistent spacing between items creates rhythm and scannability
 
-* Dark, minimal, premium aesthetic
-* Subtle radial or linear dark gradients
-* Strong typography hierarchy
-* No clutter, no blog
-* Desktop-first, responsive on mobile
-* Smooth transitions between content sections
-* Minimal JavaScript (Astro / lightweight JS preferred)
+This layout prioritizes reading flow over visual novelty.
 
-### Layout Model
+3. Card Structure (Very Important)
 
-* **Two-column layout**
+Each project is represented by a self-contained card with a strict internal hierarchy:
 
-  * **Left column (fixed / persistent):**
+Category / Technology Label
 
-    * Name: *John Awotwi*
-    * Role: *Technical Officer, IT Specialist, Community Development*
-    * Short professional bio
-    * Vertical section navigation with numbered links:
+Small, uppercase text
 
-      * `01 — Projects`
-      * `02 — Services`
-      * `03 — Programs`
-    * Social links at the bottom (GitHub, LinkedIn, Twitter)
-    * Optional small circular profile image (`moi.png`)
-  * **Right column (dynamic content area):**
+Letter-spaced
 
-    * Content changes visually and structurally depending on the selected section
-    * No full page reloads; feels like switching “modes” of the same page
+Acts as a contextual anchor (e.g. “TYPESCRIPT”)
 
----
+Project Title
 
-### Section 01 — Projects (Default View)
+Largest text inside the card
 
-**Purpose:** Showcase technical credibility and output.
+Clickable
 
-**Design:**
+Immediately recognizable as the primary object
 
-* Stacked or grid-based **project cards**
-* Dark panels with subtle borders and hover elevation
-* Each card includes:
+Project Description
 
-  * Project name
-  * Short description
-  * Technology tags
-  * GitHub icon or link
-* Projects are **linked directly from GitHub repositories**
-* Visual density similar to Sarah Dayan’s “Projects” view
+One or two concise lines
 
-**Tone:** Technical, concise, professional.
+Explains what the project does, not why it exists
 
----
+Neutral, factual tone
 
-### Section 02 — Services (Replaces “Talks”)
+Metadata / Signals
 
-**Purpose:** Clearly present freelance and IT-as-a-Service offerings.
+GitHub stars or indicators
 
-**Design:**
+Subtle icons
 
-* Clean grid layout
-* Less editorial than Projects, more structured and readable
-* Use a two-column grid for clarity
+Low visual weight but high informational value
 
-**Content structure (example):**
+4. Visual Style
 
-```html
-<div class="grid grid-2">
-  <ServiceCard
-    title="Web Development"
-    desc="Websites, dashboards, and internal tools built for performance and clarity."
-  />
-  <ServiceCard
-    title="Systems Setup"
-    desc="Linux servers, compute environments, and secure deployments."
-  />
-  <ServiceCard
-    title="Networking"
-    desc="Local and remote network design, setup, and maintenance."
-  />
-  <ServiceCard
-    title="DevOps"
-    desc="CI/CD pipelines, containerization, and automated deployments."
-  />
-  <ServiceCard
-    title="IT as a Service"
-    desc="Ongoing IT support and system management for organizations."
-  />
-</div>
-```
+Dark, matte card background
 
-**Visual Language:**
+Subtle gradient or soft light falloff
 
-* Service cards feel stable and trustworthy
-* Less decorative, more business-focused
-* Clear separation between services
+Thin border or shadow for separation
 
----
+Rounded corners (not exaggerated)
 
-### Section 03 — Programs (Replaces “Interviews”)
+No strong accent colors inside cards
 
-**Purpose:** Highlight community leadership, events, and programs organized.
+Typography does most of the work
 
-**Design:**
+The cards feel quiet, serious, and professional, not promotional.
 
-* Thumbnail-based cards or tiles
-* Each item includes:
+5. Interaction Model
 
-  * Event/program title
-  * Short description or role
-  * Year or timeframe
-  * Optional location
-  * Visual thumbnail or poster image
-* Layout inspired by Sarah Dayan’s “Interviews” mode, but adapted to **event programs instead of media**
+Hover states are minimal:
 
-**Tone:** Community-driven, credible, impact-focused.
+Slight elevation
 
----
+Very subtle brightness increase
 
-### Interaction Behavior
+No animations that distract from reading
 
-* Clicking a left navigation item:
+Click behavior implies navigation to:
 
-  * Highlights the active section
-  * Smoothly transitions the right column content
-* Left column remains visually stable at all times
-* No page reloads
-* Subtle animations only (fade, slide, opacity)
+GitHub repository
 
----
+Project details
 
-### Technical Constraints
+External documentation
 
-* Static-first (Astro preferred)
-* Deployable on **GitHub + Netlify**
-* No heavy frameworks
-* Components encouraged (ProjectCard, ServiceCard, ProgramCard)
-* Clean, maintainable CSS (or utility-first if justified)
+Interaction is intentional, not playful.
 
----
+6. Content Density
 
-### Brand Personality
+High signal, low noise
 
-* Calm
-* Competent
-* Technical
-* Community-oriented
-* Professional, not flashy
+No screenshots
 
----
+No long explanations
 
+No badges beyond essentials
+
+This makes the section ideal for:
+
+Engineers
+
+Hiring managers
+
+Technical decision-makers
+
+7. Emotional & Cognitive Effect
+
+The Projects section communicates:
+
+Confidence
+
+Maturity
+
+Technical depth
+
+Professional restraint
+
+It does not try to impress visually first — it impresses through clarity and substance.
