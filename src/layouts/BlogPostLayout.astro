@@ -1,0 +1,95 @@
+---
+const {
+  title,
+  description,
+  author,
+  pubDate,
+  date,  // Add the date field
+  updatedDate,
+  heroImage,
+  tags,
+  category,
+  keywords,
+  excerpt,
+  readingTime
+} = Astro.props;
+
+const postDescription = description || excerpt || '';
+const postKeywords = keywords ? keywords.join(', ') : '';
+const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title} - John Awotwi</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content={postDescription} />
+  {postKeywords && <meta name="keywords" content={postKeywords} />}
+  <meta name="author" content={author || 'John Awotwi'} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={postDescription} />
+  {heroImage && <meta property="og:image" content={heroImage} />}
+  <meta property="og:site_name" content="John Awotwi" />
+  {(pubDate || date) && <meta property="article:published_time" content={typeof (pubDate || date) === 'string' ? (pubDate || date) : (pubDate || date).toISOString()} />}
+  {updatedDate && <meta property="article:modified_time" content={typeof updatedDate === 'string' ? updatedDate : updatedDate.toISOString()} />}
+  {author && <meta property="article:author" content={author} />}
+  {category && <meta property="article:section" content={category} />}
+  {tags && tags.map(tag => <meta property="article:tag" content={tag} />)}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={postDescription} />
+  {heroImage && <meta name="twitter:image" content={heroImage} />}
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalUrl} />
+
+  <link rel="stylesheet" href="../styles/global.css" />
+</head>
+
+<body>
+  <main class="container">
+    <article class="card">
+      <header>
+        <h1>{title}</h1>
+        <p class="muted">{description || excerpt}</p>
+        <div class="post-meta">
+          <span>By {author || 'John Awotwi'}</span>
+          <time datetime={typeof (pubDate || date) === 'string' ? (pubDate || date) : (pubDate || date).toISOString()}>
+            {typeof (pubDate || date) === 'string' ? new Date(pubDate || date).toLocaleDateString() : (pubDate || date).toLocaleDateString()}
+          </time>
+          {updatedDate && (
+            <time datetime={typeof updatedDate === 'string' ? updatedDate : updatedDate.toISOString()}>
+              (Updated: {typeof updatedDate === 'string' ? new Date(updatedDate).toLocaleDateString() : updatedDate.toLocaleDateString()})
+            </time>
+          )}
+          {readingTime && <span class="reading-time"> | ⏱️ ~{readingTime} min read</span>}
+          {category && <span class="category"> | Category: {category}</span>}
+          {tags && tags.length > 0 && (
+            <div class="tags">
+              Tags: {tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          )}
+        </div>
+      </header>
+
+      <div class="post-content">
+        <slot />
+      </div>
+    </article>
+
+    <footer style="margin-top: 2rem;">
+      <a href="/" onclick="event.preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();" style="color: var(--accent); text-decoration: none;">← Back to Musings</a>
+    </footer>
+  </main>
+</body>
+</html>

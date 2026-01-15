@@ -1,6 +1,4 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
 const { title } = Astro.props;
@@ -14,10 +12,8 @@ const { title } = Astro.props;
   <title>{title ? `${title} | John Awotwi` : 'John Awotwi'}</title>
 </head>
 <body class="dark-theme">
-  <Header />
   <main>
     <slot />
   </main>
-  <Footer />
 </body>
 </html>

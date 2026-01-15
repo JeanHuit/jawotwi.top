@@ -1,0 +1,87 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('musings', ({ data }) => {
+    return !data.draft; // Only build pages for non-draft posts
+  });
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Calculate reading time
+const contentString = JSON.stringify(post.body);
+const wordsPerMinute = 200;
+const numberOfWords = contentString.split(/\s/g).length;
+const readingTimeMinutes = Math.ceil(numberOfWords / wordsPerMinute);
+
+// Construct share URLs
+const pageTitle = encodeURIComponent(post.data.title);
+const pageUrl = encodeURIComponent(`https://jawotwi.top/musings/${post.slug}`);
+
+// Handle dates that might be strings after serialization
+const formattedPubDate = typeof post.data.date === 'string' ? new Date(post.data.date) : post.data.date;
+const formattedUpdatedDate = post.data.updatedDate ?
+  (typeof post.data.updatedDate === 'string' ? new Date(post.data.updatedDate) : post.data.updatedDate) : null;
+---
+
+<BlogPostLayout
+  {...post.data}
+  pubDate={post.data.date || post.data.pubDate}
+  date={post.data.date || post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  readingTime={readingTimeMinutes}
+>
+  <div class="blog-post-container">
+    <div class="reading-time">⏱️ ~{readingTimeMinutes} min read</div>
+    
+    <Content />
+    
+    <div class="social-sharing" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--panel-border);">
+      <h3>Share this post</h3>
+      <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+        <a 
+          href={`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`}
+          target="_blank" 
+          rel="noopener noreferrer"
+          style="background: #1da1f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+        >
+          🐦 Tweet
+        </a>
+        <a 
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`}
+          target="_blank" 
+          rel="noopener noreferrer"
+          style="background: #0077b5; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+        >
+          💼 LinkedIn
+        </a>
+        <a 
+          href={`https://facebook.com/sharer.php?u=${pageUrl}`}
+          target="_blank" 
+          rel="noopener noreferrer"
+          style="background: #1877f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+        >
+          📘 Share
+        </a>
+        <button 
+          onclick="navigator.clipboard.writeText(window.location.href)"
+          style="background: var(--panel); color: var(--text); border: 1px solid var(--panel-border); padding: 0.5rem 1rem; border-radius: var(--radius); cursor: pointer; font-size: 0.9rem;"
+        >
+          📋 Copy Link
+        </button>
+      </div>
+    </div>
+    
+    <div class="post-navigation" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--panel-border);">
+      <h3>More Musings</h3>
+      <p><a href="/" onclick="event.preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();">← Browse all posts</a></p>
+    </div>
+  </div>
+</BlogPostLayout>

@@ -1,5 +1,31 @@
 ---
+import { getCollection } from 'astro:content';
 import "../styles/global.css";
+
+// Get all musings posts
+const allMusings = await getCollection('musings', ({ data }) => {
+  return !data.draft; // Only include non-draft posts
+});
+
+// Sort by date (newest first)
+const sortedMusings = allMusings.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+// Prepare musings data for client-side use
+const musingsData = sortedMusings.map(post => ({
+  slug: post.slug,
+  data: {
+    title: post.data.title,
+    description: post.data.description || '',
+    author: post.data.author || 'John Awotwi',
+    date: post.data.date,
+    updatedDate: post.data.updatedDate,
+    category: post.data.category || '',
+    tags: Array.isArray(post.data.tags) ? post.data.tags : [],
+    excerpt: post.data.excerpt || '',
+  }
+}));
 ---
 
 <!DOCTYPE html>
@@ -35,6 +61,7 @@ import "../styles/global.css";
         <div><small>01</small> — <a href="#" data-section="projects" class="nav-link active">PROJECTS</a></div>
         <div><small>02</small> — <a href="#" data-section="services" class="nav-link">SERVICES</a></div>
         <div><small>03</small> — <a href="#" data-section="programs" class="nav-link">PROGRAMS</a></div>
+        <div><small>04</small> — <a href="#" data-section="musings" class="nav-link">My MUSINGS</a></div>
       </nav>
 
       <!-- SOCIALS -->
@@ -144,6 +171,20 @@ import "../styles/global.css";
           </p>
         </div>
       </div>
+
+      <!-- MUSINGS SECTION -->
+      <div id="musings-content" class="section-content">
+        <h2>Musings</h2>
+        <p class="muted">Thoughts, ideas, and reflections on technology, life, and everything in between.</p>
+
+        <!-- Dynamic musings content will be inserted here -->
+        <div id="musings-posts-list" class="posts-list">
+          <!-- Posts will be loaded dynamically -->
+        </div>
+
+        <!-- Hidden script tag to hold musings data -->
+        <script id="musings-data" type="application/json" set:html={JSON.stringify(musingsData)}></script>
+      </div>
     </section>
   </main>
 
@@ -166,8 +207,96 @@ import "../styles/global.css";
           section.classList.remove('active');
         });
         document.getElementById(`${targetSection}-content`).classList.add('active');
+
+        // Special handling for musings section to load content
+        if (targetSection === 'musings') {
+          loadMusingsContent();
+        }
       });
     });
+
+    // Load musings content dynamically
+    function loadMusingsContent() {
+      try {
+        console.log('Attempting to load musings content...');
+
+        // Get the musings data from the embedded script tag
+        const musingsDataElement = document.getElementById('musings-data');
+        console.log('Data element found:', musingsDataElement);
+
+        if (!musingsDataElement) {
+          throw new Error('Musings data element not found');
+        }
+
+        console.log('Raw data content:', musingsDataElement.textContent);
+
+        const musings = JSON.parse(musingsDataElement.textContent);
+        console.log('Parsed musings data:', musings);
+
+        const postsContainer = document.getElementById('musings-posts-list');
+        if (!postsContainer) {
+          throw new Error('Posts container not found');
+        }
+
+        postsContainer.innerHTML = '';
+
+        if (!musings || musings.length === 0) {
+          postsContainer.innerHTML = '<p>No musings posts available.</p>';
+          return;
+        }
+
+        musings.forEach(post => {
+          const postElement = document.createElement('article');
+          postElement.className = 'post-item';
+
+          // Create the tag HTML elements
+          let tagsHtml = '';
+          if (post.data.tags && post.data.tags.length > 0) {
+            tagsHtml = '<div class="tags">';
+            post.data.tags.forEach(tag => {
+              tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+            tagsHtml += '</div>';
+          }
+
+          // Convert date string back to Date object if needed
+          const postDate = typeof post.data.date === 'string' ? new Date(post.data.date) : post.data.date;
+          const dateISOString = postDate.toISOString();
+          const dateLocaleString = postDate.toLocaleDateString();
+
+          // Handle updatedDate if it exists
+          let updatedHtml = '';
+          if (post.data.updatedDate) {
+            const updatedDate = typeof post.data.updatedDate === 'string' ? new Date(post.data.updatedDate) : post.data.updatedDate;
+            updatedHtml = `<time datetime="${updatedDate.toISOString()}">(Updated: ${updatedDate.toLocaleDateString()})</time>`;
+          }
+
+          postElement.innerHTML = `
+            <div class="card">
+              <h3><a href="/musings/${post.slug}" style="color: var(--text);">${post.data.title}</a></h3>
+              <p class="muted">${post.data.description || post.data.excerpt || ''}</p>
+              <div class="post-meta">
+                <span>By ${post.data.author || 'John Awotwi'}</span>
+                <time datetime="${dateISOString}">${dateLocaleString}</time>
+                ${updatedHtml}
+                ${post.data.category ? `<span class="category">${post.data.category}</span>` : ''}
+                ${tagsHtml}
+              </div>
+            </div>
+          `;
+          postsContainer.appendChild(postElement);
+        });
+
+        console.log('Musings content loaded successfully');
+      } catch (error) {
+        console.error('Error loading musings:', error);
+        const postsContainer = document.getElementById('musings-posts-list');
+        if (postsContainer) {
+          postsContainer.innerHTML = '<p>Unable to load musings at this time. Error: ' + error.message + '</p>';
+        }
+      }
+    }
+
   </script>
 </body>
 </html>
