@@ -21,6 +21,11 @@ body {
   line-height: 1.6;
 }
 
+body.dark-theme {
+  background: radial-gradient(circle at top left, #121214, #0b0b0d);
+  color: var(--text);
+}
+
 a {
   color: var(--text);
   text-decoration: none;

@@ -39,49 +39,48 @@ const formattedUpdatedDate = post.data.updatedDate ?
   readingTime={readingTimeMinutes}
 >
   <div class="blog-post-container">
-    <div class="reading-time">⏱️ ~{readingTimeMinutes} min read</div>
-    
+
     <Content />
-    
+
     <div class="social-sharing" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--panel-border);">
       <h3>Share this post</h3>
-      <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-        <a 
+      <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
+        <a
           href={`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`}
-          target="_blank" 
+          target="_blank"
           rel="noopener noreferrer"
-          style="background: #1da1f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+          style="background: #1da1f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;"
         >
-          🐦 Tweet
+          <i class="fab fa-twitter"></i>
         </a>
-        <a 
+        <a
           href={`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`}
-          target="_blank" 
+          target="_blank"
           rel="noopener noreferrer"
-          style="background: #0077b5; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+          style="background: #0077b5; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;"
         >
-          💼 LinkedIn
+          <i class="fab fa-linkedin-in"></i>
         </a>
-        <a 
+        <a
           href={`https://facebook.com/sharer.php?u=${pageUrl}`}
-          target="_blank" 
+          target="_blank"
           rel="noopener noreferrer"
-          style="background: #1877f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem;"
+          style="background: #1877f2; color: white; padding: 0.5rem 1rem; border-radius: var(--radius); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;"
         >
-          📘 Share
+          <i class="fab fa-facebook-f"></i>
         </a>
-        <button 
+        <button
           onclick="navigator.clipboard.writeText(window.location.href)"
-          style="background: var(--panel); color: var(--text); border: 1px solid var(--panel-border); padding: 0.5rem 1rem; border-radius: var(--radius); cursor: pointer; font-size: 0.9rem;"
+          style="background: var(--panel); color: var(--text); border: 1px solid var(--panel-border); padding: 0.5rem 1rem; border-radius: var(--radius); cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;"
         >
-          📋 Copy Link
+          <i class="fas fa-copy"></i> Copy Link
         </button>
       </div>
     </div>
-    
+
     <div class="post-navigation" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--panel-border);">
       <h3>More Musings</h3>
-      <p><a href="/" onclick="event.preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();">← Browse all posts</a></p>
+      <p><a href="/?section=musings" style="color: var(--accent); text-decoration: none;">← Browse all posts</a></p>
     </div>
   </div>
 </BlogPostLayout>

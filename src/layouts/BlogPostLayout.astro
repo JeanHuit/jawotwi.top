@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const {
   title,
   description,
@@ -26,6 +28,9 @@ const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title} - John Awotwi</title>
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- SEO Meta Tags -->
   <meta name="description" content={postDescription} />
   {postKeywords && <meta name="keywords" content={postKeywords} />}
@@ -52,11 +57,9 @@ const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
 
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalUrl} />
-
-  <link rel="stylesheet" href="../styles/global.css" />
 </head>
 
-<body>
+<body class="dark-theme">
   <main class="container">
     <article class="card">
       <header>
@@ -72,13 +75,8 @@ const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
               (Updated: {typeof updatedDate === 'string' ? new Date(updatedDate).toLocaleDateString() : updatedDate.toLocaleDateString()})
             </time>
           )}
-          {readingTime && <span class="reading-time"> | ⏱️ ~{readingTime} min read</span>}
-          {category && <span class="category"> | Category: {category}</span>}
-          {tags && tags.length > 0 && (
-            <div class="tags">
-              Tags: {tags.map(tag => <span class="tag">{tag}</span>)}
-            </div>
-          )}
+          {readingTime && <span class="reading-time"> |  ~{readingTime} min read</span>}
+          
         </div>
       </header>
 
@@ -88,7 +86,7 @@ const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
     </article>
 
     <footer style="margin-top: 2rem;">
-      <a href="/" onclick="event.preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();" style="color: var(--accent); text-decoration: none;">← Back to Musings</a>
+      <a href="/" onclick="preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();" style="color: var(--accent); text-decoration: none;">← Home</a>
     </footer>
   </main>
 </body>

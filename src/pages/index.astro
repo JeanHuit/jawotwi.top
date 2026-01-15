@@ -34,6 +34,9 @@ const musingsData = sortedMusings.map(post => ({
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>John Awotwi</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -249,16 +252,7 @@ const musingsData = sortedMusings.map(post => ({
           const postElement = document.createElement('article');
           postElement.className = 'post-item';
 
-          // Create the tag HTML elements
-          let tagsHtml = '';
-          if (post.data.tags && post.data.tags.length > 0) {
-            tagsHtml = '<div class="tags">';
-            post.data.tags.forEach(tag => {
-              tagsHtml += `<span class="tag">${tag}</span>`;
-            });
-            tagsHtml += '</div>';
-          }
-
+      
           // Convert date string back to Date object if needed
           const postDate = typeof post.data.date === 'string' ? new Date(post.data.date) : post.data.date;
           const dateISOString = postDate.toISOString();
@@ -272,16 +266,15 @@ const musingsData = sortedMusings.map(post => ({
           }
 
           postElement.innerHTML = `
-            <div class="card">
+          
+            <div class="card" >
               <h3><a href="/musings/${post.slug}" style="color: var(--text);">${post.data.title}</a></h3>
               <p class="muted">${post.data.description || post.data.excerpt || ''}</p>
               <div class="post-meta">
                 <span>By ${post.data.author || 'John Awotwi'}</span>
                 <time datetime="${dateISOString}">${dateLocaleString}</time>
                 ${updatedHtml}
-                ${post.data.category ? `<span class="category">${post.data.category}</span>` : ''}
-                ${tagsHtml}
-              </div>
+                  </div>
             </div>
           `;
           postsContainer.appendChild(postElement);
@@ -297,6 +290,22 @@ const musingsData = sortedMusings.map(post => ({
       }
     }
 
+  </script>
+
+  <script>
+    // Check if we should show the musings section by default
+    // This could be triggered by URL hash or other conditions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if URL contains #musings-content or similar indicator
+      if (window.location.hash === '#musings-content' ||
+          window.location.search.includes('section=musings')) {
+        // Find and click the musings nav link
+        const musingsLink = document.querySelector('[data-section="musings"]');
+        if (musingsLink) {
+          musingsLink.click();
+        }
+      }
+    });
   </script>
 </body>
 </html>
