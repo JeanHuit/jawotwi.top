@@ -1,0 +1,205 @@
+---
+// FlippingCard component - 3D flip effect on hover
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  features?: string[];
+  class?: string;
+}
+
+const { title, description, icon = 'star', features = [], class: className = '' } = Astro.props;
+
+const icons: Record<string, string> = {
+  web: 'M21 12c0 1.66-4 3-9 3s-9-1.34-9-3c0-1.66 4-3 9-3s9 1.34 9 3z M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5c0-1.66-4-3-9-3S3 3.34 3 5z',
+  systems: 'M5 4v3h13.727a3.001 3.001 0 0 1 .422 5.962l-.148.038H5v7h1.527a3 3 0 0 1 5.902.734l.045.266H19a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1h2V5z M14 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+  network: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
+  devops: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+  support: 'M20 2H4c-1.11 0-1.99.89-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.11-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V7h2v3z',
+};
+
+const selectedIcon = icons[icon] || icons.web;
+---
+
+<div class={`flip-card ${className}`}>
+  <div class="flip-card-inner">
+    <!-- Front -->
+    <div class="flip-card-front">
+      <div class="icon-wrapper">
+        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          {selectedIcon}
+        </svg>
+      </div>
+      <h3>{title}</h3>
+      <p class="card-hint">Hover to learn more →</p>
+    </div>
+    
+    <!-- Back -->
+    <div class="flip-card-back">
+      <h3>About This Service</h3>
+      <p>{description}</p>
+      {features.length > 0 && (
+        <ul class="feature-list">
+          {features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      )}
+      <a href="/?section=services" class="cta-link">Get in touch →</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 280px;
+    perspective: 1000px;
+    margin-bottom: 0;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--panel-border);
+  }
+
+  .flip-card-front {
+    background: var(--panel);
+    color: var(--text);
+  }
+
+  .flip-card-back {
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+  .icon-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(167, 139, 250, 0.1);
+    border-radius: var(--radius);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--accent);
+  }
+
+  .flip-card-front h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-hint {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .flip-card-back h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .flip-card-back p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .feature-list li {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .feature-list li::before {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+  }
+
+  .feature-list li:last-child {
+    border-bottom: none;
+  }
+
+  .cta-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid white;
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+
+  .cta-link:hover {
+    background: white;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    .flip-card {
+      height: 240px;
+    }
+    
+    .flip-card-inner:hover {
+      transform: none;
+    }
+    
+    .flip-card-back {
+      transform: none;
+    }
+    
+    .flip-card-front {
+      transform: none;
+    }
+  }
+</style>

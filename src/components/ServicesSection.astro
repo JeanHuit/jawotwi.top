@@ -1,0 +1,142 @@
+---
+// ServicesSection component - Choose your card style
+import { getCollection } from 'astro:content';
+import FlippingCard from './FlippingCard.astro';
+import GradientCard from './GradientCard.astro';
+import MinimalCard from './MinimalCard.astro';
+import ExpandableCard from './ExpandableCard.astro';
+import Card from './Card.astro';
+
+interface Props {
+  cardStyle?: 'default' | 'flipping' | 'gradient' | 'minimal' | 'expandable';
+}
+
+const { cardStyle = 'default' } = Astro.props;
+
+const services = await getCollection('services');
+
+// Service icon mapping
+const serviceIcons: Record<string, string> = {
+  'Web Development': 'web',
+  'Systems Setup': 'systems',
+  'Networking': 'network',
+  'DevOps': 'devops',
+  'IT as a Service': 'support',
+};
+
+// Service colors for minimal cards
+const serviceColors: Record<string, string> = {
+  'Web Development': 'purple',
+  'Systems Setup': 'blue',
+  'Networking': 'green',
+  'DevOps': 'orange',
+  'IT as a Service': 'pink',
+};
+
+// Service details for expandable cards
+const serviceDetails: Record<string, string[]> = {
+  'Web Development': ['Responsive Design', 'Modern Frameworks', 'Performance Optimized', 'SEO Friendly'],
+  'Systems Setup': ['Linux Servers', 'Cloud Deployment', 'Security Hardening', 'Monitoring Setup'],
+  'Networking': ['Network Design', 'Troubleshooting', 'Security Configuration', 'Remote Access'],
+  'DevOps': ['CI/CD Pipelines', 'Docker Containers', 'Infrastructure as Code', 'Automated Testing'],
+  'IT as a Service': ['24/7 Support', 'System Maintenance', 'Security Audits', 'Technical Consulting'],
+};
+---
+
+<div class="services-section" data-style={cardStyle}>
+  <div class="services-grid services-grid--{cardStyle}">
+    {services.map((service, index) => {
+      const icon = serviceIcons[service.data.title] || 'web';
+      const color = serviceColors[service.data.title] || 'purple';
+      const details = serviceDetails[service.data.title] || [];
+      
+      if (cardStyle === 'flipping') {
+        return (
+          <FlippingCard
+            title={service.data.title}
+            description={service.data.description}
+            icon={icon}
+            features={details}
+          />
+        );
+      }
+      
+      if (cardStyle === 'gradient') {
+        return (
+          <GradientCard
+            title={service.data.title}
+            description={service.data.description}
+            icon={icon}
+          />
+        );
+      }
+      
+      if (cardStyle === 'minimal') {
+        return (
+          <MinimalCard
+            title={service.data.title}
+            description={service.data.description}
+            accentColor={color as 'purple' | 'blue' | 'green' | 'orange' | 'pink'}
+          />
+        );
+      }
+      
+      if (cardStyle === 'expandable') {
+        return (
+          <ExpandableCard
+            title={service.data.title}
+            description={service.data.description}
+            details={details}
+            ctaText="Learn More"
+          />
+        );
+      }
+      
+      // Default card
+      return (
+        <Card
+          title={service.data.title}
+          description={service.data.description}
+        />
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .services-section {
+    width: 100%;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .services-grid--default {
+    gap: 2rem;
+  }
+
+  .services-grid--flipping {
+    gap: 2rem;
+  }
+
+  .services-grid--gradient {
+    gap: 2rem;
+  }
+
+  .services-grid--minimal {
+    gap: 1.5rem;
+  }
+
+  .services-grid--expandable {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

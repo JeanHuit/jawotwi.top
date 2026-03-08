@@ -7,6 +7,7 @@ import SocialLinks from '../components/SocialLinks.astro';
 import SectionNav from '../components/SectionNav.astro';
 import Search from '../components/Search.astro';
 import Icon from '../components/Icon.astro';
+import ServicesSection from '../components/ServicesSection.astro';
 
 // Get all musings posts
 const allMusings = await getCollection('musings', ({ data }) => {
@@ -33,9 +34,8 @@ const musingsData = sortedMusings.map(post => ({
   }
 }));
 
-// Get projects, services, and programs
+// Get projects and programs (services handled by ServicesSection component)
 const projects = await getCollection('projects');
-const services = await getCollection('services');
 const programs = await getCollection('programs');
 ---
 
@@ -91,14 +91,15 @@ const programs = await getCollection('programs');
 
       <!-- SERVICES SECTION -->
       <div id="services-content" class="section-content" role="tabpanel" aria-labelledby="services-tab">
-        <div class="services-grid">
-          {services.map((service) => (
-            <Card
-              title={service.data.title}
-              description={service.data.description}
-            />
-          ))}
-        </div>
+        <!-- 
+          Change cardStyle to try different designs:
+          - 'default' - Simple cards
+          - 'flipping' - 3D flip cards on hover
+          - 'gradient' - Animated gradient border
+          - 'minimal' - Clean minimal design
+          - 'expandable' - Expands on hover
+        -->
+        <ServicesSection cardStyle="flipping" />
       </div>
 
       <!-- PROGRAMS SECTION -->

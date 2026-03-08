@@ -1,0 +1,122 @@
+---
+// MinimalCard component - Clean, minimal design with focus on icon
+interface Props {
+  title: string;
+  description: string;
+  accentColor?: 'purple' | 'blue' | 'green' | 'orange' | 'pink';
+  class?: string;
+}
+
+const { title, description, accentColor = 'purple', class: className = '' } = Astro.props;
+
+const colorMap = {
+  purple: { bg: 'rgba(167, 139, 250, 0.1)', border: 'rgba(167, 139, 250, 0.3)', text: '#a78bfa' },
+  blue: { bg: 'rgba(59, 130, 246, 0.1)', border: 'rgba(59, 130, 246, 0.3)', text: '#3b82f6' },
+  green: { bg: 'rgba(34, 197, 94, 0.1)', border: 'rgba(34, 197, 94, 0.3)', text: '#22c55e' },
+  orange: { bg: 'rgba(249, 115, 22, 0.1)', border: 'rgba(249, 115, 22, 0.3)', text: '#f97316' },
+  pink: { bg: 'rgba(236, 72, 153, 0.1)', border: 'rgba(236, 72, 153, 0.3)', text: '#ec4899' },
+};
+
+const colors = colorMap[accentColor];
+---
+
+<div class={`minimal-card ${className}`} style="--accent-bg: {colors.bg}; --accent-border: {colors.border}; --accent-text: {colors.text}">
+  <div class="card-header">
+    <div class="accent-bar"></div>
+    <h3>{title}</h3>
+  </div>
+  <div class="card-body">
+    <p>{description}</p>
+  </div>
+  <div class="card-footer">
+    <a href="/?section=services" class="learn-more">Learn more</a>
+  </div>
+</div>
+
+<style>
+  .minimal-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    padding: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .minimal-card:hover {
+    border-color: var(--accent-border);
+    transform: translateX(5px);
+  }
+
+  .card-header {
+    padding: 1.5rem 1.5rem 1rem;
+    position: relative;
+  }
+
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-text);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .minimal-card:hover .accent-bar {
+    transform: scaleX(1);
+  }
+
+  .card-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .card-body {
+    padding: 0 1.5rem 1.5rem;
+    flex: 1;
+  }
+
+  .card-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--panel-border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .learn-more {
+    color: var(--accent-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+  }
+
+  .learn-more::after {
+    content: '→';
+    transition: transform 0.3s ease;
+  }
+
+  .learn-more:hover {
+    text-decoration: none;
+  }
+
+  .learn-more:hover::after {
+    transform: translateX(5px);
+  }
+</style>

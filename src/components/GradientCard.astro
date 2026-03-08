@@ -1,0 +1,110 @@
+---
+// GradientCard component - Animated gradient border with glow effect
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  class?: string;
+}
+
+const { title, description, icon = 'web', class: className = '' } = Astro.props;
+---
+
+<div class={`gradient-card ${className}`}>
+  <div class="gradient-border"></div>
+  <div class="card-content">
+    <div class="icon-box">
+      <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m15.5-6.5l-4.25 4.25m-4.5 4.5L6.5 17.5m9 0l4.25 4.25m-12.5-12.5L3 6.5" />
+      </svg>
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</div>
+
+<style>
+  .gradient-card {
+    position: relative;
+    background: var(--panel);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    margin-bottom: 0;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+
+  .gradient-border {
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: var(--radius);
+    background: linear-gradient(45deg, var(--accent), #ec4899, #8b5cf6, var(--accent));
+    background-size: 300% 300%;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradientShift 3s ease infinite;
+    opacity: 0.5;
+    transition: var(--transition);
+  }
+
+  .gradient-card:hover .gradient-border {
+    opacity: 1;
+    animation: gradientShift 2s ease infinite;
+  }
+
+  .gradient-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(167, 139, 250, 0.15);
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .icon-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(167, 139, 250, 0.05));
+    border-radius: var(--radius);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--accent);
+  }
+
+  .gradient-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .gradient-card p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .gradient-card:hover p {
+    color: var(--text);
+  }
+</style>
