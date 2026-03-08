@@ -1,0 +1,41 @@
+---
+// Analytics component - Supports multiple analytics providers
+// Configure via environment variables in .env file:
+// PUBLIC_ANALYTICS_PROVIDER = 'plausible' | 'google' | 'umami' | ''
+// PUBLIC_ANALYTICS_ID = your analytics ID
+
+const analyticsProvider = import.meta.env.PUBLIC_ANALYTICS_PROVIDER || '';
+const analyticsId = import.meta.env.PUBLIC_ANALYTICS_ID || '';
+---
+
+{analyticsProvider === 'plausible' && analyticsId && (
+  <>
+    <script
+      defer
+      data-domain={analyticsId}
+      src="https://plausible.io/js/script.js"
+    ></script>
+  </>
+)}
+
+{analyticsProvider === 'google' && analyticsId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{analyticsId}');
+    </script>
+  </>
+)}
+
+{analyticsProvider === 'umami' && analyticsId && (
+  <>
+    <script
+      defer
+      src="https://analytics.umami.is/script.js"
+      data-website-id={analyticsId}
+    ></script>
+  </>
+)}

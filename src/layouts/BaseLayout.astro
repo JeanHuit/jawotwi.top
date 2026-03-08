@@ -1,7 +1,9 @@
 ---
 import "../styles/global.css";
+import SkipLink from "../components/SkipLink.astro";
+import Analytics from "../components/Analytics.astro";
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -9,11 +11,24 @@ const { title } = Astro.props;
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0d" />
   <title>{title ? `${title} | John Awotwi` : 'John Awotwi'}</title>
+  <meta name="description" content={description || 'John Awotwi - Senior Technical Officer at CSIR-INSTI. Community Development · IT Specialist · Information Security'} />
+  
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="/moi.png" as="image" />
+  
+  <!-- Analytics -->
+  <Analytics />
 </head>
 <body class="dark-theme">
-  <main>
+  <SkipLink />
+  <div id="view-transition-container">
     <slot />
-  </main>
+  </div>
 </body>
 </html>

@@ -1,0 +1,56 @@
+---
+// SectionNav component
+interface NavItem {
+  number: string;
+  label: string;
+  section: string;
+}
+
+const defaultItems: NavItem[] = [
+  { number: '01', label: 'Projects', section: 'projects' },
+  { number: '02', label: 'Services', section: 'services' },
+  { number: '03', label: 'Programs', section: 'programs' },
+  { number: '04', label: 'My MUSINGS', section: 'musings' },
+];
+
+const { items = defaultItems, activeSection = '' } = Astro.props;
+---
+
+<nav aria-label="Section navigation">
+  {items.map((item) => (
+    <div>
+      <small>{item.number}</small> —{' '}
+      <a
+        href="#"
+        data-section={item.section}
+        class={`nav-link ${activeSection === item.section ? 'active' : ''}`}
+      >
+        {item.label}
+      </a>
+    </div>
+  ))}
+</nav>
+
+<style>
+  nav div {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    text-transform: uppercase;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  nav a:hover {
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+  }
+</style>

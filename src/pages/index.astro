@@ -1,15 +1,21 @@
 ---
 import { getCollection } from 'astro:content';
-import "../styles/global.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SEO from '../components/SEO.astro';
+import Card from '../components/Card.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import SectionNav from '../components/SectionNav.astro';
+import Search from '../components/Search.astro';
+import Icon from '../components/Icon.astro';
 
 // Get all musings posts
 const allMusings = await getCollection('musings', ({ data }) => {
-  return !data.draft; // Only include non-draft posts
+  return !data.draft;
 });
 
 // Sort by date (newest first)
 const sortedMusings = allMusings.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 // Prepare musings data for client-side use
@@ -17,182 +23,155 @@ const musingsData = sortedMusings.map(post => ({
   slug: post.slug,
   data: {
     title: post.data.title,
-    description: post.data.description || '',
+    description: post.data.description || post.data.excerpt || '',
     author: post.data.author || 'John Awotwi',
-    date: post.data.date,
+    date: post.data.pubDate,
     updatedDate: post.data.updatedDate,
     category: post.data.category || '',
-    tags: Array.isArray(post.data.tags) ? post.data.tags : [],
+    tags: post.data.tags || [],
     excerpt: post.data.excerpt || '',
   }
 }));
+
+// Get projects, services, and programs
+const projects = await getCollection('projects');
+const services = await getCollection('services');
+const programs = await getCollection('programs');
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>John Awotwi</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-  <main class="container grid grid-2">
-
+<BaseLayout title="John Awotwi">
+  <SEO
+    title="John Awotwi - Senior Technical Officer"
+    description="Senior Technical Officer at CSIR-INSTI. Community Development · IT Specialist · Information Security. I transform research outputs into practical software, systems, and communication tools for national development."
+    type="website"
+  />
+  
+  <main class="container grid grid-2" id="main-content">
     <!-- LEFT COLUMN -->
     <aside>
-      <h1 style="font-size:3rem; margin-bottom:0.5rem;">John Awotwi</h1>
-      <p style="font-size:1.1rem;">
-        Senior Technical Officer at CSIR-INSTI
-      </p>
+      <div class="profile-header">
+        <h1>John Awotwi</h1>
+        <p class="title">
+          Senior Technical Officer at CSIR-INSTI
+        </p>
 
-      <p class="muted" style="margin-top:1.5rem;">
-        Community Development · IT Specialist · Information Security
-      </p>
+        <p class="tagline muted">
+          Community Development · IT Specialist · Information Security
+        </p>
 
-      <p style="margin-top:1.5rem; max-width:420px;">
-        I transform research outputs into practical software, systems,
-        and communication tools for national development. I am passionate
-        about technology, people, and building sustainable communities.
-      </p>
+        <p class="bio">
+          I transform research outputs into practical software, systems,
+          and communication tools for national development. I am passionate
+          about technology, people, and building sustainable communities.
+        </p>
+      </div>
 
       <!-- SECTION NAV -->
-      <nav style="margin-top:3rem;">
-        <div><small>01</small> — <a href="#" data-section="projects" class="nav-link active">PROJECTS</a></div>
-        <div><small>02</small> — <a href="#" data-section="services" class="nav-link">SERVICES</a></div>
-        <div><small>03</small> — <a href="#" data-section="programs" class="nav-link">PROGRAMS</a></div>
-        <div><small>04</small> — <a href="#" data-section="musings" class="nav-link">My MUSINGS</a></div>
-      </nav>
+      <SectionNav />
 
       <!-- SOCIALS -->
-      <div class="social-links" style="margin-top:4rem;">
-        <img src="/moi.png" alt="John Awotwi" width="42" height="42" />
-        <a href="https://twitter.com/JeanHuit" target="_blank">Twitter</a>
-        <a href="https://github.com/JeanHuit" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank">LinkedIn</a>
+      <div class="mt-4">
+        <SocialLinks />
       </div>
     </aside>
 
     <!-- RIGHT COLUMN -->
     <section id="content-area">
       <!-- PROJECTS SECTION -->
-      <div id="projects-content" class="section-content active">
-        <div class="card">
-          <small>TYPESCRIPT / SYSTEMS</small>
-          <h3>HPC Cluster Deployment</h3>
-          <p class="muted">
-            Multi-node compute cluster for scientific simulations and parallel workloads.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>WEB / SYSTEMS</small>
-          <h3>Institutional Web Platform</h3>
-          <p class="muted">
-            Internal research management system with dashboards and reporting.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>DEVOPS</small>
-          <h3>CI/CD & Infrastructure Automation</h3>
-          <p class="muted">
-            Automated deployments, containerized services, and system monitoring.
-          </p>
-        </div>
+      <div id="projects-content" class="section-content active" role="tabpanel" aria-labelledby="projects-tab">
+        {projects.map((project) => (
+          <Card
+            title={project.data.title}
+            description={project.data.description}
+            category={project.data.category}
+            tags={project.data.tags}
+          />
+        ))}
       </div>
 
       <!-- SERVICES SECTION -->
-      <div id="services-content" class="section-content">
-        <div class="card">
-          <small>SERVICES</small>
-          <h3>Web Development</h3>
-          <p class="muted">
-            Websites, dashboards, and internal tools built for performance and clarity.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>SERVICES</small>
-          <h3>Systems Setup</h3>
-          <p class="muted">
-            Linux servers, compute environments, and secure deployments.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>SERVICES</small>
-          <h3>Networking</h3>
-          <p class="muted">
-            Local and remote network design, setup, and maintenance.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>SERVICES</small>
-          <h3>DevOps</h3>
-          <p class="muted">
-            CI/CD pipelines, containerization, and automated deployments.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>SERVICES</small>
-          <h3>IT as a Service</h3>
-          <p class="muted">
-            Ongoing IT support and system management for organizations.
-          </p>
+      <div id="services-content" class="section-content" role="tabpanel" aria-labelledby="services-tab">
+        <div class="services-grid">
+          {services.map((service) => (
+            <Card
+              title={service.data.title}
+              description={service.data.description}
+            />
+          ))}
         </div>
       </div>
 
       <!-- PROGRAMS SECTION -->
-      <div id="programs-content" class="section-content">
-        <div class="card">
-          <small>EVENT / 2023</small>
-          <h3>Google Developer Group (GDG) Leadership</h3>
-          <p class="muted">
-            Organized and led technology community events and workshops in Ghana.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>PROGRAM / 2022</small>
-          <h3>CSIR-INSTI Tech Initiative</h3>
-          <p class="muted">
-            Led digital transformation projects for research communication systems.
-          </p>
-        </div>
-
-        <div class="card">
-          <small>WORKSHOP / 2021</small>
-          <h3>Community Tech Bootcamp</h3>
-          <p class="muted">
-            Facilitated hands-on training for local developers and researchers.
-          </p>
-        </div>
+      <div id="programs-content" class="section-content" role="tabpanel" aria-labelledby="programs-tab">
+        {programs.map((program) => (
+          <Card
+            title={program.data.title}
+            description={program.data.description}
+            category={`${program.data.type.toUpperCase()} / ${program.data.year}`}
+          />
+        ))}
       </div>
 
       <!-- MUSINGS SECTION -->
-      <div id="musings-content" class="section-content">
+      <div id="musings-content" class="section-content" role="tabpanel" aria-labelledby="musings-tab">
         <h2>Musings</h2>
         <p class="muted">Thoughts, ideas, and reflections on technology, life, and everything in between.</p>
 
-        <!-- Dynamic musings content will be inserted here -->
-        <div id="musings-posts-list" class="posts-list">
-          <!-- Posts will be loaded dynamically -->
-        </div>
+        <!-- Search component -->
+        <Search posts={musingsData} />
 
-        <!-- Hidden script tag to hold musings data -->
-        <script id="musings-data" type="application/json" set:html={JSON.stringify(musingsData)}></script>
+        <!-- Dynamic musings content -->
+        <div id="musings-posts-list" class="posts-list">
+          {sortedMusings.map((post) => {
+            const postDate = post.data.pubDate;
+            const dateLocaleString = postDate.toLocaleDateString();
+            const dateISOString = postDate.toISOString();
+            
+            return (
+              <article class="post-item">
+                <div class="card">
+                  <h3>
+                    <a href={`/musings/${post.slug}`} style="color: var(--text);">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="muted">
+                    {post.data.description || post.data.excerpt || ''}
+                  </p>
+                  <div class="post-meta">
+                    <span>By {post.data.author || 'John Awotwi'}</span>
+                    <time datetime={dateISOString}>{dateLocaleString}</time>
+                    {post.data.updatedDate && (
+                      <time datetime={post.data.updatedDate.toISOString()}>
+                        (Updated: {post.data.updatedDate.toLocaleDateString()})
+                      </time>
+                    )}
+                  </div>
+                  {(post.data.category || post.data.tags?.length) && (
+                    <div class="mt-2">
+                      {post.data.category && (
+                        <span class="category">{post.data.category}</span>
+                      )}
+                      {post.data.tags?.length ? (
+                        <div class="tags">
+                          {post.data.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   </main>
 
   <script>
-    // Section switching functionality
+    // Section switching functionality with View Transitions
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -205,107 +184,72 @@ const musingsData = sortedMusings.map(post => ({
         });
         this.classList.add('active');
 
-        // Show target content section
+        // Show target content section with fade animation
         document.querySelectorAll('.section-content').forEach(section => {
           section.classList.remove('active');
+          section.setAttribute('aria-hidden', 'true');
         });
-        document.getElementById(`${targetSection}-content`).classList.add('active');
+        
+        const targetContent = document.getElementById(`${targetSection}-content`);
+        if (targetContent) {
+          targetContent.classList.add('active');
+          targetContent.setAttribute('aria-hidden', 'false');
+          
+          // Update URL without page reload
+          const newUrl = targetSection === 'projects' 
+            ? window.location.pathname 
+            : `${window.location.pathname}?section=${targetSection}`;
+          window.history.pushState({ section: targetSection }, '', newUrl);
+        }
 
-        // Special handling for musings section to load content
+        // Special handling for musings section
         if (targetSection === 'musings') {
-          loadMusingsContent();
+          const searchInput = document.getElementById('musing-search');
+          if (searchInput) {
+            (searchInput as HTMLInputElement).focus();
+          }
         }
       });
     });
 
-    // Load musings content dynamically
-    function loadMusingsContent() {
-      try {
-        console.log('Attempting to load musings content...');
-
-        // Get the musings data from the embedded script tag
-        const musingsDataElement = document.getElementById('musings-data');
-        console.log('Data element found:', musingsDataElement);
-
-        if (!musingsDataElement) {
-          throw new Error('Musings data element not found');
-        }
-
-        console.log('Raw data content:', musingsDataElement.textContent);
-
-        const musings = JSON.parse(musingsDataElement.textContent);
-        console.log('Parsed musings data:', musings);
-
-        const postsContainer = document.getElementById('musings-posts-list');
-        if (!postsContainer) {
-          throw new Error('Posts container not found');
-        }
-
-        postsContainer.innerHTML = '';
-
-        if (!musings || musings.length === 0) {
-          postsContainer.innerHTML = '<p>No musings posts available.</p>';
-          return;
-        }
-
-        musings.forEach(post => {
-          const postElement = document.createElement('article');
-          postElement.className = 'post-item';
-
+    // Handle browser back/forward navigation
+    window.addEventListener('popstate', function(event) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const section = urlParams.get('section') || 'projects';
       
-          // Convert date string back to Date object if needed
-          const postDate = typeof post.data.date === 'string' ? new Date(post.data.date) : post.data.date;
-          const dateISOString = postDate.toISOString();
-          const dateLocaleString = postDate.toLocaleDateString();
-
-          // Handle updatedDate if it exists
-          let updatedHtml = '';
-          if (post.data.updatedDate) {
-            const updatedDate = typeof post.data.updatedDate === 'string' ? new Date(post.data.updatedDate) : post.data.updatedDate;
-            updatedHtml = `<time datetime="${updatedDate.toISOString()}">(Updated: ${updatedDate.toLocaleDateString()})</time>`;
-          }
-
-          postElement.innerHTML = `
-          
-            <div class="card" >
-              <h3><a href="/musings/${post.slug}" style="color: var(--text);">${post.data.title}</a></h3>
-              <p class="muted">${post.data.description || post.data.excerpt || ''}</p>
-              <div class="post-meta">
-                <span>By ${post.data.author || 'John Awotwi'}</span>
-                <time datetime="${dateISOString}">${dateLocaleString}</time>
-                ${updatedHtml}
-                  </div>
-            </div>
-          `;
-          postsContainer.appendChild(postElement);
-        });
-
-        console.log('Musings content loaded successfully');
-      } catch (error) {
-        console.error('Error loading musings:', error);
-        const postsContainer = document.getElementById('musings-posts-list');
-        if (postsContainer) {
-          postsContainer.innerHTML = '<p>Unable to load musings at this time. Error: ' + error.message + '</p>';
-        }
+      const targetLink = document.querySelector(`[data-section="${section}"]`);
+      if (targetLink) {
+        (targetLink as HTMLElement).click();
       }
-    }
+    });
 
-  </script>
-
-  <script>
-    // Check if we should show the musings section by default
-    // This could be triggered by URL hash or other conditions
+    // Check URL on page load for section
     document.addEventListener('DOMContentLoaded', function() {
-      // Check if URL contains #musings-content or similar indicator
-      if (window.location.hash === '#musings-content' ||
-          window.location.search.includes('section=musings')) {
-        // Find and click the musings nav link
-        const musingsLink = document.querySelector('[data-section="musings"]');
-        if (musingsLink) {
-          musingsLink.click();
+      const urlParams = new URLSearchParams(window.location.search);
+      const section = urlParams.get('section');
+      
+      if (section) {
+        const targetLink = document.querySelector(`[data-section="${section}"]`);
+        if (targetLink) {
+          (targetLink as HTMLElement).click();
         }
       }
     });
   </script>
-</body>
-</html>
+</BaseLayout>
+
+<style>
+  /* Section-specific styles */
+  .section-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .section-content.active {
+    opacity: 1;
+  }
+  
+  .section-content[aria-hidden="true"] {
+    display: none;
+  }
+</style>

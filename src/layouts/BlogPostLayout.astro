@@ -1,12 +1,13 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "./BaseLayout.astro";
+import SEO from "../components/SEO.astro";
+import Icon from "../components/Icon.astro";
 
 const {
   title,
   description,
   author,
   pubDate,
-  date,  // Add the date field
   updatedDate,
   heroImage,
   tags,
@@ -17,77 +18,116 @@ const {
 } = Astro.props;
 
 const postDescription = description || excerpt || '';
-const postKeywords = keywords ? keywords.join(', ') : '';
+const postKeywords = keywords || [];
 const canonicalUrl = `https://jawotwi.top${Astro.url.pathname}`;
+
+// Convert date to ISO string for meta tags
+const formatDate = (date: Date | string | undefined): string | undefined => {
+  if (!date) return undefined;
+  return typeof date === 'string' ? date : date.toISOString();
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title} - John Awotwi</title>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content={postDescription} />
-  {postKeywords && <meta name="keywords" content={postKeywords} />}
-  <meta name="author" content={author || 'John Awotwi'} />
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={postDescription} />
-  {heroImage && <meta property="og:image" content={heroImage} />}
-  <meta property="og:site_name" content="John Awotwi" />
-  {(pubDate || date) && <meta property="article:published_time" content={typeof (pubDate || date) === 'string' ? (pubDate || date) : (pubDate || date).toISOString()} />}
-  {updatedDate && <meta property="article:modified_time" content={typeof updatedDate === 'string' ? updatedDate : updatedDate.toISOString()} />}
-  {author && <meta property="article:author" content={author} />}
-  {category && <meta property="article:section" content={category} />}
-  {tags && tags.map(tag => <meta property="article:tag" content={tag} />)}
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={postDescription} />
-  {heroImage && <meta name="twitter:image" content={heroImage} />}
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href={canonicalUrl} />
-</head>
-
-<body class="dark-theme">
-  <main class="container">
+<BaseLayout title={title}>
+  <SEO
+    title={title}
+    description={postDescription}
+    image={heroImage?.src}
+    type="article"
+    publishedTime={pubDate}
+    modifiedTime={updatedDate}
+    author={author || 'John Awotwi'}
+    section={category}
+    tags={tags}
+    keywords={postKeywords}
+    canonicalUrl={canonicalUrl}
+  />
+  
+  <main class="container" id="main-content">
     <article class="card">
       <header>
         <h1>{title}</h1>
-        <p class="muted">{description || excerpt}</p>
+        <p class="muted">{postDescription}</p>
         <div class="post-meta">
           <span>By {author || 'John Awotwi'}</span>
-          <time datetime={typeof (pubDate || date) === 'string' ? (pubDate || date) : (pubDate || date).toISOString()}>
-            {typeof (pubDate || date) === 'string' ? new Date(pubDate || date).toLocaleDateString() : (pubDate || date).toLocaleDateString()}
+          <time datetime={formatDate(pubDate)}>
+            {typeof pubDate === 'string' ? new Date(pubDate).toLocaleDateString() : pubDate?.toLocaleDateString()}
           </time>
           {updatedDate && (
-            <time datetime={typeof updatedDate === 'string' ? updatedDate : updatedDate.toISOString()}>
+            <time datetime={formatDate(updatedDate)}>
               (Updated: {typeof updatedDate === 'string' ? new Date(updatedDate).toLocaleDateString() : updatedDate.toLocaleDateString()})
             </time>
           )}
-          {readingTime && <span class="reading-time"> |  ~{readingTime} min read</span>}
-          
+          {readingTime && <span class="reading-time">~{readingTime} min read</span>}
         </div>
+        
+        {(category || tags?.length) && (
+          <div class="mt-2">
+            {category && <span class="category">{category}</span>}
+            {tags?.length ? (
+              <div class="tags">
+                {tags.map((tag: string) => (
+                  <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`} class="tag">{tag}</a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        )}
       </header>
 
       <div class="post-content">
         <slot />
       </div>
-    </article>
 
-    <footer style="margin-top: 2rem;">
-      <a href="/" onclick="preventDefault(); document.querySelector('[data-section=&quot;musings&quot;]').click();" style="color: var(--accent); text-decoration: none;">← Home</a>
-    </footer>
+      <div class="social-sharing">
+        <h3>Share this post</h3>
+        <div class="social-sharing-buttons">
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(canonicalUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="share-btn twitter"
+            aria-label="Share on Twitter"
+          >
+            <Icon name="twitter" size={18} />
+          </a>
+          <a
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="share-btn linkedin"
+            aria-label="Share on LinkedIn"
+          >
+            <Icon name="linkedin" size={18} />
+          </a>
+          <a
+            href={`https://facebook.com/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="share-btn facebook"
+            aria-label="Share on Facebook"
+          >
+            <Icon name="facebook" size={18} />
+          </a>
+          <button
+            class="share-btn copy"
+            onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!');"
+            aria-label="Copy link"
+          >
+            <Icon name="copy" size={18} />
+            Copy Link
+          </button>
+        </div>
+      </div>
+
+      <div class="post-navigation">
+        <h3>More Musings</h3>
+        <p>
+          <a href="/" class="text-accent" style="text-decoration: none;">
+            ← Browse all posts
+          </a>
+        </p>
+      </div>
+    </article>
   </main>
-</body>
-</html>
+</BaseLayout>

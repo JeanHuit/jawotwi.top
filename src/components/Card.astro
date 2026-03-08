@@ -1,0 +1,70 @@
+---
+// Card component
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  href?: string;
+  category?: string;
+  tags?: string[];
+  children?: any;
+  class?: string;
+}
+
+const { title, subtitle, description, href, category, tags = [], children, class: className = '' } = Astro.props;
+---
+
+<article class={`card ${className}`}>
+  {href ? (
+    <a href={href} class="card-link">
+      {category && <small>{category}</small>}
+      {title && <h3>{title}</h3>}
+      {subtitle && <p class="muted">{subtitle}</p>}
+      {description && <p class="muted">{description}</p>}
+      {tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+      <slot />
+    </a>
+  ) : (
+    <>
+      {category && <small>{category}</small>}
+      {title && <h3>{title}</h3>}
+      {subtitle && <p class="muted">{subtitle}</p>}
+      {description && <p class="muted">{description}</p>}
+      {tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+      <slot />
+    </>
+  )}
+</article>
+
+<style>
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card-link:hover {
+    text-decoration: none;
+  }
+
+  .card-link h3 {
+    color: var(--accent);
+    transition: var(--transition);
+  }
+
+  .card-link:hover h3 {
+    color: var(--text);
+  }
+</style>

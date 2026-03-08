@@ -1,0 +1,225 @@
+---
+// Search component for musings
+interface Post {
+  slug: string;
+  data: {
+    title: string;
+    description?: string;
+    excerpt?: string;
+    date: Date | string;
+    tags?: string[];
+    category?: string;
+  };
+}
+
+const { posts = [] } = Astro.props;
+
+// Serialize posts data for client-side use
+const postsData = posts.map(p => ({
+  slug: p.slug,
+  title: p.data.title,
+  description: p.data.description || p.data.excerpt || '',
+  date: p.data.date instanceof Date ? p.data.date.toISOString() : p.data.date,
+  tags: p.data.tags || [],
+  category: p.data.category || '',
+}));
+---
+
+<div class="search-container">
+  <div class="search-box">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input
+      type="search"
+      id="musing-search"
+      placeholder="Search musings..."
+      aria-label="Search musings"
+    />
+    <button id="clear-search" class="clear-btn" aria-label="Clear search" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+  <div id="search-results" class="search-results" aria-live="polite"></div>
+</div>
+
+<script>
+  const posts = JSON.parse(document.getElementById('search-posts-data')?.textContent || '[]');
+
+  const searchInput = document.getElementById('musing-search');
+  const clearBtn = document.getElementById('clear-search');
+  const resultsContainer = document.getElementById('search-results');
+  const postsList = document.getElementById('musings-posts-list');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      
+      if (query.length > 0) {
+        clearBtn?.removeAttribute('hidden');
+      } else {
+        clearBtn?.setAttribute('hidden', '');
+      }
+
+      if (query.length < 2) {
+        if (resultsContainer) resultsContainer.innerHTML = '';
+        if (postsList) postsList.removeAttribute('hidden');
+        return;
+      }
+
+      const filtered = posts.filter((post: any) =>
+        post.title.toLowerCase().includes(query) ||
+        post.description.toLowerCase().includes(query) ||
+        post.tags.some((tag: string) => tag.toLowerCase().includes(query)) ||
+        (post.category && post.category.toLowerCase().includes(query))
+      );
+
+      if (resultsContainer) {
+        if (filtered.length === 0) {
+          resultsContainer.innerHTML = '<p class="no-results">No results found</p>';
+        } else {
+          resultsContainer.innerHTML = filtered.map((post: any) => `
+            <article class="search-result-item">
+              <h4><a href="/musings/${post.slug}">${escapeHtml(post.title)}</a></h4>
+              <p class="muted">${escapeHtml(post.description.substring(0, 150))}${post.description.length > 150 ? '...' : ''}</p>
+              <div class="search-meta">
+                <time>${new Date(post.date).toLocaleDateString()}</time>
+                ${post.category ? `<span class="category">${escapeHtml(post.category)}</span>` : ''}
+              </div>
+            </article>
+          `).join('');
+        }
+
+        if (postsList) {
+          postsList.setAttribute('hidden', '');
+        }
+      }
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (resultsContainer) resultsContainer.innerHTML = '';
+      if (postsList) postsList.removeAttribute('hidden');
+      clearBtn.setAttribute('hidden', '');
+      searchInput?.focus();
+    });
+  }
+
+  function escapeHtml(text: string): string {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+</script>
+
+<script id="search-posts-data" type="application/json" set:html={JSON.stringify(postsData)}></script>
+
+<style>
+  .search-container {
+    margin: 2rem 0;
+  }
+
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  #musing-search {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  #musing-search:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  #musing-search::placeholder {
+    color: var(--muted);
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clear-btn:hover {
+    color: var(--text);
+  }
+
+  .search-results {
+    margin-top: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .search-result-item {
+    padding: 1rem;
+    border: 1px solid var(--panel-border);
+    margin-bottom: 0.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+
+  .search-result-item:hover {
+    border-color: var(--accent);
+  }
+
+  .search-result-item h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .search-result-item h4 a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .search-result-item h4 a:hover {
+    text-decoration: underline;
+  }
+
+  .search-result-item p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .search-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .no-results {
+    color: var(--muted);
+    text-align: center;
+    padding: 2rem;
+  }
+</style>

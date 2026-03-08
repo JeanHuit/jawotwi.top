@@ -1,0 +1,59 @@
+---
+// SocialLinks component
+interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+}
+
+const defaultLinks: SocialLink[] = [
+  { name: 'Twitter', url: 'https://twitter.com/JeanHuit', icon: 'fa-twitter' },
+  { name: 'GitHub', url: 'https://github.com/JeanHuit', icon: 'fa-github' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/johnawotwi/', icon: 'fa-linkedin-in' },
+];
+
+const { links = defaultLinks, showLabel = true } = Astro.props;
+---
+
+<div class="social-links">
+  {links.map((link) => (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={link.name}
+      class="social-link"
+    >
+      <i class={`fab ${link.icon}`}></i>
+      {showLabel && <span>{link.name}</span>}
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+
+  .social-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .social-link i {
+    font-size: 1.2rem;
+  }
+</style>
