@@ -8,6 +8,7 @@ import SectionNav from '../components/SectionNav.astro';
 import Search from '../components/Search.astro';
 import Icon from '../components/Icon.astro';
 import ServicesSection from '../components/ServicesSection.astro';
+import GitHubStats from '../components/GitHubStats.astro';
 
 // Get all musings posts
 const allMusings = await getCollection('musings', ({ data }) => {
@@ -34,15 +35,14 @@ const musingsData = sortedMusings.map(post => ({
   }
 }));
 
-// Get projects and programs (services handled by ServicesSection component)
+// Get projects (services handled by ServicesSection component)
 const projects = await getCollection('projects');
-const programs = await getCollection('programs');
 ---
 
 <BaseLayout title="John Awotwi">
   <SEO
     title="John Awotwi - Senior Technical Officer"
-    description="Senior Technical Officer at CSIR-INSTI. Community Development · IT Specialist · Information Security. I transform research outputs into practical software, systems, and communication tools for national development."
+    description="Systems engineer and DevOps specialist with 8+ years of experience designing, deploying, and maintaining production-grade web and network infrastructure."
     type="website"
   />
   
@@ -50,6 +50,7 @@ const programs = await getCollection('programs');
     <!-- LEFT COLUMN -->
     <aside>
       <div class="profile-header">
+        <img src="/me.jpg" alt="John Awotwi" class="profile-image" />
         <h1>John Awotwi</h1>
         <p class="title">
           Senior Technical Officer at CSIR-INSTI
@@ -59,15 +60,16 @@ const programs = await getCollection('programs');
           Community Development · IT Specialist · Information Security
         </p>
 
-        <p class="bio">
-          I transform research outputs into practical software, systems,
-          and communication tools for national development. I am passionate
-          about technology, people, and building sustainable communities.
-        </p>
+        <!-- GITHUB STATS -->
+        <div class="mt-4">
+          <GitHubStats />
+        </div>
       </div>
 
       <!-- SECTION NAV -->
-      <SectionNav />
+      <div style="margin-top: 2rem;">
+        <SectionNav />
+      </div>
 
       <!-- SOCIALS -->
       <div class="mt-4">
@@ -102,15 +104,96 @@ const programs = await getCollection('programs');
         <ServicesSection cardStyle="gradient" />
       </div>
 
-      <!-- PROGRAMS SECTION -->
-      <div id="programs-content" class="section-content" role="tabpanel" aria-labelledby="programs-tab">
-        {programs.map((program) => (
-          <Card
-            title={program.data.title}
-            description={program.data.description}
-            category={`${program.data.type.toUpperCase()} / ${program.data.year}`}
-          />
-        ))}
+      <!-- RESUME SECTION -->
+      <div id="resume-content" class="section-content" role="tabpanel" aria-labelledby="resume-tab">
+        <section class="resume-section">
+          <h2>Executive Profile</h2>
+          <p>Systems engineer and DevOps specialist with 8+ years of experience designing, deploying, and maintaining production-grade web and network infrastructure. Lead developer of multiple institutional platforms and currently architecting AI focused systems. Experienced in Linux server administration, CI/CD automation, database systems.</p>
+        </section>
+
+        <section class="resume-section">
+          <h2>Technical Expertise</h2>
+          <div class="resume-grid">
+            <div>
+              <h3>Programming & Development</h3>
+              <ul>
+                <li>PHP, Python</li>
+                <li>MariaDB, MySQL</li>
+                <li>HTML, CSS, JavaScript</li>
+              </ul>
+            </div>
+            <div>
+              <h3>DevOps & Infrastructure</h3>
+              <ul>
+                <li>Linux Server Administration</li>
+                <li>Git, CI/CD Pipelines</li>
+                <li>Proxmox, Docker</li>
+                <li>Infrastructure Monitoring</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Cloud & Networking</h3>
+              <ul>
+                <li>AWS</li>
+                <li>LAN/WAN, Routers, Switches</li>
+                <li>System Hardening</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2>Experience</h2>
+          <div class="job">
+            <h3>Senior Technical Officer</h3>
+            <p class="company">Institute for Scientific & Technological Information, Accra</p>
+            <p class="dates">Mar 2019 - Present</p>
+            <ul>
+              <li>Architected and deployed 6+ institutional web platforms serving research and agricultural data systems</li>
+              <li>Report Management System: Designed and managed CI/CD pipelines for multi-project deployments with source code management via GitHub</li>
+              <li>Administer Linux-based production servers (Proxmox)</li>
+              <li>Provide infrastructure monitoring, backup strategies, and system hardening</li>
+            </ul>
+          </div>
+          <div class="job">
+            <h3>IT Officer</h3>
+            <p class="company">La Dade-Kotopon Municipal Assembly, La</p>
+            <p class="dates">May 2015 - Mar 2019</p>
+            <ul>
+              <li>Managed municipal network infrastructure (LAN/WAN, routers, switches)</li>
+              <li>Provided system troubleshooting across multi-user environments</li>
+              <li>Implemented network maintenance and hardware lifecycle planning</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2>Projects</h2>
+          <ul class="project-list">
+            <li><strong>CSIRSpace</strong> — Institutional digital repository with optimized database, server configuration, and reliability management</li>
+            <li><strong>AgHub</strong> — Full-stack agricultural data platform deployed for bandwidth-constrained environments</li>
+            <li><strong>CSIR eLearning</strong> — Multi-user eLearning system with CI/CD workflows, performance tuning, and server administration</li>
+          </ul>
+        </section>
+
+        <section class="resume-section">
+          <h2>Education</h2>
+          <div class="education-item">
+            <h3>MSc. IT</h3>
+            <p>Kwame Nkrumah University of Science & Technology</p>
+            <p class="dates">Nov 2025</p>
+          </div>
+          <div class="education-item">
+            <h3>BSc. IT</h3>
+            <p>Ghana Technology University College, Tesano</p>
+            <p class="dates">Nov 2013</p>
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2>Languages</h2>
+          <p>English</p>
+        </section>
       </div>
 
       <!-- MUSINGS SECTION -->
@@ -252,5 +335,106 @@ const programs = await getCollection('programs');
   
   .section-content[aria-hidden="true"] {
     display: none;
+  }
+
+  /* Resume section styles */
+  .resume-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .resume-section:last-child {
+    border-bottom: none;
+  }
+
+  .resume-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+
+  .resume-section h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .resume-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resume-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .resume-grid li {
+    padding: 0.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .job, .education-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .job .company, .education-item p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .job .dates, .education-item .dates {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .job ul {
+    margin-top: 0.5rem;
+    padding-left: 1.25rem;
+  }
+
+  .job li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .project-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .project-list li {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .project-list strong {
+    color: var(--accent);
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .rss-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .rss-link:hover {
+    color: var(--accent);
   }
 </style>

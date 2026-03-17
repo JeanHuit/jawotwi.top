@@ -1,0 +1,73 @@
+---
+// GitHubStats component - Fetches and displays GitHub statistics
+interface Props {
+  username?: string;
+}
+
+const { username = 'JeanHuit' } = Astro.props;
+
+const response = await fetch(`https://api.github.com/users/${username}`, {
+  headers: {
+    'User-Agent': 'JohnAwotwi-PersonalSite'
+  }
+});
+
+const data = response.ok ? await response.json() : null;
+---
+
+<div class="github-stats">
+  <div class="stat">
+    <span class="stat-value">{data?.public_repos || 0}</span>
+    <span class="stat-label">Repositories</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value">{data?.followers || 0}</span>
+    <span class="stat-label">Followers</span>
+  </div>
+  <div class="stat">
+    <span class="stat-value">{data?.following || 0}</span>
+    <span class="stat-label">Following</span>
+  </div>
+</div>
+
+<style>
+  .github-stats {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .github-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--transition);
+    margin-left: auto;
+  }
+
+  .github-link:hover {
+    color: var(--accent);
+  }
+</style>
