@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="John Awotwi — Systems Engineer, DevOps Specialist, and Technical Writer based in Accra, Ghana." />
+  <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="John Awotwi" />
+  <meta property="og:description" content="Systems engineer, DevOps specialist, and technical writer based in Accra, Ghana." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jawotwi.top" />
+  <title>John Awotwi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<header class="site-nav" role="banner">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#services">services</a></li>
+        <li><a href="resume.html">resume</a></li>
+        <li><a href="musings.html">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">available for consulting &amp; projects</div>
+        <h1 class="hero__title">
+          Systems engineer,<br>
+          <em>builder, tinkerer.</em>
+        </h1>
+        <p class="hero__sub">
+          Senior Technical Officer at CSIR-INSTI. I design infrastructure,
+          deploy AI systems, and write about what I learn along the way.
+          Based in Accra, Ghana.
+        </p>
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary">View my work</a>
+          <a href="musings.html" class="btn btn--ghost">Read the blog</a>
+          <a href="resume.html" class="btn btn--ghost">Resume</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat">
+            <div class="stat__num">8+</div>
+            <div class="stat__label">years experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">6+</div>
+            <div class="stat__label">platforms deployed</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">40+</div>
+            <div class="stat__label">blog posts</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">24</div>
+            <div class="stat__label">repositories</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__avatar-wrap">
+        <!-- Swap src to your actual photo: /moi.png -->
+        <img
+          src="https://jawotwi.top/moi.png"
+          alt="John Awotwi"
+          class="hero__avatar"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="hero__avatar-placeholder" style="display:none;">JA</div>
+        <div class="hero__social">
+          <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">twitter</a>
+          <span style="color:var(--border)">·</span>
+          <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">github</a>
+          <span style="color:var(--border)">·</span>
+          <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">linkedin</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section class="section" id="projects" aria-label="Projects">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">01 — Selected work</p>
+          <h2 class="section__title">Projects</h2>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <span class="project-card__tag tag--green">Precision Agriculture</span>
+          <p class="project-card__num">01</p>
+          <h3 class="project-card__title">LSACROFT — Low-Cost Soil Analysis Device</h3>
+          <p class="project-card__desc">
+            IoT soil sensing platform for real-time NPK monitoring, crop recommendation,
+            and fertilizer optimization for smallholder farmers.
+          </p>
+          <div class="project-card__chips">
+            <span class="chip">ESP32</span>
+            <span class="chip">Embedded C</span>
+            <span class="chip">IoT</span>
+            <span class="chip">Automation</span>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <span class="project-card__tag tag--blue">AI Infrastructure</span>
+          <p class="project-card__num">02</p>
+          <h3 class="project-card__title">HPC Cluster &amp; Local AI Model Infrastructure</h3>
+          <p class="project-card__desc">
+            Multi-node compute cluster designed for scientific simulations, parallel
+            workloads, and experimentation with locally-hosted AI models.
+          </p>
+          <div class="project-card__chips">
+            <span class="chip">Proxmox</span>
+            <span class="chip">HPC</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Systems</span>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <span class="project-card__tag tag--amber">Agricultural Data</span>
+          <p class="project-card__num">03</p>
+          <h3 class="project-card__title">AgHub Market Pricing Index</h3>
+          <p class="project-card__desc">
+            Market pricing tool and value chain content for Yam, Rice, and Sorghum —
+            supporting data-driven decision making for farmers and stakeholders.
+          </p>
+          <div class="project-card__chips">
+            <span class="chip">AgHub</span>
+            <span class="chip">Data Systems</span>
+            <span class="chip">Decision Support</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Archived projects -->
+      <div style="margin-top: var(--space-6);">
+        <p style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: var(--space-3);">Archived</p>
+        <div class="archived-grid">
+          <div class="archived-card">
+            <div class="archived-card__name">CSIRSpace</div>
+            <div class="archived-card__desc">Institutional digital repository with optimized DB, server config, and reliability management.</div>
+          </div>
+          <div class="archived-card">
+            <div class="archived-card__name">AgHub Platform</div>
+            <div class="archived-card__desc">Full-stack agricultural data platform deployed for bandwidth-constrained environments.</div>
+          </div>
+          <div class="archived-card">
+            <div class="archived-card__name">CSIR eLearning</div>
+            <div class="archived-card__desc">Multi-user eLearning system with CI/CD workflows, performance tuning, and server administration.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="section" id="services" aria-label="Services">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">02 — What I offer</p>
+          <h2 class="section__title">Services</h2>
+        </div>
+        <a href="mailto:john@jawotwi.top" class="section__see-all">get in touch →</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card__icon">&#x2F3A;</div>
+          <h3 class="service-card__title">DevOps</h3>
+          <p class="service-card__desc">CI/CD pipelines, containerization with Docker, and automated deployments using GitHub Actions and similar tools.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x2261;</div>
+          <h3 class="service-card__title">Systems setup</h3>
+          <p class="service-card__desc">Linux server administration, compute environments, Proxmox virtualisation, and secure production deployments.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x25A1;</div>
+          <h3 class="service-card__title">IT as a service</h3>
+          <p class="service-card__desc">Ongoing IT support, infrastructure monitoring, backup strategies, and system management for organisations.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">&#x2194;</div>
+          <h3 class="service-card__title">Web development</h3>
+          <p class="service-card__desc">Websites, dashboards, and internal tools built for performance and clarity using PHP, Python, and modern stacks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESUME STRIP ── -->
+  <section class="section" aria-label="Resume summary">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">03 — Background</p>
+          <h2 class="section__title">Resume</h2>
+        </div>
+        <a href="resume.html" class="section__see-all">full resume →</a>
+      </div>
+      <div class="resume-strip">
+        <div class="resume-strip__left">
+          <div class="resume-strip__title">Senior Technical Officer — CSIR-INSTI, Accra</div>
+          <div class="resume-strip__sub">Mar 2019 – Present &nbsp;·&nbsp; 6+ years</div>
+          <div class="resume-strip__skills">
+            <span class="chip">PHP</span>
+            <span class="chip">Python</span>
+            <span class="chip">Linux</span>
+            <span class="chip">Proxmox</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Git / CI/CD</span>
+            <span class="chip">AWS</span>
+            <span class="chip">MariaDB</span>
+          </div>
+        </div>
+        <a href="resume.html" class="btn btn--ghost">View full resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MUSINGS (featured) ── -->
+  <section class="section" id="musings" aria-label="Recent writing">
+    <div class="container">
+      <div class="section__header">
+        <div>
+          <p class="section__eyebrow">04 — Writing</p>
+          <h2 class="section__title">Musings</h2>
+        </div>
+        <a href="musings.html" class="section__see-all">all posts →</a>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--ink-2); margin-bottom: var(--space-6); max-width: 500px;">
+        Thoughts on technology, infrastructure, and everything in between — from robotics bootcamps in Tarkwa to vibe coding finance apps.
+      </p>
+      <ul class="musings-list" aria-label="Recent posts">
+        <li>
+          <a href="musings/stock_tracker_pt3.html" class="musing-row">
+            <div>
+              <div class="musing-row__title">Vibe Coding, Part III — The Final Boss</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">Sep 2025</span>
+                <span class="musing-row__tags">
+                  <span class="musing-tag">vibecoding</span>
+                  <span class="musing-tag">financeapp</span>
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="musings/stock_tracker_pt2.html" class="musing-row">
+            <div>
+              <div class="musing-row__title">Vibe Coding, Part II — Now With Deployment Drama</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">Sep 2025</span>
+                <span class="musing-row__tags">
+                  <span class="musing-tag">vibecoding</span>
+                  <span class="musing-tag">stockapp</span>
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="musings/bootcamp-tarkwa.html" class="musing-row">
+            <div>
+              <div class="musing-row__title">Robots in Tarkwa</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">May 2025</span>
+                <span class="musing-row__tags">
+                  <span class="musing-tag">robotics</span>
+                  <span class="musing-tag">bootcamp</span>
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="musings/auditing-your-phone.html" class="musing-row">
+            <div>
+              <div class="musing-row__title">Auditing Your Phone</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">Oct 2021</span>
+                <span class="musing-row__tags">
+                  <span class="musing-tag">security</span>
+                  <span class="musing-tag">mobile</span>
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="musings/easy-server-monitoring.html" class="musing-row">
+            <div>
+              <div class="musing-row__title">Easy Server Monitoring</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">Jun 2020</span>
+                <span class="musing-row__tags">
+                  <span class="musing-tag">linux</span>
+                  <span class="musing-tag">bash</span>
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A tutorial on setting up free hosting with continuous integration using Github, Codeship, and Firebase." />
+  <meta property="og:title" content="Github : Codeship :Firebase Hosting " />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/github-codeship-firebase-hosting" />
+  <title>Github : Codeship :Firebase Hosting  · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">github · codeship · firebase · hosting · continuous integration</span>
+      </div>
+      <h1 class="post-header__title">Github : Codeship :Firebase Hosting </h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">A tutorial on setting up free hosting with continuous integration using Github, Codeship, and Firebase.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Jun 5, 2018</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=github" class="post-tag">github</a>
+        <a href="../musings.html?tag=codeship" class="post-tag">codeship</a>
+        <a href="../musings.html?tag=firebase" class="post-tag">firebase</a>
+        <a href="../musings.html?tag=hosting" class="post-tag">hosting</a>
+        <a href="../musings.html?tag=continuous integration" class="post-tag">continuous integration</a>
+        <a href="../musings.html?tag=ci/cd" class="post-tag">ci/cd</a>
+        <a href="../musings.html?tag=development" class="post-tag">development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>If <code>free</code> is a requirement to hosting your code amidst
+running a continuous integration and delivery setup.</p>
+<p>You have come to the right place.</p>
+<p>This here, is a short tutorial to making this come true.<br />
+Need to understand git? check this <a
+href="https://github.com/GDGAccra/CrashCourseWeb/wiki/Git-Resources">here</a></p>
+<p>The defualt mode of hosting for free on firebase, will be to develop
+locally and then push directly to firebase - hosting.<br />
+However, this will work if you are the only developer.</p>
+<p>In the scenario where, you have a team of developers,as is usually
+the case, you will need to bring in the middleman, <a
+href="https://codeship.com/"><strong>codeship</strong></a> or another of
+its like.</p>
+<p>Setting up and connecting to your github/bitbucket/gitlab repository
+is as simple as abc. I will skip all that and bring you to the meat of
+the equation.</p>
+<p>For Codeship to push/deploy your code to firebase-hosting, it will
+need to login as the owner of the firebase account. To do this, codeship
+will need a token which you will generate in your terminal.</p>
+<p><strong>ps</strong>: You need to have firebase-cli installed to do
+this.<br />
+<code>npm install -g firebase-tools</code></p>
+<p>Next you login via the terminal <code>firebase login:ci</code><br />
+You will be redirected to your browser to login with the required gmail
+address and its password. After a succeful login, a token “in this case
+a string of text” will be generated and display in the terminal.<br />
+Keep this safe.</p>
+<p>Running <code>firebase list</code> gives you the list of projects you
+have running on/created on firebase and the names you gave them. Keep
+the name of this project in mind.</p>
+<p>By now, you might have completed the creation of your project on
+codeship.<br />
+Just to be sure:</p>
+<ul>
+<li>create account/login to codeship</li>
+<li>click on <strong>new project</strong></li>
+<li>connect to your repository</li>
+<li>select codeship <strong>pro</strong> or <strong>basic</strong></li>
+</ul>
+<p>If you skipped the configure projects, you can find that under
+project settings. Select the <strong>ENVIRONMENT</strong> tab.<br />
+Under Environement Variable, type in <code>FIREBASE_TOKEN</code> as the
+KEY and then paste the token you initially generated into the VALUE
+field. Click Save or Add or +</p>
+<p>Click on the <strong>Test</strong> tab,<br />
+Select, the option to run your own commands and in the space for setup
+commands type in:</p>
+<pre><code>nvm install &lt;verison number&gt;  
+#eg. nvm install v6.9.5
+#to install that particular version of node
+
+
+npm install -g firebase-tools
+#to install the firebase tools
+
+firebase deploy --token &quot;$FIREBASE_TOKEN&quot; --project &quot;&lt;project name&gt;&quot;
+
+#to deploy your project with the token you generated and saved #as an envrionment variable and the project name</code></pre>
+<p>save changes and that should be all. Make a commit to your repo, and
+you should see codeship kick-in and do the rest.</p>
+<p>All <strong>should</strong> be green and good.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Github%20:%20Codeship%20:Firebase%20Hosting%20&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgithub-codeship-firebase-hosting" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgithub-codeship-firebase-hosting" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

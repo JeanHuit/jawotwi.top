@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Working with hash arrays in Ruby, specifically traversing nested structures from Google Maps API." />
+  <meta property="og:title" content="Hash Arrays" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/hash-arrays" />
+  <title>Hash Arrays · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">ruby · hash · arrays · api · google maps</span>
+      </div>
+      <h1 class="post-header__title">Hash Arrays</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Working with hash arrays in Ruby, specifically traversing nested structures from Google Maps API.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Apr 6, 2020</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=ruby" class="post-tag">ruby</a>
+        <a href="../musings.html?tag=hash" class="post-tag">hash</a>
+        <a href="../musings.html?tag=arrays" class="post-tag">arrays</a>
+        <a href="../musings.html?tag=api" class="post-tag">api</a>
+        <a href="../musings.html?tag=google maps" class="post-tag">google maps</a>
+        <a href="../musings.html?tag=development" class="post-tag">development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>Man got stuck working with Google matric Api to determine distance,
+duration of travel etc from two points on the map.</p>
+<p>values the api spat out was a jumble of hash values that took me a
+while to understand how to traverse it.</p>
+<pre class="ruby"><code>
+matrix = 
+{
+  &quot;destination_addresses&quot;:[&quot;Egypt Rd, Accra, Ghana&quot;],
+  &quot;origin_addresses&quot;:[&quot;8 Third Dade Walk, Accra, Ghana&quot;],
+  &quot;rows&quot;:
+  [
+    {&quot;elements&quot;:
+      [
+        {
+          &quot;distance&quot;:
+          {
+            &quot;text&quot;:&quot;5.0 km&quot;,
+            &quot;value&quot;:5047
+            },
+          &quot;duration&quot;:
+          {
+            &quot;text&quot;:&quot;12 mins&quot;,
+            &quot;value&quot;:734
+            },
+            &quot;status&quot;: &quot;OK&quot;
+            }
+              ]
+               }
+              ],
+              &quot;status&quot;:&quot;OK&quot;
+              }</code></pre>
+<p>Ever wondered how to traverse an array/hash like this? code snippet
+below will output : <code>"5.0km"</code></p>
+<p><code>matrix[:rows][0][:elements][0][:distance][:text]</code></p>
+<p>Think on it !!</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Hash%20Arrays&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fhash-arrays" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fhash-arrays" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

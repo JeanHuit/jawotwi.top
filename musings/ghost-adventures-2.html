@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Exploring Ghost themes and how to set them up for your blog." />
+  <meta property="og:title" content="Ghost Adventures 2" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/ghost-adventures-2" />
+  <title>Ghost Adventures 2 · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">ghost · themes · blogging · customization · web design</span>
+      </div>
+      <h1 class="post-header__title">Ghost Adventures 2</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Exploring Ghost themes and how to set them up for your blog.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Mar 25, 2015</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=ghost" class="post-tag">ghost</a>
+        <a href="../musings.html?tag=themes" class="post-tag">themes</a>
+        <a href="../musings.html?tag=blogging" class="post-tag">blogging</a>
+        <a href="../musings.html?tag=customization" class="post-tag">customization</a>
+        <a href="../musings.html?tag=web design" class="post-tag">web design</a>
+        <a href="../musings.html?tag=blogging" class="post-tag">blogging</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>Once you get Ghost up and running, next comes the theme.</p>
+<p>The initial theme albeit beautiful and minimalist, gets stale pretty
+quick. However, the open source nature of Ghost allows for a plethora of
+themes. Build one yourself or rely on the various themes that are free
+to use.</p>
+<p>Simply Google “Ghost themes” to be hit by an array of beautiful
+themes.<br />
+Or head on to <a href="http://marketplace.ghost.org/themes/free/">Ghost
+Marketplace</a> for some free themes.<br />
+Some free themes are in continuous development and so are hosted in
+Github. Feel free to fork those themes if you are into that sort of
+thing and contribute your quota.</p>
+<h5 id="setup-initialisation">Setup &amp; Initialisation</h5>
+<p>**Normal Download Method**</p>
+<p>Download theme from the host. Themes downloaded this way are usually
+zipped.<br />
+Unzip the theme, rename where necessary and copy to the
+“<em>themes</em>” folder in your Ghost directory.<br />
+If you have been following Ghost Adventures, this folder will be
+in<br />
+<code>Blog/Ghost/content/</code>.<br />
+Restart your server for the theme inclusion to have effect. Select your
+theme under the settings menu after you log in to the Ghost
+platform.</p>
+<p>Pre-packed themes don’t need much customisation.</p>
+<p><strong>Git Clone Method</strong></p>
+<p>As the name suggests, this method involves cloning a theme that is
+hosted in a Github repository. bear in mind this clone might not be the
+stable deal. Especially if its still undergoing modifications. Make sure
+you take a look at the Readme file to get an understanding of the theme
+and its structure. Usually good documentation is also included.<br />
+I will use one of my favourite themes as an example here - <a
+href="https://github.com/Kikobeats/uno-zen">Uno-Zen</a></p>
+<p>To clone, navigate into the themes folder and run :</p>
+<p><code>git clone https://github.com/Kikobeats/uno-zen.git</code></p>
+<p>After some seconds or minutes, depending on the speed of your
+internet connection, the cloning is done. Select the theme, and preview
+the site to see how it all turns out. Read through the documentation for
+your customisation needs.</p>
+<p><strong>Ps</strong>: You are reading this on a “Ghostium” themed
+site.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Ghost%20Adventures%202&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fghost-adventures-2" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fghost-adventures-2" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

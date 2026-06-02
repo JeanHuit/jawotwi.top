@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Documenting the process of setting up DSpace, an open source repository software." />
+  <meta property="og:title" content="Dspace Installs" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/dspace-installs" />
+  <title>Dspace Installs · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">dspace · repository · installation · open source · digital archive</span>
+      </div>
+      <h1 class="post-header__title">Dspace Installs</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Documenting the process of setting up DSpace, an open source repository software.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Oct 30, 2019</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=dspace" class="post-tag">dspace</a>
+        <a href="../musings.html?tag=repository" class="post-tag">repository</a>
+        <a href="../musings.html?tag=installation" class="post-tag">installation</a>
+        <a href="../musings.html?tag=open source" class="post-tag">open source</a>
+        <a href="../musings.html?tag=digital archive" class="post-tag">digital archive</a>
+        <a href="../musings.html?tag=development" class="post-tag">development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>I have spent over three weeks in trying to get dspace set up.</p>
+<p>It has been one helluva ride. Finally got it working somewhat on a
+windows OS and wanted to document the process for posterity sake.</p>
+<h3 id="what-is-dspace">What is DSpace?</h3>
+<p>DSpace is an open source repository software package typically used
+for creating open access repositories for scholarly and/or published
+digital content. While DSpace shares some feature overlap with content
+management systems and document management systems, the DSpace
+repository software serves a specific need as a digital archives system,
+focused on the long-term storage, access and preservation of digital
+content. - <a href="https://en.wikipedia.org/wiki/DSpace">Wikipedia
+reference</a></p>
+<p>To get this working, you need:</p>
+<ul>
+<li>Apache Ant</li>
+<li>Apache Maven</li>
+<li>Apache Tomcat</li>
+<li>Postgresql</li>
+<li>Java JDK</li>
+<li>DSpace src-release</li>
+</ul>
+<p>Funny enough, only certain specific versions get to work well with
+each other.</p>
+<ul>
+<li>Apache Ant v1.9.9</li>
+<li>Apache Maven v3.3.9</li>
+<li>Apache Tomcat v9.0.0.m18</li>
+<li>Postgresql v9.6.4-1</li>
+<li>Java JDK v8u121</li>
+<li>DSpace src-release v6.1</li>
+<li>postgresql admin interface (pgadmin v3 or v4)</li>
+</ul>
+<p>This magic formula was concocted by <a
+href="https://www.youtube.com/watch?v=I-lmBHp6pDE">Dr. Santosh
+Gupta</a></p>
+<p>Even in the comments peopole give him praise.</p>
+<h3 id="installation">Installation</h3>
+<ul>
+<li><p>Install Java: Get your environment variables working, so
+<code>java -verion</code> works in the command line</p></li>
+<li><p>Install Apache ant &amp; maven, this is usually simplified by
+extracting them from their respective zip or tar archives and placing
+them in the root of your drive, say “C:/”</p>
+<ul>
+<li>Setup your environmental variables (sytemwide path) that points to
+the bin directories where ant and maven are stored.</li>
+</ul></li>
+<li><p>Create variables JAVA_HOME, ANT_HOME under environmental
+variables (user) and point these to the main directories.</p></li>
+<li><p>Install tomcat, this you can get as an executable.</p></li>
+<li><p>Install postrgresql and pgadmin.</p>
+<ul>
+<li>Start up the postgresql db and add a new login
+<code>name =  dspace</code></li>
+<li>passwords are yours to choose.</li>
+<li>under role priviledges, simply turn all on for user dspace</li>
+<li>Add a new database, <code>name = dspace</code> and
+<code>owner = dspace</code></li>
+<li>set tablespace to the default pg_default.</li>
+<li>Add pg_crypto under extensions.</li>
+<li>DB should be connected and active.</li>
+</ul></li>
+<li><p>Extract the dspace src- release zip file into the root
+directory.</p></li>
+<li><p>Open up the commandline</p>
+<ul>
+<li>test your environmental variables
+<ul>
+<li><code>ant vesion</code> &amp; <code>java version</code></li>
+</ul></li>
+<li>Navigate into the <strong>dspace</strong> folder in
+dspace-6.1-src-release folder</li>
+<li>run <code>mvn package</code> , make sure you have a working internet
+connection</li>
+<li>after the download and installation of various packages are
+done.</li>
+<li>navigate into the config folder and locate a
+<strong>local.cfg</strong> file, scroll through said file and change the
+db password there. default will be dspace. Also change the installation
+directory to <code>C:/dspace</code></li>
+<li>Now create a dspace folder in your root</li>
+<li>Navigate into dspace-6.1-src-release &gt; dspace &gt; target
+&gt;dspace_installer</li>
+<li>Run <code>ant fresh_install</code></li>
+<li>Navigate into the bin folder of the newly created dspace folder at
+your root directory <code>c:\dspace\bin</code></li>
+<li>Run <code>dspace create-administrator</code> to create an admin,
+follow the requirements.</li>
+<li>Copy <code>jspui</code> , <code>xmlui</code> &amp; <code>solr</code>
+from the webapps folder in the new dspace installation to the webapps
+folder of your tomcat installation.</li>
+<li>open your web browser and point it to
+<code>localhost:8080\jspui</code> for your dspace installation.</li>
+</ul></li>
+</ul>
+<p>The end (For windows installations)</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Dspace%20Installs&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fdspace-installs" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fdspace-installs" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

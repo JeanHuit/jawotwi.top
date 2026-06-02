@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Moving my blog from GitHub to Firebase for hosting." />
+  <meta property="og:title" content="The Move to Firebase" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/the-move-to-firebase" />
+  <title>The Move to Firebase · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">firebase · hosting · blog · static sites · deployment</span>
+      </div>
+      <h1 class="post-header__title">The Move to Firebase</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Moving my blog from GitHub to Firebase for hosting.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Dec 14, 2017</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=firebase" class="post-tag">firebase</a>
+        <a href="../musings.html?tag=hosting" class="post-tag">hosting</a>
+        <a href="../musings.html?tag=blog" class="post-tag">blog</a>
+        <a href="../musings.html?tag=static sites" class="post-tag">static sites</a>
+        <a href="../musings.html?tag=deployment" class="post-tag">deployment</a>
+        <a href="../musings.html?tag=web development" class="post-tag">web development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>For some reason, I just do not remmeber why, I decided to find out if
+my one off blog could find another home.</p>
+<p>For two years, this blog has been squatting living for free on github
+and before that blogger.</p>
+<p>Today, I’m proud to say, what begun as:<br />
+<em><a
+href="http://bustlive.blogspot.com">http://bustlive.blogspot.com</a></em>
+–&gt; <em><a
+href="http://jeanhuit.github.io">http://jeanhuit.github.io</a></em> and
+then to <em><a href="http://johnawotwi.me">http://johnawotwi.me</a></em>
+is now <em><a
+href="https://johnawotwi.me">https://johnawotwi.me</a></em> .<br />
+New digs and all, notice the extra (s) in there..yuh, that is all for
+free.</p>
+<p>See <a href="https://johnawotwi.me/ghost-adventures-i/">Ghost
+Adventures</a> for the initial steps, especially the update.</p>
+<p>All you will need to replace is the part about github. Instead of
+hosting and setting up a git repo, get a free account and setup a free
+project ‘static sites’ only at
+<code>console.firebase.google.com</code><br />
+Install the firebase CLI (command line interface), login,initialize the
+project folder, select your static output folder and then deploy.</p>
+<p>Obviously, <a href="https://johnawotwi.me/know-your-node/">you should
+know your node</a> first.</p>
+<ul>
+<li><p>install the firebase tools</p>
+<p>npm install -g firebase-tools</p></li>
+<li><p>provide your credentials, popup opens a browser</p>
+<p>firebase login</p>
+<p>cd <project folder></p></li>
+<li><p>initialize the project, select the kind of project, hosting</p>
+<p>firebase init</p></li>
+<li><p>select path to folder for static pages</p>
+<p>firebase deploy</p></li>
+</ul>
+<h1 id="et-voila">et voila!!!</h1>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=The%20Move%20to%20Firebase&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fthe-move-to-firebase" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fthe-move-to-firebase" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

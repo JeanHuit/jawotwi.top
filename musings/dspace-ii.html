@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Detailed guide to installing DSpace on Linux using Ubuntu 16.04." />
+  <meta property="og:title" content="Dspace Installs II" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/dspace-ii" />
+  <title>Dspace Installs II · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">dspace · installation · linux · ubuntu · database</span>
+      </div>
+      <h1 class="post-header__title">Dspace Installs II</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Detailed guide to installing DSpace on Linux using Ubuntu 16.04.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Jan 14, 2020</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=dspace" class="post-tag">dspace</a>
+        <a href="../musings.html?tag=installation" class="post-tag">installation</a>
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+        <a href="../musings.html?tag=ubuntu" class="post-tag">ubuntu</a>
+        <a href="../musings.html?tag=database" class="post-tag">database</a>
+        <a href="../musings.html?tag=tomcat" class="post-tag">tomcat</a>
+        <a href="../musings.html?tag=development" class="post-tag">development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>Installing Dspace on Linux. Using Ubuntu 16.04</p>
+<p>Install the needed tools with these comnands.</p>
+<pre><code>   sudo apt-get install openjdk-8-jdk -y
+   sudo apt-get install ant ant-optional maven -y
+   sudo apt-get install tomcat8 -y</code></pre>
+<p>Edit the tomcat config files here:</p>
+<pre><code>sudo nano /etc/default/tomcat8</code></pre>
+<p>Uncomment <strong>#AUTHBIND=no</strong> and change to
+<strong>AUTHBIND=yes</strong></p>
+<p>Edit the JAVA_OPTS to match the line below. This will help with
+Memory mangement issues.</p>
+<pre><code>JAVA_OPTS=&quot;${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -Djava.awt.headless=true -Xmx512m -XX:MaxPermSize=256m -XX:+UseConcMarkSweepGC&quot;</code></pre>
+<p>Run the follow commands to sort out binding ports from the default
+8080 to 80.</p>
+<pre><code>sudo touch /etc/authbind/byport/80 
+sudo touch /etc/authbind/byport/443 
+sudo chmod 0755 /etc/authbind/byport/80 
+sudo chmod 0755 /etc/authbind/byport/443 
+sudo chown tomcat8.tomcat8 /etc/authbind/byport/80 
+sudo chown tomcat8.tomcat8 /etc/authbind/byport/443 </code></pre>
+<p>Run the code below to confirm if the change above has taken place</p>
+<pre><code>ls -lh /etc/authbind/byport/</code></pre>
+<p>Your output to the above commant should match these:</p>
+<pre><code>-rwxr-xr-x 1 otuoma otuoma 0 Nov 23 09:42 443 
+-rwxr-xr-x 1 otuoma otuoma 0 Nov 23 09:42 80 </code></pre>
+<p>Navigate to the server.xml file below</p>
+<pre><code>  sudo nano /etc/tomcat8/server.xml </code></pre>
+<p>and edit the content of the connector tag to match this:</p>
+<pre><code>  &lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               URIEncoding=&quot;UTF-8&quot;
+               redirectPort=&quot;443&quot; /&gt;</code></pre>
+<p>Add the tomcat user to dspace user group and vice versa, keep in
+mind, you might not have created the same user ‘dspace’ as this
+tutorial.</p>
+<pre><code>  sudo useradd -m dspace
+  sudo passwd dspace
+  sudo adduser tomcat8 dspace
+  sudo adduser dspace tomcat8</code></pre>
+<p>Restart tomcat :</p>
+<pre><code>sudo service tomcat8 restart </code></pre>
+<p>Install &amp; setup the databse</p>
+<pre><code>  sudo apt-get install postgresql-9.5 postgresql-contrib-9.5 libpg-java -y 
+</code></pre>
+<p>Setup host based access to the database Navigate to the pg_hba.conf
+file.</p>
+<pre><code>  sudo nano /etc/postgresql/9.5/main/pg_hba.conf </code></pre>
+<p>and paste this at the bottom.</p>
+<pre><code>  host    dspace       dspace      127.0.0.1/32         md5 </code></pre>
+<p>Next, execute the following 3 commands in succession to change
+database user permissions to “trust” only</p>
+<pre><code>sudo sed -i &#39;s/ident/trust/&#39; /etc/postgresql/9.5/main/pg_hba.conf 
+sudo sed -i &#39;s/md5/trust/&#39; /etc/postgresql/9.5/main/pg_hba.conf 
+sudo sed -i &#39;s/peer/trust/&#39; /etc/postgresql/9.5/main/pg_hba.conf 
+sudo service postgresql restart</code></pre>
+<p>Create the dspace database user</p>
+<pre><code>sudo su postgres createuser dspace   or sudo -u postgres createuser dspace
+createdb dspace -E UNICODE        or sudo -u postgres createdb dspace -E UNICODE</code></pre>
+<p>Grant permissions to dspace user on dspace database</p>
+<pre><code>psql -d dspace CREATE EXTENSION pgcrypto; 
+ALTER ROLE dspace WITH PASSWORD &#39;db-password-here&#39;; (e.g dspace) 
+ALTER DATABASE dspace OWNER TO dspace; 
+GRANT ALL PRIVILEGES ON DATABASE dspace TO dspace; </code></pre>
+<p>Download and extract Dspace</p>
+<pre><code>cd 
+mkdir downloads 
+cd downloads 
+wget https://github.com/DSpace/DSpace/releases/download/dspace-6.3/dspace-6.3-src-release.tar.gz 
+tar -zxf dspace-6.3-src-release.tar.gz</code></pre>
+<p>Run maven package in the dspace directory within the src-release</p>
+<pre><code>  cd dspace-6.3-src-release/dspace
+  mvn package</code></pre>
+<p>After a succesful build, navigate into the config folder, create a
+copy of local.cfg.EXAMPLE and edit Things to take note of, the databse
+username and password, port for solr, from 8080 to 80, because of the
+changes in ports done above. Dspace name, etc etc</p>
+<pre><code>cd config
+cp local.cfg.EXAMPLE local.cfg
+sudo nano local.cfg</code></pre>
+<p>After editing the configuration file, build the dspace by running the
+following command.</p>
+<pre><code>  cd target/dspace-installer/
+  sudo ant fresh_install</code></pre>
+<p>After the build, run the following…to grant dspace ownership rights
+to the tomcat installation</p>
+<pre><code>sudo chown -R tomcat8:tomcat8 /dspace </code></pre>
+<p>Create admin account by running :
+<code>sudo /dspace/bin/dspace create-administrator</code> Answer the
+questions that follow.</p>
+<p>Copy the files from your installation or point them to the webapps
+folder of tomcat.</p>
+<pre><code>cd /var/lib/tomcat8/webapps
+sudo cp -r /dspace/webapps/oai/ /var/lib/tomcat8/webapps 
+sudo cp -r /dspace/webapps/solr/ /var/lib/tomcat8/webapps 
+sudo cp -r /dspace/webapps/sword/ /var/lib/tomcat8/webapps 
+sudo cp -r /dspace/webapps/rest/ /var/lib/tomcat8/webapps 
+sudo cp -r /dspace/webapps/*    /var/lib/tomcat8/webapp</code></pre>
+<p>restart tomcat <code>sudo service tomcat8 restart</code></p>
+<p>Visit: <code>localhost:80/jspui</code> or
+<code>locahost:80/xmlui</code> to see the installation.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Dspace%20Installs%20II&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fdspace-ii" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fdspace-ii" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

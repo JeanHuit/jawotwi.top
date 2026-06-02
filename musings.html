@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Musings by John Awotwi — writings on technology, infrastructure, Linux, and life." />
+  <title>Musings — John Awotwi</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="index.html#projects">projects</a></li>
+        <li><a href="index.html#services">services</a></li>
+        <li><a href="resume.html">resume</a></li>
+        <li><a href="musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- PAGE HEADER -->
+  <div class="musings-page-header">
+    <div class="container">
+      <p class="section__eyebrow">Writing</p>
+      <h1 class="section__title" style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); letter-spacing:-0.03em; margin-bottom: var(--space-3);">Musings</h1>
+      <p style="font-size: 0.95rem; color: var(--ink-2); max-width: 480px; margin-bottom: var(--space-6);">
+        Thoughts on technology, infrastructure, Linux, robotics, and everything in between. Been writing since 2010.
+      </p>
+
+      <!-- Search + Filters -->
+      <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-4);">
+        <input
+          type="search"
+          class="musings-search"
+          id="search"
+          placeholder="search posts..."
+          aria-label="Search posts"
+          autocomplete="off"
+        />
+        <span id="result-count" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3);"></span>
+      </div>
+            <div class="musings-filters" id="tag-filters" role="group" aria-label="Filter by tag">
+        <button class="filter-btn active" data-tag="all">all</button>
+        <button class="filter-btn" data-tag="linux">linux</button>
+        <button class="filter-btn" data-tag="productivity">productivity</button>
+        <button class="filter-btn" data-tag="web development">web development</button>
+        <button class="filter-btn" data-tag="development">development</button>
+        <button class="filter-btn" data-tag="privacy">privacy</button>
+        <button class="filter-btn" data-tag="security">security</button>
+        <button class="filter-btn" data-tag="software">software</button>
+        <button class="filter-btn" data-tag="open source">open source</button>
+        <button class="filter-btn" data-tag="hosting">hosting</button>
+        <button class="filter-btn" data-tag="ubuntu">ubuntu</button>
+        <button class="filter-btn" data-tag="database">database</button>
+        <button class="filter-btn" data-tag="mobile">mobile</button>
+        <button class="filter-btn" data-tag="blogging">blogging</button>
+        <button class="filter-btn" data-tag="installation">installation</button>
+        <button class="filter-btn" data-tag="terminal">terminal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTS -->
+  <div class="container" style="padding-top: var(--space-6); padding-bottom: var(--space-12);">
+        <div class="musings-index-list" id="posts-list">
+
+      <!-- 2025 -->
+      <div class="musings-year-group" data-year="2025">
+        <div class="musings-year-label">2025</div>
+        <ul class="musings-list">
+          <li data-tags="vibecoding stockapp financeapp">
+            <a href="musings/stock_tracker_pt3.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Vibe Coding, Part III- The Final Boss</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Sep 30 2025</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">vibecoding</span>
+                    <span class="musing-tag">stockapp</span>
+                    <span class="musing-tag">financeapp</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="vibecoding stockapp category1">
+            <a href="musings/stock_tracker_pt2.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Vibe Coding, Part II- Now With Deployment Drama</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Sep 1 2025</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">vibecoding</span>
+                    <span class="musing-tag">stockapp</span>
+                    <span class="musing-tag">category1</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="vibecoding stockapp dvelopment">
+            <a href="musings/stock_tracker_pt1.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">I Built a Stock Tracker by Accident - A Series (Pt.1)</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">May 28 2025</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">vibecoding</span>
+                    <span class="musing-tag">stockapp</span>
+                    <span class="musing-tag">dvelopment</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="tarkwa robotics bootcamp">
+            <a href="musings/bootcamp-tarkwa.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Robots in Tarkwa</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">May 19 2025</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">tarkwa</span>
+                    <span class="musing-tag">robotics</span>
+                    <span class="musing-tag">bootcamp</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="hiatus new begining new">
+            <a href="musings/hiatus-over.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Hiatus Over</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">May 13 2025</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">hiatus</span>
+                    <span class="musing-tag">new begining</span>
+                    <span class="musing-tag">new</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2021 -->
+      <div class="musings-year-group" data-year="2021">
+        <div class="musings-year-label">2021</div>
+        <ul class="musings-list">
+          <li data-tags="smartphone apps mobile">
+            <a href="musings/auditing-your-phone.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Auditing Your Phone</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Oct 16 2021</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">smartphone</span>
+                    <span class="musing-tag">apps</span>
+                    <span class="musing-tag">mobile</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="ruby heroku telegram bot">
+            <a href="musings/heroku-ruby-app.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Heroku Ruby App</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Feb 11 2021</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">ruby</span>
+                    <span class="musing-tag">heroku</span>
+                    <span class="musing-tag">telegram bot</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2020 -->
+      <div class="musings-year-group" data-year="2020">
+        <div class="musings-year-label">2020</div>
+        <ul class="musings-list">
+          <li data-tags="dspace digital ocean installation">
+            <a href="musings/dspace-iii.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Dspace III</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 29 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">dspace</span>
+                    <span class="musing-tag">digital ocean</span>
+                    <span class="musing-tag">installation</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="jupyter ruby kernel">
+            <a href="musings/jupyterlab-with-ruby-kernel.html" class="musing-row">
+              <div>
+                <div class="musing-row__title"> Setting Up Jupyterlab With Ruby Kernel (MacOS)</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 28 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">jupyter</span>
+                    <span class="musing-tag">ruby</span>
+                    <span class="musing-tag">kernel</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="server monitoring bash">
+            <a href="musings/easy-server-monitoring.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Easy Server Monitoring</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 11 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">server</span>
+                    <span class="musing-tag">monitoring</span>
+                    <span class="musing-tag">bash</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="mysql database remote access">
+            <a href="musings/remotesql.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Making MySQL Accessible remotely</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 10 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">mysql</span>
+                    <span class="musing-tag">database</span>
+                    <span class="musing-tag">remote access</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="ruby hash arrays">
+            <a href="musings/hash-arrays.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Hash Arrays</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Apr 6 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">ruby</span>
+                    <span class="musing-tag">hash</span>
+                    <span class="musing-tag">arrays</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="dspace installation linux">
+            <a href="musings/dspace-ii.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Dspace Installs II</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jan 14 2020</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">dspace</span>
+                    <span class="musing-tag">installation</span>
+                    <span class="musing-tag">linux</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2019 -->
+      <div class="musings-year-group" data-year="2019">
+        <div class="musings-year-label">2019</div>
+        <ul class="musings-list">
+          <li data-tags="dspace repository installation">
+            <a href="musings/dspace-installs.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Dspace Installs</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Oct 30 2019</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">dspace</span>
+                    <span class="musing-tag">repository</span>
+                    <span class="musing-tag">installation</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="wordpress deployment web development">
+            <a href="musings/uploading-wordpress-to-a-live-server.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Uploading A Wordpress Site to a Live Server</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Apr 14 2019</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">wordpress</span>
+                    <span class="musing-tag">deployment</span>
+                    <span class="musing-tag">web development</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="sinatra heroku ruby">
+            <a href="musings/hosting-a-sinatra-app-on-heroku.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Hosting a Simple Sinatra App on Heroku</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Feb 12 2019</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">sinatra</span>
+                    <span class="musing-tag">heroku</span>
+                    <span class="musing-tag">ruby</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="password security generator">
+            <a href="musings/password-generators-on-heroku.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Password Generators</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Feb 8 2019</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">password</span>
+                    <span class="musing-tag">security</span>
+                    <span class="musing-tag">generator</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="open source alternatives software">
+            <a href="musings/open-source-alternatives.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Open Source Alternatives</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Feb 4 2019</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">open source</span>
+                    <span class="musing-tag">alternatives</span>
+                    <span class="musing-tag">software</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2018 -->
+      <div class="musings-year-group" data-year="2018">
+        <div class="musings-year-label">2018</div>
+        <ul class="musings-list">
+          <li data-tags="accessibility web development inclusive design">
+            <a href="musings/building-for-the-world.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Building for the World</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Oct 8 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">accessibility</span>
+                    <span class="musing-tag">web development</span>
+                    <span class="musing-tag">inclusive design</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="vpn outline privacy">
+            <a href="musings/an-outline-of-outline.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">An Outline of Outline</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Oct 8 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">vpn</span>
+                    <span class="musing-tag">outline</span>
+                    <span class="musing-tag">privacy</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="wordpress ftp local development">
+            <a href="musings/setup-wordpress-ftp-for-local-development.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Setup Wordpress Ftp for Local Development</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Aug 25 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">wordpress</span>
+                    <span class="musing-tag">ftp</span>
+                    <span class="musing-tag">local development</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="gmail confidential mode email">
+            <a href="musings/gmails-got-a-confidential-mode.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Gmails Got a Confidential Mode</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Aug 24 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">gmail</span>
+                    <span class="musing-tag">confidential mode</span>
+                    <span class="musing-tag">email</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="github codeship firebase">
+            <a href="musings/github-codeship-firebase-hosting.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Github : Codeship :Firebase Hosting </div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 5 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">github</span>
+                    <span class="musing-tag">codeship</span>
+                    <span class="musing-tag">firebase</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="gdpr privacy data protection">
+            <a href="musings/what-the-heck-is-gdpr.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">What the Heck Is Gdpr</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">May 14 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">gdpr</span>
+                    <span class="musing-tag">privacy</span>
+                    <span class="musing-tag">data protection</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="pipe linux command line">
+            <a href="musings/the-pipe.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">The Pipe</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Apr 18 2018</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">pipe</span>
+                    <span class="musing-tag">linux</span>
+                    <span class="musing-tag">command line</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2017 -->
+      <div class="musings-year-group" data-year="2017">
+        <div class="musings-year-label">2017</div>
+        <ul class="musings-list">
+          <li data-tags="firebase hosting blog">
+            <a href="musings/the-move-to-firebase.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">The Move to Firebase</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Dec 14 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">firebase</span>
+                    <span class="musing-tag">hosting</span>
+                    <span class="musing-tag">blog</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="workflow automation macos">
+            <a href="musings/after-a-format.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">After a Format</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Sep 10 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">workflow</span>
+                    <span class="musing-tag">automation</span>
+                    <span class="musing-tag">macos</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="workflow automation macos">
+            <a href="musings/welcome.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">After a Format</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Sep 10 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">workflow</span>
+                    <span class="musing-tag">automation</span>
+                    <span class="musing-tag">macos</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="linux grep command line">
+            <a href="musings/grep.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Grep</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Sep 2 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">linux</span>
+                    <span class="musing-tag">grep</span>
+                    <span class="musing-tag">command line</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="linux commands terminal">
+            <a href="musings/nifty-linux-commands.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Nifty Linux Commands</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jul 4 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">linux</span>
+                    <span class="musing-tag">commands</span>
+                    <span class="musing-tag">terminal</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="ghost google cloud compute engine">
+            <a href="musings/running-ghost-on-google-compute-engine.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Running Ghost on Google Compute Engine</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jul 1 2017</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">ghost</span>
+                    <span class="musing-tag">google cloud</span>
+                    <span class="musing-tag">compute engine</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2016 -->
+      <div class="musings-year-group" data-year="2016">
+        <div class="musings-year-label">2016</div>
+        <ul class="musings-list">
+          <li data-tags="apps mobile software">
+            <a href="musings/apps-unbecoming.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Apps Unbecoming</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Dec 30 2016</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">apps</span>
+                    <span class="musing-tag">mobile</span>
+                    <span class="musing-tag">software</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="android gapps google apps">
+            <a href="musings/gapps-on-chinese-phones.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Gapps on Chinese Phones</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Nov 25 2016</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">android</span>
+                    <span class="musing-tag">gapps</span>
+                    <span class="musing-tag">google apps</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="node.js nvm n">
+            <a href="musings/know-your-node.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Know Your Node</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Nov 10 2016</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">node.js</span>
+                    <span class="musing-tag">nvm</span>
+                    <span class="musing-tag">n</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2015 -->
+      <div class="musings-year-group" data-year="2015">
+        <div class="musings-year-label">2015</div>
+        <ul class="musings-list">
+          <li data-tags="humans of ghana humans of new york social media">
+            <a href="musings/to-copy-or-not-to-copy.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">To Copy or Not to Copy</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Dec 15 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">humans of ghana</span>
+                    <span class="musing-tag">humans of new york</span>
+                    <span class="musing-tag">social media</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="right to information transparency ghana">
+            <a href="musings/the-right-to-information.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">The Right to Information</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Oct 11 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">right to information</span>
+                    <span class="musing-tag">transparency</span>
+                    <span class="musing-tag">ghana</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="human condition choice philosophy">
+            <a href="musings/to-each-his-own.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">To Each His Own</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jul 13 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">human condition</span>
+                    <span class="musing-tag">choice</span>
+                    <span class="musing-tag">philosophy</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="gmail email productivity">
+            <a href="musings/gmails-hidden-secrets.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Gmails Hidden Secrets</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jul 2 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">gmail</span>
+                    <span class="musing-tag">email</span>
+                    <span class="musing-tag">productivity</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="wifite wireless security penetration testing">
+            <a href="musings/wifite.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Wifite</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 2 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">wifite</span>
+                    <span class="musing-tag">wireless security</span>
+                    <span class="musing-tag">penetration testing</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="ghost themes blogging">
+            <a href="musings/ghost-adventures-2.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Ghost Adventures 2</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Mar 25 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">ghost</span>
+                    <span class="musing-tag">themes</span>
+                    <span class="musing-tag">blogging</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="ghost blogging open source">
+            <a href="musings/ghost-adventures-1.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Ghost Adventures 1</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Mar 20 2015</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">ghost</span>
+                    <span class="musing-tag">blogging</span>
+                    <span class="musing-tag">open source</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2013 -->
+      <div class="musings-year-group" data-year="2013">
+        <div class="musings-year-label">2013</div>
+        <ul class="musings-list">
+          <li data-tags="open source education foss">
+            <a href="musings/open-source-in-ssa-schools.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Open Source in SSA Schools</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Jun 27 2013</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">open source</span>
+                    <span class="musing-tag">education</span>
+                    <span class="musing-tag">foss</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="linux ubuntu desktop">
+            <a href="musings/i-just-want-to-say-linux-is.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">I Just Want to Say Linux Is</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">May 7 2013</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">linux</span>
+                    <span class="musing-tag">ubuntu</span>
+                    <span class="musing-tag">desktop</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="privacy digital age online privacy">
+            <a href="musings/there-is-nothing-like-privacy.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">There Is Nothing Like Privacy</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Apr 22 2013</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">privacy</span>
+                    <span class="musing-tag">digital age</span>
+                    <span class="musing-tag">online privacy</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+          <li data-tags="gmail email productivity">
+            <a href="musings/oh-i-cannot-believe-i-just-sent-that-mail.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Oh Sh*t I Cannot Believe I Just Sent That Mail</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Mar 25 2013</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">gmail</span>
+                    <span class="musing-tag">email</span>
+                    <span class="musing-tag">productivity</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2012 -->
+      <div class="musings-year-group" data-year="2012">
+        <div class="musings-year-label">2012</div>
+        <ul class="musings-list">
+          <li data-tags="open source alternatives software">
+            <a href="musings/open-source-alts.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Open Source Alts</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Feb 18 2012</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">open source</span>
+                    <span class="musing-tag">alternatives</span>
+                    <span class="musing-tag">software</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 2010 -->
+      <div class="musings-year-group" data-year="2010">
+        <div class="musings-year-label">2010</div>
+        <ul class="musings-list">
+          <li data-tags="tribalism nepotism africa">
+            <a href="musings/tribalism-and-nepotism.html" class="musing-row">
+              <div>
+                <div class="musing-row__title">Tribalism and Nepotism</div>
+                <div class="musing-row__meta">
+                  <span class="musing-row__date">Apr 22 2010</span>
+                  <span class="musing-row__tags">
+                                        <span class="musing-tag">tribalism</span>
+                    <span class="musing-tag">nepotism</span>
+                    <span class="musing-tag">africa</span>
+                  </span>
+                </div>
+              </div>
+              <span class="musing-row__date">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Empty state -->
+      <div id="empty-state" style="display:none; text-align:center; padding: var(--space-12) 0;">
+        <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-3);">
+          no posts match that search.
+        </p>
+      </div>
+    </div><!-- /posts-list -->
+  </div><!-- /container -->
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const filterBtns  = document.querySelectorAll('.filter-btn');
+  const groups      = document.querySelectorAll('.musings-year-group');
+  const emptyState  = document.getElementById('empty-state');
+  const resultCount = document.getElementById('result-count');
+
+  let activeTag = 'all';
+
+  function normalize(str) { return str.toLowerCase().trim(); }
+
+  function filterPosts() {
+    const q = normalize(searchInput.value);
+    let visible = 0;
+
+    groups.forEach(group => {
+      const rows = group.querySelectorAll('li[data-tags]');
+      let groupVisible = 0;
+
+      rows.forEach(row => {
+        const tags  = normalize(row.dataset.tags || '');
+        const title = normalize(row.querySelector('.musing-row__title')?.textContent || '');
+        const matchTag    = activeTag === 'all' || tags.includes(activeTag);
+        const matchSearch = !q || title.includes(q) || tags.includes(q);
+        const show = matchTag && matchSearch;
+        row.style.display = show ? '' : 'none';
+        if (show) { groupVisible++; visible++; }
+      });
+
+      group.style.display = groupVisible > 0 ? '' : 'none';
+    });
+
+    emptyState.style.display = visible === 0 ? 'block' : 'none';
+    resultCount.textContent = visible > 0 ? `${visible} posts` : '';
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTag = btn.dataset.tag;
+      filterPosts();
+    });
+  });
+
+  searchInput.addEventListener('input', filterPosts);
+</script>
+
+</body>
+</html>

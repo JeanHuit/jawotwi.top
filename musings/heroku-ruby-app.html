@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guide to hosting a Ruby-based Telegram bot on Heroku using polling instead of webhooks." />
+  <meta property="og:title" content="Heroku Ruby App" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/heroku-ruby-app" />
+  <title>Heroku Ruby App · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">ruby · heroku · telegram bot · deployment · polling</span>
+      </div>
+      <h1 class="post-header__title">Heroku Ruby App</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Guide to hosting a Ruby-based Telegram bot on Heroku using polling instead of webhooks.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Feb 11, 2021</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=ruby" class="post-tag">ruby</a>
+        <a href="../musings.html?tag=heroku" class="post-tag">heroku</a>
+        <a href="../musings.html?tag=telegram bot" class="post-tag">telegram bot</a>
+        <a href="../musings.html?tag=deployment" class="post-tag">deployment</a>
+        <a href="../musings.html?tag=polling" class="post-tag">polling</a>
+        <a href="../musings.html?tag=development" class="post-tag">development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>**NB: Heroku is no longer free”</p>
+<p>In my bid to host my ruby based telegram bot on heroku,</p>
+<p>I had to jump through hoops due to the fact that my bot was not using
+webhooks but the polling alternative.</p>
+<p>This required that I run a script to initiate the bot. This also
+meant that my bot had no web interface.</p>
+<p>Most important
+<code>REMEMBER TO SET ENV VARIABLES IN HEROKU'S CONFIG VAR</code></p>
+<p>Add a <code>Procfile</code> to the root of your app.</p>
+<p>Sample Procfile:</p>
+<pre><code>  bot: bundle exec ruby app.rb</code></pre>
+<p>Make sure you have installed Heroku’s CLI. Run the following command:
+<code>heroku ps:scale bot=1 -a &lt;appname&gt;</code></p>
+<p>Note here that ‘bot’ here is same and similar to ‘bot’ in the
+procfile</p>
+<p>and</p>
+<p><code>heroku run bundle exec ruby &lt;app.rb&gt; -a &lt;appname&gt;</code></p>
+<p>Thats it. This should get you going?</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Heroku%20Ruby%20App&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fheroku-ruby-app" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fheroku-ruby-app" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

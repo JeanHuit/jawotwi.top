@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guide to making MySQL accessible remotely on Ubuntu Server 20.04." />
+  <meta property="og:title" content="Making MySQL Accessible remotely" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/remotesql" />
+  <title>Making MySQL Accessible remotely · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">mysql · database · remote access · ubuntu · server</span>
+      </div>
+      <h1 class="post-header__title">Making MySQL Accessible remotely</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Guide to making MySQL accessible remotely on Ubuntu Server 20.04.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Jun 10, 2020</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=mysql" class="post-tag">mysql</a>
+        <a href="../musings.html?tag=database" class="post-tag">database</a>
+        <a href="../musings.html?tag=remote access" class="post-tag">remote access</a>
+        <a href="../musings.html?tag=ubuntu" class="post-tag">ubuntu</a>
+        <a href="../musings.html?tag=server" class="post-tag">server</a>
+        <a href="../musings.html?tag=database" class="post-tag">database</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<h4 id="os-ubuntu-server-20.04">Os: Ubuntu Server 20.04</h4>
+<p>If you ever find yourself unable to log-in or connect to your newly
+created MySQL server, with errors such as these being thrown around,</p>
+<pre><code>- Host &#39;&#39;xxx.xx.xxx.xxx&#39;&#39; is not allowed to connect to this MySQL server
+- Unknown authentication method
+- Port closed</code></pre>
+<p>You have come to the right place</p>
+<p>**Assumption: mysql server is already installed.</p>
+<ol type="1">
+<li>Log into your server and connect to the DB using the root account.
+<code>sudo mysql -u &lt;user&gt; -p &lt;enter password at prompt&gt;</code></li>
+<li>check for available account on the DB
+<code>SELECT user,authentication_string,plugin,host FROM mysql.user;</code></li>
+<li>Create a new user if not present or alter existing user with the
+following commands</li>
+</ol>
+<pre class="mysql"><code>(creates user to connect via the internet &amp; localhost)
+- CREATE USER &#39;user&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password IDENTIFIED BY &#39;password&#39;;
+- CREATE USER &#39;user&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password IDENTIFIED BY &#39;password&#39;;
+- GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;%&#39; WITH GRANT OPTION;
+- GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;localhost&#39; WITH GRANT OPTION;
+- FLUSH PRIVILEGES;</code></pre>
+<p>or</p>
+<pre class="mysql"><code>(Alters existing users)
+- ALTER USER &#39;user&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;
+- ALTER USER &#39;ruser&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;
+- GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;%&#39; WITH GRANT OPTION;
+- GRANT ALL PRIVILEGES ON *.* TO &#39;user&#39;@&#39;localhost&#39; WITH GRANT OPTION;
+- FLUSH PRIVILEGES;</code></pre>
+<ol start="4" type="1">
+<li>Exit mysql <code>exit</code></li>
+<li>Enable firewall (ufw) and allow port 3306 through</li>
+</ol>
+<pre class="bash"><code>ufw enable
+ufw allow 3306</code></pre>
+<p>If you have a specific IP you will be connecting from (safest),</p>
+<pre class="bash"><code>ufw enable
+ufw allow from remote_IP_address to any port 3306</code></pre>
+<ol start="6" type="1">
+<li>Mysql must listen for an external IP address or all addresses(not
+safe). To enable this, open up your <code>mysqld.cnf file</code>:</li>
+</ol>
+<pre class="bash"><code>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre>
+<ol start="7" type="1">
+<li>Scroll down till you reach
+<code>bind-address            = 127.0.0.1</code> Edit
+<code>127.0.0.1</code> to specific IP mysql should listen for or to
+<code>0.0.0.0</code> for everyone(not safe)</li>
+<li>Uncomment <code>#port = 3306</code> if it is commented.</li>
+<li>Save the document and restart mysql
+<code>sudo systemctl restart mysql</code></li>
+</ol>
+<p>Now you can connect to your DB, using your new user and the password
+via the internet.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Making%20MySQL%20Accessible%20remotely&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fremotesql" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fremotesql" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

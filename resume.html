@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Resume of John Awotwi — Systems Engineer, DevOps Specialist, Accra, Ghana." />
+  <title>Resume — John Awotwi</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .resume-page { padding: var(--space-12) 0; }
+    .resume-page .container--prose { max-width: 760px; }
+
+    .resume-section { margin-bottom: var(--space-10, 2.5rem); }
+    .resume-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .resume-role {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-4);
+      align-items: baseline;
+      margin-bottom: var(--space-2);
+    }
+    .resume-role__title {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .resume-role__org {
+      font-size: 0.875rem;
+      color: var(--ink-2);
+      margin-bottom: var(--space-2);
+    }
+    .resume-role__period {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-3);
+      white-space: nowrap;
+    }
+    .resume-role__bullets {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-3) 0 var(--space-6);
+    }
+    .resume-role__bullets li {
+      font-size: 0.9rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+      padding-left: var(--space-4);
+      position: relative;
+      margin-bottom: var(--space-2);
+    }
+    .resume-role__bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink-3);
+      font-family: var(--font-mono);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+    .skills-group__label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-2);
+      font-weight: 500;
+      margin-bottom: var(--space-2);
+    }
+    .skills-group__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .edu-row__degree { font-size: 0.95rem; font-weight: 500; }
+    .edu-row__school { font-size: 0.85rem; color: var(--ink-2); }
+    .edu-row__year {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-3);
+    }
+
+    .resume-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 7px 16px;
+      text-decoration: none;
+      transition: all var(--transition);
+      margin-bottom: var(--space-8);
+    }
+    .resume-download:hover {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .resume-role { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="index.html#projects">projects</a></li>
+        <li><a href="index.html#services">services</a></li>
+        <li><a href="resume.html" class="active">resume</a></li>
+        <li><a href="musings.html">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="resume-page">
+    <div class="container--prose">
+
+      <!-- Header -->
+      <div style="margin-bottom: var(--space-8);">
+        <p class="section__eyebrow">Resume</p>
+        <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); letter-spacing: -0.03em; margin-bottom: var(--space-2);">John Awotwi</h1>
+        <p style="font-size: 1rem; color: var(--ink-2); margin-bottom: var(--space-4);">
+          Systems Engineer · DevOps Specialist · IT Consultant<br>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem;">Accra, Ghana · john@jawotwi.top</span>
+        </p>
+        <a href="javascript:window.print()" class="resume-download">↓ save as PDF</a>
+      </div>
+
+      <!-- Summary -->
+      <div class="resume-section">
+        <div class="resume-section-title">Profile</div>
+        <p style="font-size: 0.95rem; color: var(--ink-2); line-height: 1.75;">
+          Systems engineer and DevOps specialist with 8+ years of experience designing, deploying, and maintaining
+          production-grade web and network infrastructure. Lead developer of multiple institutional platforms and
+          currently architecting AI-focused systems. Experienced in Linux server administration, CI/CD automation,
+          and database systems.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="resume-section">
+        <div class="resume-section-title">Experience</div>
+
+        <div>
+          <div class="resume-role">
+            <div class="resume-role__title">Senior Technical Officer</div>
+            <div class="resume-role__period">Mar 2019 – Present</div>
+          </div>
+          <div class="resume-role__org">Institute for Scientific & Technological Information (CSIR-INSTI) · Accra</div>
+          <ul class="resume-role__bullets">
+            <li>Architected and deployed 6+ institutional web platforms serving research and agricultural data systems</li>
+            <li>Designed and managed CI/CD pipelines for multi-project deployments with source code management via GitHub</li>
+            <li>Administer Linux-based production servers running on Proxmox virtualisation</li>
+            <li>Provide infrastructure monitoring, backup strategies, and system hardening</li>
+            <li>Lead developer for HPC cluster and local AI model infrastructure project</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="resume-role">
+            <div class="resume-role__title">IT Officer</div>
+            <div class="resume-role__period">May 2015 – Mar 2019</div>
+          </div>
+          <div class="resume-role__org">La Dade-Kotopon Municipal Assembly · Accra</div>
+          <ul class="resume-role__bullets">
+            <li>Managed municipal network infrastructure (LAN/WAN, routers, switches)</li>
+            <li>Provided system troubleshooting across multi-user environments</li>
+            <li>Implemented network maintenance and hardware lifecycle planning</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Skills -->
+      <div class="resume-section">
+        <div class="resume-section-title">Technical skills</div>
+        <div class="skills-grid">
+          <div>
+            <div class="skills-group__label">Programming</div>
+            <div class="skills-group__items">
+              <span class="chip">PHP</span>
+              <span class="chip">Python</span>
+              <span class="chip">Ruby</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">HTML/CSS</span>
+            </div>
+          </div>
+          <div>
+            <div class="skills-group__label">DevOps & Infra</div>
+            <div class="skills-group__items">
+              <span class="chip">Linux</span>
+              <span class="chip">Git</span>
+              <span class="chip">CI/CD</span>
+              <span class="chip">Proxmox</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Monitoring</span>
+            </div>
+          </div>
+          <div>
+            <div class="skills-group__label">Cloud & Data</div>
+            <div class="skills-group__items">
+              <span class="chip">AWS</span>
+              <span class="chip">MariaDB</span>
+              <span class="chip">MySQL</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">LAN/WAN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="resume-section">
+        <div class="resume-section-title">Education</div>
+        <div class="edu-row">
+          <div>
+            <div class="edu-row__degree">MSc. Information Technology</div>
+            <div class="edu-row__school">Kwame Nkrumah University of Science & Technology</div>
+          </div>
+          <div class="edu-row__year">Nov 2025</div>
+        </div>
+        <div class="edu-row">
+          <div>
+            <div class="edu-row__degree">BSc. Information Technology</div>
+            <div class="edu-row__school">Ghana Technology University College, Tesano</div>
+          </div>
+          <div class="edu-row__year">Nov 2013</div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="resume-section">
+        <div class="resume-section-title">Projects archived</div>
+        <ul class="resume-role__bullets">
+          <li><strong>CSIRSpace</strong> — Institutional digital repository with optimized database, server configuration, and reliability management</li>
+          <li><strong>AgHub</strong> — Full-stack agricultural data platform deployed for bandwidth-constrained environments</li>
+          <li><strong>CSIR eLearning</strong> — Multi-user eLearning system with CI/CD workflows, performance tuning, and server administration</li>
+          <li><strong>LSACROFT</strong> — Low-cost IoT soil analysis device for precision agriculture (ESP32, NPK sensors)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Steps to upload a WordPress site to a live server without relying on unreliable plugins." />
+  <meta property="og:title" content="Uploading A Wordpress Site to a Live Server" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/uploading-wordpress-to-a-live-server" />
+  <title>Uploading A Wordpress Site to a Live Server · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">wordpress · deployment · web development · hosting · database</span>
+      </div>
+      <h1 class="post-header__title">Uploading A Wordpress Site to a Live Server</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">Steps to upload a WordPress site to a live server without relying on unreliable plugins.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Apr 14, 2019</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=wordpress" class="post-tag">wordpress</a>
+        <a href="../musings.html?tag=deployment" class="post-tag">deployment</a>
+        <a href="../musings.html?tag=web development" class="post-tag">web development</a>
+        <a href="../musings.html?tag=hosting" class="post-tag">hosting</a>
+        <a href="../musings.html?tag=database" class="post-tag">database</a>
+        <a href="../musings.html?tag=web development" class="post-tag">web development</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>There are a thousand and one tutorials on the internet that teach how
+to go about this (title of post).</p>
+<p>There are as well a plethora of plugins that claim to help you do
+this. I have tried most and what I have found is that, these plugins are
+not reliable and the tutorials are not always complete. These are the
+steps I take to upload a wordpress installation.</p>
+<ol type="1">
+<li>Make a backup of your database from your development server, i.e
+export the database you created when you started working on your
+wordpress based site. <code>somethings.sql</code></li>
+<li>Cleanup your website, i.e get rid of all unused plugins and media
+files, this causes unneccessary bloat.</li>
+<li>Create a database on your production (live) server and upload the
+backup of your datebase (done in step 1),
+<code>something.sql</code></li>
+<li>On your production server database, replace all instances of
+<code>http:\\localhost</code> with <code>http:\\newdomain.com</code> in
+database uploaded in step 3.</li>
+<li>Edit your <code>wp-config.php</code> file with the credentials of
+your production server, i.e [“DB_NAME”, “DB_USER”, “DB_PASSWORD”,
+“DB_HOST”]</li>
+<li>Upload your websites directory/src/folder to the root of your
+production server. <code>http:\\newdomain.com</code></li>
+<li>Your website should be up and running, no messy plugins needed.</li>
+</ol>
+<p><strong>Do not forget to change the password you used in
+development.</strong></p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Uploading%20A%20Wordpress%20Site%20to%20a%20Live%20Server&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fuploading-wordpress-to-a-live-server" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fuploading-wordpress-to-a-live-server" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

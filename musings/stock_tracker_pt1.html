@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta property="og:title" content="I Built a Stock Tracker by Accident - A Series (Pt.1)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/stock_tracker_pt1" />
+  <title>I Built a Stock Tracker by Accident - A Series (Pt.1) · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">vibecoding · stockapp · dvelopment</span>
+      </div>
+      <h1 class="post-header__title">I Built a Stock Tracker by Accident - A Series (Pt.1)</h1>
+      
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>May 28, 2025</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=vibecoding" class="post-tag">vibecoding</a>
+        <a href="../musings.html?tag=stockapp" class="post-tag">stockapp</a>
+        <a href="../musings.html?tag=dvelopment" class="post-tag">dvelopment</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>You know those tweets that go like <em>“I built an app in 4 hours
+using only my left hand and AI!”</em> or _“Finished a SaaS in 3 minutes
+while sipping coffee”?</p>
+<p>Yeah, I saw one too many of those. So naturally, like any
+self-respecting dev with too many tabs open and not enough finished side
+projects, I decided: screw it—let’s vibe code something.</p>
+<p>For the uninitiated, “vibe coding” is basically whispering your hopes
+and dreams into a large language model (LLM), crossing your fingers, and
+hoping it spits out a working app. You describe what you want in English
+(or, let’s be honest, broken product manager-ese) and let the machines
+figure it out.</p>
+<p>So what to build? Oh, the options. My brain was throwing up ideas
+like confetti at a startup launch party. But I landed on something oddly
+personal: a stock tracker app. Why? Because I had already half-started
+it once. You know, one of those weekend projects that sits quietly in
+your repo, untouched, patiently waiting for you to circle back with
+“fresh energy” (spoiler: the energy is never fresh).</p>
+<p>The inspiration came from my occasional forays into the Ghana Stock
+Exchange. I’m not talking Wolf of Accra-level investing here—more like
+dipping toes in to see if the water’s hot, cold, or mildly radioactive.
+The GSE is…an adventure. You learn a lot—mostly about chaos,
+bureaucracy, and how sometimes even the ticker symbols feel tired.</p>
+<p>So I dusted off that old project and decided this was the one. This
+was my “vibes only” redemption arc.</p>
+<p>Now, deciding how to actually build it? Pain. Real pain. Framework or
+no framework? Go full-stack or go nap? Every decision was a mini
+existential crisis. But then I remembered—I have AI agents now. Let
+<em>them</em> battle it out in the Thunderdome of web dev choices. I
+pinged ChatGPT, Claude.ai, DeepSeek—my little advisory council of
+artificial consultants.</p>
+<p>The result? I kept it simple:</p>
+<ul>
+<li><p><strong>PWA</strong> (because I’m allergic to app store
+deployment)</p></li>
+<li><p><strong>Plain storage</strong> (no fancy database
+acrobatics)</p></li>
+<li><p><strong>Fast to build</strong> (think: weekend sprint, not a
+death march)</p></li>
+<li><p><strong>Language I know</strong> (because debugging in a foreign
+language is a special kind of despair)</p></li>
+<li><p><strong>Web-based = cross-platform</strong> (laptops, phones,
+toasters—whatever runs Chrome)</p></li>
+</ul>
+<p>And most importantly: <em>easy to upgrade later without crying into
+my keyboard</em>.</p>
+<p>So yeah. I built a stock tracker. With vibes. For Ghana. In a
+weekend. And it actually works.</p>
+<p>More soon—probably when I break it trying to add dark mode.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=I%20Built%20a%20Stock%20Tracker%20by%20Accident%20-%20A%20Series%20(Pt.1)&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fstock_tracker_pt1" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fstock_tracker_pt1" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

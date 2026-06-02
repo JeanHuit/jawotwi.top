@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A series exploring useful Linux commands with practical examples." />
+  <meta property="og:title" content="Nifty Linux Commands" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/nifty-linux-commands" />
+  <title>Nifty Linux Commands · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">linux · commands · terminal · netstat · networking</span>
+      </div>
+      <h1 class="post-header__title">Nifty Linux Commands</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">A series exploring useful Linux commands with practical examples.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Jul 4, 2017</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+        <a href="../musings.html?tag=commands" class="post-tag">commands</a>
+        <a href="../musings.html?tag=terminal" class="post-tag">terminal</a>
+        <a href="../musings.html?tag=netstat" class="post-tag">netstat</a>
+        <a href="../musings.html?tag=networking" class="post-tag">networking</a>
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<blockquote>
+<p>This post is the beginning of a series I’d tag nlc to talk about
+linux commands that I come across.</p>
+</blockquote>
+<p>A <strong>simpler man</strong> page for myself of my own words, minus
+the bells and whistles of the many options you come across in the man
+pages without almost ever using.</p>
+<hr />
+<h2 id="netstat">Netstat</h2>
+<p>Short for network status, this command when run without options
+<code>netstat</code> , can get carried away. Displaying all incoming and
+outgoing network requests at a go. This can be daunting and one may
+easily get lost trying to sift through all that data.<br />
+Piping <code>|</code> the data through <code>less</code> will make it
+easier for you to peruse and understand where your data is going, from
+what application and from what point data is being returned.<br />
+eg.</p>
+<pre><code>netstat -nr | less</code></pre>
+<p>Using the <code>- nr</code> option, gives you access to your routing
+table in number format, i.e shows you the network address.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Nifty%20Linux%20Commands&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fnifty-linux-commands" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fnifty-linux-commands" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

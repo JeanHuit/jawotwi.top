@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A guide to using the grep command for searching text in Linux." />
+  <meta property="og:title" content="Grep" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/grep" />
+  <title>Grep · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">linux · grep · command line · search · terminal</span>
+      </div>
+      <h1 class="post-header__title">Grep</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">A guide to using the grep command for searching text in Linux.</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Sep 2, 2017</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+        <a href="../musings.html?tag=grep" class="post-tag">grep</a>
+        <a href="../musings.html?tag=command line" class="post-tag">command line</a>
+        <a href="../musings.html?tag=search" class="post-tag">search</a>
+        <a href="../musings.html?tag=terminal" class="post-tag">terminal</a>
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>Another linux command, I find very useful,</p>
+<p>this is a command that helps you search for strings/text within
+documents. There are a whole lot of uses for it, but I will leave you to
+explore that yourself.</p>
+<p>Its simplest form is:</p>
+<pre><code>grep &lt;word&gt; &lt;in file&gt;
+=&gt; grep &quot;dog&quot; animals.txt</code></pre>
+<p>The above looks for dog in a text file called animal.txt</p>
+<p>There are flags/options you can set with the command to make things
+easier.</p>
+<pre><code> -x = exclusive, exact match
+ -v = everything but
+ -i = I do not care about case</code></pre>
+<p>and many more.</p>
+<p>You can also use [] and ^ to help make your search more refined.</p>
+<pre><code>grep ^a* fruits.txt</code></pre>
+<p>Finds fruits that have a in them</p>
+<pre><code> grep ^a.p fruits.txt</code></pre>
+<p>Finds fruits that begin with an a and followed a random letter and
+then by a p.</p>
+<pre><code>grep ^[a-p] fruits.txt</code></pre>
+<p>Find all text that begin with an a through to P in fruits.txt<br />
+Go ahead and play with grep!</p>
+<p>Lastly, grep can search through huge files very quickly, and outputs
+can be overwhelming, eg. log files. To make it easier, and this can be
+used for most linux commands,you can pipe commands through each
+other.</p>
+<pre><code>ps aux | grep &#39;root&#39;| less</code></pre>
+<p>This simply means, I am looking for root in the output of
+<code>ps aux</code> but due to the volume outputted, I want to see them
+in pages, thus the use of <code>less</code>.</p>
+<p>Go ahead and play with grep. Fun times ahead.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Grep&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgrep" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgrep" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
