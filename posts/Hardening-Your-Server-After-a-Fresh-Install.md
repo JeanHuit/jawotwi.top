@@ -1,6 +1,6 @@
 ---
 title: Hardening Your Server After a Fresh Install
-date: "2026-07-22T00:00:00Z"
+date: 2026-07-22T00:00:00Z
 draft: true
 description: "When you spin up a fresh Linux server, the default configuration is built for convenience, not security. The package manager is pointed at trusted repositories, SSH lets you in with a password, and do"
 author: John Awotwi
