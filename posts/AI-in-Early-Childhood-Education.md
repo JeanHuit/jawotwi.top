@@ -1,7 +1,7 @@
 ---
 title: AI in Early Childhood Education
 date: 2026-07-17T00:00:00Z
-draft: true
+draft: false
 description: "The integration of Artificial Intelligence (AI) into education is reshaping countless sectors, and nowhere is this trend more profound—or perhaps more debated—than in early childhood learning. From sm"
 author: John Awotwi
 category: Blogging
