@@ -348,7 +348,7 @@ def main():
         })
 
     # Sort newest first
-    posts.sort(key=lambda p: p["sort_date"], reverse=True)
+    posts.sort(key=lambda p: p["sort_date"].replace(tzinfo=None), reverse=True)
 
     # Generate blog post HTML files
     for md_file in md_files:
