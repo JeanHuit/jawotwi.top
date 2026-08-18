@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env
 .env.production
 
+# python
+__pycache__/
+*.pyc
+
 # macOS-specific files
 .DS_Store
 

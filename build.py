@@ -2,7 +2,7 @@
 """Build script: converts markdown posts → HTML blog pages + updates musings listing."""
 
 import os, re, yaml, subprocess
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
 
@@ -30,28 +30,55 @@ def parse_front_matter(text):
     return fm or {}, body
 
 
-def fmt_date(date_val):
+_DATE_FORMATS = [
+    "%Y-%m-%dT%H:%M:%SZ",
+    "%Y-%m-%dT%H:%M:%S%z",
+    "%Y-%m-%dT%H:%M:%S",
+    "%Y-%m-%d",
+]
+
+
+def parse_date(date_val):
+    """Parse a front-matter date into a timezone-naive datetime, or None."""
     if not date_val:
-        return ""
+        return None
     if isinstance(date_val, datetime):
         dt = date_val
+    elif isinstance(date_val, (int, float)):
+        dt = datetime.fromtimestamp(date_val)
     elif isinstance(date_val, str):
-        for fmt in [
-            "%Y-%m-%dT%H:%M:%SZ",
-            "%Y-%m-%dT%H:%M:%S%z",
-            "%Y-%m-%dT%H:%M:%S",
-            "%Y-%m-%d",
-        ]:
+        s = date_val.strip()
+        dt = None
+        for fmt in _DATE_FORMATS:
             try:
-                dt = datetime.strptime(date_val, fmt)
+                dt = datetime.strptime(s, fmt)
                 break
             except ValueError:
                 continue
-        else:
-            return date_val
-    elif isinstance(date_val, (int, float)):
-        return datetime.fromtimestamp(date_val).strftime("%b %-d, %Y")
+        if dt is None:
+            m = re.match(r"(\d{4}-\d{2}-\d{2})(?:[T ](\d{2}:\d{2}:\d{2}))?", s)
+            if m:
+                try:
+                    dt = datetime.strptime(
+                        m.group(0),
+                        "%Y-%m-%dT%H:%M:%S" if m.group(2) else "%Y-%m-%d",
+                    )
+                except ValueError:
+                    dt = None
+        if dt is None:
+            return None
     else:
+        return None
+    if dt.tzinfo is not None:
+        dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
+    return dt
+
+
+def fmt_date(date_val):
+    if not date_val:
+        return ""
+    dt = parse_date(date_val)
+    if dt is None:
         return str(date_val)
     return dt.strftime("%b %-d, %Y")
 
@@ -260,6 +287,8 @@ def update_musings_listing(posts, all_tags):
         print("ERROR: Could not find posts-list markers in musings.html")
         return
 
+    start_idx = html.rfind("\n", 0, start_idx) + 1
+
     listing_html = build_listing_html(posts)
     empty_state = """      <!-- Empty state -->
       <div id="empty-state" style="display:none; text-align:center; padding: var(--space-12) 0;">
@@ -285,6 +314,7 @@ def update_musings_listing(posts, all_tags):
     fe = html.find(filter_end, fs)
 
     if fs >= 0 and fe >= 0:
+        fs = html.rfind("\n", 0, fs) + 1
         filters_html = build_filters_html(all_tags)
         new_filters = f"""      <div class="musings-filters" id="tag-filters" role="group" aria-label="Filter by tag">
 {filters_html}
@@ -317,23 +347,11 @@ def main():
             all_tags[t] += 1
 
         # Sort key
-        sort_date = datetime.min
-        if isinstance(date_val, datetime):
-            sort_date = date_val
-        elif isinstance(date_val, str):
-            for fmt in [
-                "%Y-%m-%dT%H:%M:%SZ",
-                "%Y-%m-%dT%H:%M:%S%z",
-                "%Y-%m-%dT%H:%M:%S",
-                "%Y-%m-%d",
-            ]:
-                try:
-                    sort_date = datetime.strptime(date_val, fmt)
-                    break
-                except ValueError:
-                    continue
+        sort_date = parse_date(date_val) or datetime.min
+        if sort_date == datetime.min:
+            print(f"  ⚠ warning: unparseable date '{date_val}' in {md_file.name}")
 
-        year = str(sort_date.year) if sort_date and sort_date != datetime.min else "older"
+        year = str(sort_date.year) if sort_date != datetime.min else "older"
         display_date = fmt_date(date_val)
         short_date = fmt_date_short(date_val)
 
@@ -348,7 +366,7 @@ def main():
         })
 
     # Sort newest first
-    posts.sort(key=lambda p: p["sort_date"].replace(tzinfo=None), reverse=True)
+    posts.sort(key=lambda p: p["sort_date"], reverse=True)
 
     # Generate blog post HTML files
     for md_file in md_files:
