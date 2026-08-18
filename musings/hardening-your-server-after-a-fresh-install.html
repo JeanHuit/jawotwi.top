@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="When you spin up a fresh Linux server, the default configuration is built for convenience, not security. The package manager is pointed at trusted repositories, SSH lets you in with a password, and do" />
+  <meta property="og:title" content="Hardening Your Server After a Fresh Install" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/hardening-your-server-after-a-fresh-install" />
+  <title>Hardening Your Server After a Fresh Install · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">security · server · linux · devops · hardening</span>
+      </div>
+      <h1 class="post-header__title">Hardening Your Server After a Fresh Install</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">When you spin up a fresh Linux server, the default configuration is built for convenience, not security. The package manager is pointed at trusted repositories, SSH lets you in with a password, and do</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Jul 22, 2026</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=security" class="post-tag">security</a>
+        <a href="../musings.html?tag=server" class="post-tag">server</a>
+        <a href="../musings.html?tag=linux" class="post-tag">linux</a>
+        <a href="../musings.html?tag=devops" class="post-tag">devops</a>
+        <a href="../musings.html?tag=hardening" class="post-tag">hardening</a>
+        <a href="../musings.html?tag=sysadmin" class="post-tag">sysadmin</a>
+        <a href="../musings.html?tag=blogging" class="post-tag">blogging</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<p>When you spin up a fresh Linux server, the default configuration is
+built for convenience, not security. The package manager is pointed at
+trusted repositories, SSH lets you in with a password, and dozens of
+services start automatically whether you need them or not. For the first
+few minutes of its life, your server is a blank slate – but every minute
+it stays in that default state is a minute it is exposed.</p>
+<p>I have been through enough setup cycles to know that manually locking
+down a server is repetitive and easy to get wrong. So I put together a
+hardening script that walks through the essential steps. This post
+covers what you are up against when you put a server online and what
+each piece of the script does to address those risks.</p>
+<p>The full script is public on GitHub at the link below. You can read
+through it, suggest improvements, or submit edits if something is
+missing.</p>
+<hr />
+<h3 id="the-risks-of-an-unhardened-server">The Risks of an Unhardened
+Server</h3>
+<p>A server connected to the internet is probed within minutes of going
+live. Automated scanners crawl IP ranges looking for open SSH ports,
+default credentials, or unpatched services. These scans are not personal
+– they are bots running around the clock, and they do not
+discriminate.</p>
+<p>If your server has password-based SSH login enabled, those bots will
+try thousands of username and password combinations. If a service like
+CUPS or Avahi is running and you do not need it, it is one more surface
+area to exploit. If automatic updates are not configured, known
+vulnerabilities stay open until you manually patch them – and in
+practice that can take weeks.</p>
+<p>The risks fall into a few categories: unauthorised access,
+information leakage, denial of service, and privilege escalation. A
+single weak point – a root SSH login with a simple password, an unneeded
+service with a known CVE, a kernel parameter that allows IP spoofing –
+can turn a fresh server into a compromised machine before you have even
+deployed your application.</p>
+<hr />
+<h3 id="what-the-script-does">What the Script Does</h3>
+<p>The script is called <code>hardeninig.sh</code> and it is designed
+for Debian-based distributions. It is structured as a series of steps
+that can be run on a freshly installed system. Below is a breakdown of
+each section and the reasoning behind it.</p>
+<h4 id="system-update-and-upgrade">1. System Update and Upgrade</h4>
+<p>The first step is running <code>apt update</code> and
+<code>apt full-upgrade</code>. This ensures all currently installed
+packages are at their latest versions. Many fresh install images ship
+with packages that are already several weeks or months old, and the
+latest updates contain security patches for known vulnerabilities. There
+is no point hardening a system that still has unpatched software on
+it.</p>
+<h4 id="installation-of-security-tools">2. Installation of Security
+Tools</h4>
+<p>The script installs a collection of tools that collectively cover
+monitoring, access control, and auditing:</p>
+<ul>
+<li><strong>ufw</strong> – the Uncomplicated Firewall. It provides a
+simple interface to iptables for managing which ports are open to the
+network.</li>
+<li><strong>fail2ban</strong> – a log-parsing daemon that bans IP
+addresses showing malicious behaviour, such as repeated failed SSH login
+attempts.</li>
+<li><strong>unattended-upgrades</strong> – automatically installs
+security updates as soon as they are released, so you do not have to log
+in every week to patch.</li>
+<li><strong>apt-listchanges</strong> – displays a summary of package
+changes before they are applied during updates, so you know what is
+changing.</li>
+<li><strong>debsums</strong> – verifies installed package files against
+their checksums, making it possible to detect files that have been
+altered after installation.</li>
+<li><strong>rkhunter</strong> – the Rootkit Hunter. It scans the system
+for signs of rootkits, backdoors, and other malware.</li>
+<li><strong>auditd</strong> – the Linux Audit daemon. It writes detailed
+logs of system calls, file access, and authentication events for
+forensic analysis.</li>
+<li><strong>logwatch</strong> – a log summariser that can email you
+daily reports of what happened on your server.</li>
+<li><strong>sudo</strong> – allows authorised users to run commands as
+root without sharing the root password, and logs every command
+executed.</li>
+</ul>
+<h4 id="automatic-updates">3. Automatic Updates</h4>
+<p>Running <code>dpkg-reconfigure unattended-upgrades</code> enables the
+automatic installation of security updates. Once this is configured,
+critical patches arrive and are applied without manual intervention. You
+can still review what was installed by checking the log files.</p>
+<h4 id="ufw-firewall-configuration">4. UFW Firewall Configuration</h4>
+<p>The firewall is set to deny all incoming traffic by default and allow
+all outgoing traffic. This means that unless you explicitly open a port,
+nothing can reach your server from the outside. The script then opens
+port 22 for SSH. If you run your SSH on a non-standard port, you would
+change this line before running the script.</p>
+<p>After the rules are set, the firewall is enabled. Enabling a firewall
+remotely can lock you out if you have not left SSH access open, which is
+why the <code>ufw allow OpenSSH</code> line comes before
+<code>ufw --force enable</code>.</p>
+<h4 id="ssh-hardening">5. SSH Hardening</h4>
+<p>SSH is one of the most attacked services on any public server. The
+script makes several changes to <code>/etc/ssh/sshd_config</code>:</p>
+<ul>
+<li><strong>PermitRootLogin no</strong> – disallows direct login as
+root. You log in as a regular user and use <code>sudo</code> when you
+need elevated privileges.</li>
+<li><strong>PasswordAuthentication no</strong> – disables password-based
+logins entirely. Only SSH key authentication is allowed. This single
+change stops the vast majority of brute force attacks.</li>
+<li><strong>X11Forwarding no</strong> – turns off X11 forwarding, which
+is rarely needed on a server and can be a vector for session
+hijacking.</li>
+<li><strong>MaxAuthTries 3</strong> – limits authentication attempts
+before the connection is dropped.</li>
+<li><strong>ClientAliveInterval 300</strong> and
+<strong>ClientAliveCountMax 2</strong> – detects dead or orphaned SSH
+sessions and disconnects them after 10 minutes of inactivity.</li>
+</ul>
+<p>A backup of the original configuration is saved before changes are
+applied.</p>
+<h4 id="fail2ban-configuration">6. Fail2Ban Configuration</h4>
+<p>Fail2Ban monitors log files for repeated failed authentication
+attempts and temporarily bans the offending IP address using the system
+firewall. The script writes a local configuration that sets a 10-minute
+ban window for IPs that fail 5 times within 10 minutes. This protects
+against SSH brute force attacks without permanently blocking legitimate
+users who mistype a password.</p>
+<h4 id="file-permissions">7. File Permissions</h4>
+<p>The script sets <code>/root</code> to mode 700 (only root can read,
+write, or enter the directory) and <code>/etc/ssh/sshd_config</code> to
+mode 600 (only root can read or write the SSH configuration). Both are
+sensible defaults that prevent other users or processes from accessing
+sensitive files.</p>
+<h4 id="auditd">8. Auditd</h4>
+<p>The audit daemon is enabled and started. Once running, it logs system
+calls, login events, and file accesses to a dedicated log file. If your
+server is ever compromised, these logs are the primary source of
+evidence for determining how the attacker got in and what they did.</p>
+<h4 id="rootkit-detection">9. Rootkit Detection</h4>
+<p>Rkhunter is updated and its property database is initialised. This
+gives you a baseline of file checksums that the tool can compare against
+in future scans. Running <code>rkhunter --check</code> periodically will
+alert you if any system binaries have been modified by malware.</p>
+<h4 id="disabling-unnecessary-services">10. Disabling Unnecessary
+Services</h4>
+<p>The script disables and stops <code>avahi-daemon</code> (mDNS/Bonjour
+broadcasting) and <code>cups</code> (the print service). Neither service
+is needed on a typical server, and both have had remote code execution
+vulnerabilities in the past. If your server does not need to advertise
+itself on the local network or accept print jobs, these services should
+not be running.</p>
+<h4 id="kernel-hardening">11. Kernel Hardening</h4>
+<p>The script applies several kernel parameter changes via
+<code>sysctl</code>:</p>
+<ul>
+<li><strong>IP forwarding is disabled</strong> – the server will not
+route traffic between networks unless explicitly configured to do
+so.</li>
+<li><strong>Accept and send redirects are disabled</strong> – prevents
+an attacker from altering your server’s routing table through ICMP
+redirect messages.</li>
+<li><strong>Source route acceptance is disabled</strong> – blocks IP
+packets that specify their own route, which can be used for
+spoofing.</li>
+<li><strong>Martian packets are logged</strong> – packets that arrive on
+an interface they should not have, often a sign of misconfiguration or
+an attack.</li>
+<li><strong>ICMP broadcast echo requests are ignored</strong> – prevents
+the server from being used in a Smurf amplification attack.</li>
+<li><strong>Bogus ICMP error responses are ignored</strong> – drops
+malformed ICMP packets.</li>
+<li><strong>ASLR is enabled</strong> – kernel address space layout
+randomisation makes it harder for exploit code to predict memory
+addresses.</li>
+</ul>
+<p>These changes are written to
+<code>/etc/sysctl.d/99-hardening.conf</code> and applied
+immediately.</p>
+<h4 id="password-policies">12. Password Policies</h4>
+<p>The <code>libpam-pwquality</code> module is installed and configured
+to enforce password complexity: minimum 12 characters, with at least one
+uppercase letter, one lowercase letter, one digit, and one special
+character. This applies only if password authentication is used anywhere
+on the system.</p>
+<h4 id="locking-unused-accounts">13. Locking Unused Accounts</h4>
+<p>System accounts like <code>games</code> and <code>news</code> are
+locked with <code>passwd -l</code>. These accounts exist by default on
+many Linux installations but are not needed for normal server operation.
+Locking them removes them as potential entry points.</p>
+<hr />
+<h3 id="using-the-script">Using the Script</h3>
+<p>The script is available as a public gist on GitHub:</p>
+<p>https://gist.github.com/JeanHuit/7e551d11ec8b9e15b8a49507e2f0c16e</p>
+<p>You can download it, review the code, and run it on a fresh
+Debian-based system. Because it makes several irreversible changes –
+particularly disabling password-based SSH login – it is worth reading
+through the whole thing first and adjusting any settings that do not
+match your environment.</p>
+<p>If you spot something I have missed or have a suggestion for
+improvement, the gist supports comments and edits. The goal is to keep
+this script practical and up to date as new threats and tools
+emerge.</p>
+<hr />
+<h3 id="one-last-thing">One Last Thing</h3>
+<p>The script disables password-based SSH login in favour of key-based
+authentication. You need to make sure your SSH public key is in place on
+the server before running the script, or you will lose access. The
+script ends with a reminder to verify that key-based login works before
+closing your current session. That reminder is there because I have
+locked myself out exactly that way and I suspect I am not the only
+one.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Hardening%20Your%20Server%20After%20a%20Fresh%20Install&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fhardening-your-server-after-a-fresh-install" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fhardening-your-server-after-a-fresh-install" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

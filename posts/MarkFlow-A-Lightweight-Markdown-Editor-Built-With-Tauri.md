@@ -1,6 +1,6 @@
 ---
 title: "MarkFlow: A Lightweight Markdown Editor Built With Tauri"
-date: 2026-08-16T00:00:00ZT00:00:00Z
+date: 2026-08-16T00:00:00Z
 draft: false
 description: "The world does not need another markdown editor. But it might need a better one — one that starts fast, gets out of your way, and doesn't ship a 200MB Electron binary just to render some text."
 author: John Awotwi
