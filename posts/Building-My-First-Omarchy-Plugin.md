@@ -1,6 +1,6 @@
 ---
 title: Building My First Omarchy Plugin
-date: 2026-08-23T00:00:00ZT00:00:00Z
+date: 2026-08-23T00:00:00Z
 draft: false
 description: "I work across several machines, and I use Syncthing to keep a folder of stuff identical on all of them. Inside that folder lives my Obsidian vault — a pile of markdown files that I already think of as"
 author: John Awotwi

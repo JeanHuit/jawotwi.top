@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="I work across several machines, and I use Syncthing to keep a folder of stuff identical on all of them. Inside that folder lives my Obsidian vault — a pile of markdown files that I already think of as" />
+  <meta property="og:title" content="Building My First Omarchy Plugin" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/building-my-first-omarchy-plugin" />
+  <title>Building My First Omarchy Plugin · John Awotwi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="site-nav__inner">
+    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
+    <nav aria-label="Main navigation">
+      <ul class="site-nav__links">
+        <li><a href="../index.html#projects">projects</a></li>
+        <li><a href="../index.html#services">services</a></li>
+        <li><a href="../resume.html">resume</a></li>
+        <li><a href="../musings.html" class="active">musings</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="post-header">
+    <div class="container--prose">
+      <div class="post-header__eyebrow">
+        <a href="../musings.html" class="post-header__back">← musings</a>
+        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">blogging</span>
+      </div>
+      <h1 class="post-header__title">Building My First Omarchy Plugin</h1>
+            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">I work across several machines, and I use Syncthing to keep a folder of stuff identical on all of them. Inside that folder lives my Obsidian vault — a pile of markdown files that I already think of as</p>
+      <div class="post-meta">
+        <span>Jean Huit</span>
+        <span class="post-meta__sep">·</span>
+        <span>Aug 23, 2026</span>
+      </div>
+      <div class="post-tags">
+        <a href="../musings.html?tag=blogging" class="post-tag">blogging</a>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="container--prose">
+<h1>Building My First Omarchy Plugin</h1>
+<h2>The problem: todos, everywhere, always</h2>
+<p>I work across several machines, and I use [Syncthing](https://syncthing.net/) to keep a folder of stuff identical on all of them. Inside that folder lives my Obsidian vault — a pile of markdown files that I already think of as my second brain.</p>
+<p>What I didn't have was a way to <em>see</em> my todos at a glance. They lived in markdown, which is great for writing but terrible for noticing. I wanted the open count sitting in my top bar, a click away from the full list, and the ability to check things off without opening Obsidian.</p>
+<p>That's how I ended up building my first Omarchy plugin.</p>
+<h2>The idea: no server, no API, no account</h2>
+<p>Most todo apps solve the "sync across machines" problem by running a server and asking you to log in. I already had Syncthing doing the sync. So the plugin didn't need to be an app — it just needed to be a <em>view</em> over a folder.</p>
+<p>The whole architecture is:</p>
+<pre><code>Obsidian vault (synced by Syncthing)
+  └── Todos/
+        ├── inbox.md     # - [ ] Buy milk
+        └── project.md
+<p>Omarchy shell ──watches──> reads .md ──> bar shows open count
+                  toggle checkbox ──> writes back ──> syncs everywhere
+</code></pre></p>
+<p>Each machine reads its own local copy. Check a task off on the laptop, Syncthing pushes it to the desktop, and the desktop's bar updates within seconds. No server to maintain, no sync protocol to debug.</p>
+<h2>Learning how an Omarchy plugin is put together</h2>
+<p>Omarchy's shell is a long-running [Quickshell](https://quickshell.org/) process, and a plugin is just a folder with a <code>manifest.json</code> and some QML. The manifest declares what the plugin <em>is</em> and how to load it:</p>
+<pre><code>{
+  "schemaVersion": 1,
+  "id": "jeanhuit.todos",
+  "name": "Synced Todos",
+  "version": "1.0.0",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "Panel.qml" }
+}
+</code></pre>
+<p>The <code>bar-widget</code> kind is what puts it in the status bar. The manifest also carries a <code>schema</code>, which is what drives the built-in settings panel — so <code>vaultPath</code>, <code>todosDir</code>, and a couple of other options become editable fields with no extra UI work on my part.</p>
+<p>The rest of the plugin is two files:</p>
+<li><strong><code>Model.js</code></strong> — pure-JS parsing of [Obsidian Tasks](https://publish.obsidian.md/tasks/) syntax (<code>- [ ]</code>, <code>- [x]</code>, <code>📅 due dates</code>). I kept it Qt-free so it's unit-testable under plain <code>node</code>.</li>
+<li><strong><code>Panel.qml</code></strong> — the bar button and the popup, built entirely from Omarchy's own <code>qs.Ui</code> component kit.</li>
+<h2>Watching files with FileView</h2>
+<p>The interesting part was reacting to changes. Quickshell's <code>FileView</code> type reads a file <em>and</em> can watch it, firing a signal when it changes. That single type did most of the heavy lifting:</p>
+<li>one <code>FileView</code> watches the <code>Todos/</code> directory and re-scans when anything appears or disappears</li>
+<li>one <code>FileView</code> per markdown file parses its tasks on load and reload</li>
+<p>When Syncthing writes a new version of <code>inbox.md</code>, the watcher fires, the file is re-read, and the count updates. I didn't write any polling — the shell just tells me when things change.</p>
+<h2>Writing back is where it got tricky</h2>
+<p>Checking a task off means rewriting a line in a markdown file — flipping <code>- [ ]</code> to <code>- [x]</code>. That part is easy. The tricky part was making the popup reflect the change immediately rather than waiting for the file-watcher round-trip.</p>
+<p>I landed on an optimistic update: write the file, then update the in-memory model straight away. The watcher re-syncs a moment later as a safety net.</p>
+<p>The other gotcha took a while to pin down: after hot-reloading a bar widget during development, its IPC handler sometimes doesn't re-register cleanly. The symptom was confusing — methods worked, then didn't, or returned stale counts. The fix is embarrassingly simple: <code>omarchy restart shell</code>. Development reloads are fine for the UI, but a clean restart is what makes the command-line interface line up again.</p>
+<h2>Quick-add from anywhere</h2>
+<p>Because the plugin is file-backed, "adding a task" is just appending a line. That means my agents — and a keyboard shortcut — can drop tasks in without touching the popup:</p>
+<pre><code>omarchy-shell jeanhuit.todos add "Buy milk 📅 2026-08-30"
+</code></pre>
+<p>And because agents can write plain markdown straight into the vault, anything that can write a file becomes a todo source for free.</p>
+<h2>Theming came for free</h2>
+<p>I was worried about matching Omarchy's look — the rounded corners, the accent colors, the pill shapes. It turned out to be a non-issue. Every color, font, and border in the plugin resolves through Omarchy's theme singletons, so the widget restyles itself the moment I switch themes. I never hardcoded a single color.</p>
+<h2>What you need to run it</h2>
+<li><strong>Omarchy</strong> (it runs inside <code>omarchy-shell</code>)</li>
+<li><strong>An Obsidian vault</strong> (or any folder of markdown)</li>
+<li><strong>Syncthing</strong> (or Dropbox, rsync — anything that syncs a folder)</li>
+<p>No other runtime dependencies — just <code>find</code>, <code>bash</code>, and a couple of coreutils.</p>
+<h2>Try it</h2>
+<pre><code>omarchy plugin add https://github.com/TopHermDev/omarchy-todos.git --enable
+</code></pre>
+<p>The code is public at [github.com/TopHermDev/omarchy-todos](https://github.com/TopHermDev/omarchy-todos), with a README covering configuration and the full IPC reference. I've also submitted it to the community plugin marketplace at omarchyplugins.com.</p>
+<p>---</p>
+<p>Building it taught me the nice thing about Omarchy's model: a plugin doesn't have to be an application. Sometimes it's just a window onto files you already have — and Syncthing does the hard part for you.</p>
+      <div class="post-share">
+        <div class="post-share__title">Share this post</div>
+        <div class="post-share__links">
+          <a href="https://twitter.com/intent/tweet?text=Building%20My%20First%20Omarchy%20Plugin&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fbuilding-my-first-omarchy-plugin" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fbuilding-my-first-omarchy-plugin" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
+          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </div>
+      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
+        <span></span>
+        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
+    <div class="site-footer__links">
+      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:john@jawotwi.top">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

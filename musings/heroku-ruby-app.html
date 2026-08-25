@@ -54,23 +54,22 @@
 
   <article class="prose">
     <div class="container--prose">
-<p>**NB: Heroku is no longer free”</p>
-<p>In my bid to host my ruby based telegram bot on heroku,</p>
-<p>I had to jump through hoops due to the fact that my bot was not using
-webhooks but the polling alternative.</p>
-<p>This required that I run a script to initiate the bot. This also
-meant that my bot had no web interface.</p>
-<p>Most important
+<p>**NB: Heroku is no longer free"
+ 
+In my bid to host my ruby based telegram bot on heroku,</p>
+<p>I had to jump through hoops due to the fact that my bot was not using webhooks but the polling alternative.</p>
+<p>This required that I run a script to initiate the bot. This also meant that my bot had no web interface.</p>
+<p>Most important 
 <code>REMEMBER TO SET ENV VARIABLES IN HEROKU'S CONFIG VAR</code></p>
 <p>Add a <code>Procfile</code> to the root of your app.</p>
 <p>Sample Procfile:</p>
-<pre><code>  bot: bundle exec ruby app.rb</code></pre>
-<p>Make sure you have installed Heroku’s CLI. Run the following command:
-<code>heroku ps:scale bot=1 -a &lt;appname&gt;</code></p>
-<p>Note here that ‘bot’ here is same and similar to ‘bot’ in the
-procfile</p>
+<pre><code>  bot: bundle exec ruby app.rb
+</code></pre>
+<p>Make sure you have installed Heroku's CLI. Run the following command:
+<code>heroku ps:scale bot=1 -a <appname></code></p>
+<p>Note here that 'bot' here is same and similar to  'bot' in the procfile</p>
 <p>and</p>
-<p><code>heroku run bundle exec ruby &lt;app.rb&gt; -a &lt;appname&gt;</code></p>
+<code> heroku run bundle exec ruby <app.rb> -a <appname></code>
 <p>Thats it. This should get you going?</p>
       <div class="post-share">
         <div class="post-share__title">Share this post</div>

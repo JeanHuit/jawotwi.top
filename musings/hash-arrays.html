@@ -54,40 +54,39 @@
 
   <article class="prose">
     <div class="container--prose">
-<p>Man got stuck working with Google matric Api to determine distance,
-duration of travel etc from two points on the map.</p>
-<p>values the api spat out was a jumble of hash values that took me a
-while to understand how to traverse it.</p>
-<pre class="ruby"><code>
+<p>Man got stuck working with Google matric Api to determine distance, duration of travel etc from two points on the map.</p>
+<p>values the api spat out was a jumble of hash values that took me a while to understand how to traverse it.</p>
+<pre><code>
 matrix = 
 {
-  &quot;destination_addresses&quot;:[&quot;Egypt Rd, Accra, Ghana&quot;],
-  &quot;origin_addresses&quot;:[&quot;8 Third Dade Walk, Accra, Ghana&quot;],
-  &quot;rows&quot;:
+  "destination_addresses":["Egypt Rd, Accra, Ghana"],
+  "origin_addresses":["8 Third Dade Walk, Accra, Ghana"],
+  "rows":
   [
-    {&quot;elements&quot;:
+    {"elements":
       [
         {
-          &quot;distance&quot;:
+          "distance":
           {
-            &quot;text&quot;:&quot;5.0 km&quot;,
-            &quot;value&quot;:5047
+            "text":"5.0 km",
+            "value":5047
             },
-          &quot;duration&quot;:
+          "duration":
           {
-            &quot;text&quot;:&quot;12 mins&quot;,
-            &quot;value&quot;:734
+            "text":"12 mins",
+            "value":734
             },
-            &quot;status&quot;: &quot;OK&quot;
+            "status": "OK"
             }
               ]
                }
               ],
-              &quot;status&quot;:&quot;OK&quot;
-              }</code></pre>
-<p>Ever wondered how to traverse an array/hash like this? code snippet
-below will output : <code>"5.0km"</code></p>
-<p><code>matrix[:rows][0][:elements][0][:distance][:text]</code></p>
+              "status":"OK"
+              }
+</code></pre>
+<p>Ever wondered how to traverse an array/hash like this?
+code snippet below will output :  ``<code> "5.0km" <pre><code>
+</code></pre> matrix[:rows][0][:elements][0][:distance][:text]</code>``</p>
 <p>Think on it !!</p>
       <div class="post-share">
         <div class="post-share__title">Share this post</div>

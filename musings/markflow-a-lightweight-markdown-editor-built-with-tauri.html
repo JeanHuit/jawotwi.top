@@ -49,160 +49,87 @@
 
   <article class="prose">
     <div class="container--prose">
-<h1
-id="markflow-a-lightweight-markdown-editor-built-with-tauri">MarkFlow: A
-Lightweight Markdown Editor Built With Tauri</h1>
-<h2 id="why-another-markdown-editor">Why another markdown editor?</h2>
-<p>The world doesn’t need another markdown editor. But it might need a
-better one — one that starts fast, gets out of your way, and doesn’t
-ship a 200MB Electron binary just to render some text.</p>
-<p>That’s why I built <strong>MarkFlow</strong>.</p>
-<h2 id="what-is-markflow">What is MarkFlow?</h2>
-<p>MarkFlow is a minimal, cross-platform markdown editor built with
-Tauri. It renders GitHub Flavored Markdown (GFM), supports dark and
-light themes, and exports to PDF and Word — all from a binary under
-5MB.</p>
-<p>It runs on Linux, macOS, and Windows. No Electron. No Chromium. Just
-a native webview and a Rust backend.</p>
-<h3 id="features-at-a-glance">Features at a glance</h3>
-<ul>
-<li><strong>GitHub Flavored Markdown</strong> — tables, task lists, code
-blocks, strikethrough</li>
-<li><strong>Dark &amp; light mode</strong> — toggle with one click,
-respects system preference</li>
-<li><strong>PDF export</strong> — styled, A4-formatted, ready to
-print</li>
-<li><strong>Word export</strong> — proper .docx with headings, lists,
-and code blocks</li>
-<li><strong>Autosave</strong> — saves every 5 seconds to localStorage,
-recovers on restart</li>
-<li><strong>File associations</strong> — right-click any
-<code>.md</code> file → Open with MarkFlow</li>
-<li><strong>Keyboard-first</strong> — <code>E</code> to edit,
-<code>Escape</code> to preview, <code>Ctrl+O</code> to open</li>
-</ul>
-<h2 id="the-tech-stack">The tech stack</h2>
+<h1>MarkFlow: A Lightweight Markdown Editor Built With Tauri</h1>
+<h2>Why another markdown editor?</h2>
+<p>The world doesn't need another markdown editor. But it might need a better one — one that starts fast, gets out of your way, and doesn't ship a 200MB Electron binary just to render some text.</p>
+<p>That's why I built <strong>MarkFlow</strong>.</p>
+<h2>What is MarkFlow?</h2>
+<p>MarkFlow is a minimal, cross-platform markdown editor built with Tauri. It renders GitHub Flavored Markdown (GFM), supports dark and light themes, and exports to PDF and Word — all from a binary under 5MB.</p>
+<p>It runs on Linux, macOS, and Windows. No Electron. No Chromium. Just a native webview and a Rust backend.</p>
+<h3>Features at a glance</h3>
+<li><strong>GitHub Flavored Markdown</strong> — tables, task lists, code blocks, strikethrough</li>
+<li><strong>Dark & light mode</strong> — toggle with one click, respects system preference</li>
+<li><strong>PDF export</strong> — styled, A4-formatted, ready to print</li>
+<li><strong>Word export</strong> — proper .docx with headings, lists, and code blocks</li>
+<li><strong>Autosave</strong> — saves every 5 seconds to localStorage, recovers on restart</li>
+<li><strong>File associations</strong> — right-click any <code>.md</code> file → Open with MarkFlow</li>
+<li><strong>Keyboard-first</strong> — <code>E</code> to edit, <code>Escape</code> to preview, <code>Ctrl+O</code> to open</li>
+<h2>The tech stack</h2>
 <p>MarkFlow uses a deliberately simple stack:</p>
-<table>
-<thead>
-<tr>
-<th>Layer</th>
-<th>Technology</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Backend</td>
-<td>Rust (Tauri 2)</td>
-</tr>
-<tr>
-<td>Frontend</td>
-<td>Vanilla JS, HTML, CSS</td>
-</tr>
-<tr>
-<td>Markdown</td>
-<td>marked.js (GFM)</td>
-</tr>
-<tr>
-<td>PDF</td>
-<td>html2pdf.js (jsPDF + html2canvas)</td>
-</tr>
-<tr>
-<td>Word</td>
-<td>docx.js</td>
-</tr>
-<tr>
-<td>Build</td>
-<td>Cargo + GitHub Actions</td>
-</tr>
-</tbody>
-</table>
-<p>No React. No Vue. No build toolchain. Just files you can read in five
-minutes.</p>
-<h2 id="why-tauri">Why Tauri?</h2>
+<p>| Layer | Technology |
+|-------|-----------|
+| Backend | Rust (Tauri 2) |
+| Frontend | Vanilla JS, HTML, CSS |
+| Markdown | marked.js (GFM) |
+| PDF | html2pdf.js (jsPDF + html2canvas) |
+| Word | docx.js |
+| Build | Cargo + GitHub Actions |</p>
+<p>No React. No Vue. No build toolchain. Just files you can read in five minutes.</p>
+<h2>Why Tauri?</h2>
 <p>I evaluated three options:</p>
-<ol type="1">
-<li><strong>Electron</strong> — battle-tested, but ships a full Chromium
-instance. Your “lightweight” editor ships at 150MB+.</li>
-<li><strong>Flutter</strong> — great for mobile, but web rendering adds
-complexity for a simple desktop app.</li>
-<li><strong>Tauri</strong> — uses the system’s native webview (WebKit on
-macOS, WebView2 on Windows, WebKitGTK on Linux). The binary is under
-5MB. The Rust backend handles file I/O, window management, and system
-integration.</li>
-</ol>
-<p>Tauri won because it matches the project’s philosophy: do the
-minimum, do it well, and ship small.</p>
-<h2 id="building-the-release-pipeline">Building the release
-pipeline</h2>
-<p>Cross-platform builds aren’t free. Here’s how I set it up:</p>
-<p><strong>GitHub Actions</strong> triggers on every <code>v*</code> tag
-push. Three parallel jobs build for: - <strong>Linux</strong> —
-<code>.deb</code> package, portable <code>.tar.gz</code>, and an Arch
-PKGBUILD - <strong>macOS</strong> — <code>.dmg</code> installer (Apple
-Silicon) - <strong>Windows</strong> — NSIS <code>.exe</code> installer
-and <code>.msi</code> package</p>
-<p>Each job runs on a fresh runner, installs Rust, and builds the Tauri
-release. Artifacts are uploaded automatically to a GitHub release.</p>
-<p>The <code>.deb</code> package includes a <code>.desktop</code> file
-with MIME type registration, so MarkFlow shows up in your file manager’s
-“Open with” menu.</p>
-<h2 id="the-autosave-problem">The autosave problem</h2>
-<p>Every editor needs autosave, but most implementations are either too
-aggressive (saving on every keystroke) or too fragile (writing to disk
-and failing silently).</p>
-<p>MarkFlow’s approach: - <strong>Debounced saves</strong> — waits 5
-seconds after the last edit before saving - <strong>localStorage
-only</strong> — no disk writes until you explicitly save -
-<strong>Session recovery</strong> — on restart, checks if saved content
-differs from the editor. If so, asks “Restore previous session?” -
-<strong>Visual feedback</strong> — status bar shows “Saved 14:32:07”
-when autosave fires</p>
-<p>This means you never lose work, even if the app crashes or you
-accidentally close the window.</p>
-<h2 id="design-decisions">Design decisions</h2>
+<p>1. <strong>Electron</strong> — battle-tested, but ships a full Chromium instance. Your "lightweight" editor ships at 150MB+.
+2. <strong>Flutter</strong> — great for mobile, but web rendering adds complexity for a simple desktop app.
+3. <strong>Tauri</strong> — uses the system's native webview (WebKit on macOS, WebView2 on Windows, WebKitGTK on Linux). The binary is under 5MB. The Rust backend handles file I/O, window management, and system integration.</p>
+<p>Tauri won because it matches the project's philosophy: do the minimum, do it well, and ship small.</p>
+<h2>Building the release pipeline</h2>
+<p>Cross-platform builds aren't free. Here's how I set it up:</p>
+<strong>GitHub Actions</strong> triggers on every <code>v*</code> tag push. Three parallel jobs build for:
+<li><strong>Linux</strong> — <code>.deb</code> package, portable <code>.tar.gz</code>, and an Arch PKGBUILD</li>
+<li><strong>macOS</strong> — <code>.dmg</code> installer (Apple Silicon)</li>
+<li><strong>Windows</strong> — NSIS <code>.exe</code> installer and <code>.msi</code> package</li>
+<p>Each job runs on a fresh runner, installs Rust, and builds the Tauri release. Artifacts are uploaded automatically to a GitHub release.</p>
+<p>The <code>.deb</code> package includes a <code>.desktop</code> file with MIME type registration, so MarkFlow shows up in your file manager's "Open with" menu.</p>
+<h2>The autosave problem</h2>
+<p>Every editor needs autosave, but most implementations are either too aggressive (saving on every keystroke) or too fragile (writing to disk and failing silently).</p>
+<p>MarkFlow's approach:
+<li><strong>Debounced saves</strong> — waits 5 seconds after the last edit before saving</li>
+<li><strong>localStorage only</strong> — no disk writes until you explicitly save</li>
+<li><strong>Session recovery</strong> — on restart, checks if saved content differs from the editor. If so, asks "Restore previous session?"</li>
+<li><strong>Visual feedback</strong> — status bar shows "Saved 14:32:07" when autosave fires</li></p>
+<p>This means you never lose work, even if the app crashes or you accidentally close the window.</p>
+<h2>Design decisions</h2>
 <p>A few things that might surprise you:</p>
-<p><strong>No markdown preview toggle button in the toolbar</strong> —
-the keyboard shortcut (<code>E</code> / <code>Escape</code>) is faster
-and more reliable than a button click. The toolbar has buttons for file
-operations, not mode switching.</p>
-<p><strong>No file tree sidebar</strong> — MarkFlow opens one file at a
-time. If you need a file tree, use VS Code.</p>
-<p><strong>No plugin system</strong> — plugins add complexity. MarkFlow
-does markdown editing. That’s it.</p>
-<p><strong>CSS custom properties for theming</strong> — every color in
-the app is a CSS variable. Dark mode isn’t a separate stylesheet; it’s
-just different values for the same variables.</p>
-<h2 id="the-logo">The logo</h2>
-<p>The MarkFlow logo combines a hashtag (<code>#</code> — the universal
-markdown symbol) with a flow arrow. It’s simple, recognizable at 16x16,
-and works in both dark and light themes. The teal/turquoise color
-palette gives it a distinctive identity without being loud.</p>
-<h2 id="getting-started">Getting started</h2>
-<p><strong>Linux:</strong></p>
-<pre class="bash"><code>sudo dpkg -i markflow_0.4.0_amd64.deb
-markflow</code></pre>
-<p><strong>macOS:</strong> Download the <code>.dmg</code>, drag MarkFlow
-to Applications.</p>
-<p><strong>Windows:</strong> Download the <code>.exe</code> installer,
-run it.</p>
-<p><strong>From source:</strong></p>
-<pre class="bash"><code>git clone https://github.com/TopHermDev/markdown-editor
+<strong>No markdown preview toggle button in the toolbar</strong> — the keyboard shortcut (<code>E</code> / <code>Escape</code>) is faster and more reliable than a button click. The toolbar has buttons for file operations, not mode switching.
+<strong>No file tree sidebar</strong> — MarkFlow opens one file at a time. If you need a file tree, use VS Code.
+<strong>No plugin system</strong> — plugins add complexity. MarkFlow does markdown editing. That's it.
+<strong>CSS custom properties for theming</strong> — every color in the app is a CSS variable. Dark mode isn't a separate stylesheet; it's just different values for the same variables.
+<h2>The logo</h2>
+<p>The MarkFlow logo combines a hashtag (<code>#</code> — the universal markdown symbol) with a flow arrow. It's simple, recognizable at 16x16, and works in both dark and light themes. The teal/turquoise color palette gives it a distinctive identity without being loud.</p>
+<h2>Getting started</h2>
+<strong>Linux:</strong>
+<pre><code>sudo dpkg -i markflow_0.4.0_amd64.deb
+markflow
+</code></pre>
+<strong>macOS:</strong>
+Download the <code>.dmg</code>, drag MarkFlow to Applications.
+<strong>Windows:</strong>
+Download the <code>.exe</code> installer, run it.
+<strong>From source:</strong>
+<pre><code>git clone https://github.com/TopHermDev/markdown-editor
 cd markdown-editor/src-tauri
-cargo tauri build</code></pre>
-<h2 id="whats-next">What’s next?</h2>
-<p>MarkFlow is intentionally minimal. Future considerations: - Table of
-contents navigation for long documents - Find and replace (Ctrl+F) -
-Custom CSS themes - Vim keybindings (maybe)</p>
-<p>But for now, it does what it says on the tin: edit markdown, preview
-it, export it. Fast.</p>
-<hr />
-<p><strong>Download MarkFlow v0.4.0:</strong> <a
-href="https://github.com/TopHermDev/markdown-editor/releases/tag/v0.4.0">GitHub
-Releases</a></p>
-<p><strong>Source code:</strong> <a
-href="https://github.com/TopHermDev/markdown-editor">github.com/TopHermDev/markdown-editor</a></p>
-<p><strong>License:</strong> MIT</p>
+cargo tauri build
+</code></pre>
+<h2>What's next?</h2>
+<p>MarkFlow is intentionally minimal. Future considerations:
+<li>Table of contents navigation for long documents</li>
+<li>Find and replace (Ctrl+F)</li>
+<li>Custom CSS themes</li>
+<li>Vim keybindings (maybe)</li></p>
+<p>But for now, it does what it says on the tin: edit markdown, preview it, export it. Fast.</p>
+<p>---</p>
+<strong>Download MarkFlow v0.4.0:</strong> [GitHub Releases](https://github.com/TopHermDev/markdown-editor/releases/tag/v0.4.0)
+<strong>Source code:</strong> [github.com/TopHermDev/markdown-editor](https://github.com/TopHermDev/markdown-editor)
+<strong>License:</strong> MIT
       <div class="post-share">
         <div class="post-share__title">Share this post</div>
         <div class="post-share__links">

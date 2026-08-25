@@ -54,56 +54,34 @@
 
   <article class="prose">
     <div class="container--prose">
-<p>**NB: This is no longer active or maintained. Heroku is no longer
-free”</p>
-<h2 id="httpspassg.herokuapp.com-is-the-sinatra-app-on-heroku."><a
-href="https://passg.herokuapp.com">https://passg.herokuapp.com</a> is
-the sinatra app on heroku.</h2>
-<h2 id="this-is-how-it-got-there.">### This is how it got there.</h2>
-<ul>
-<li><p>First Create an account, or sign-in to an already existing
-account.</p></li>
-<li><p>Create an app.</p>
-<ul>
-<li>In my scenario, I connected to github from where I deploy my app,
-whenever there is a push to the master branch of my repo.</li>
-</ul></li>
-<li><p>You will need a <code>Gemfile</code> , <code>Gemfile.lock</code>,
-<code>Config.ru</code></p></li>
-<li><p>Using <code>touch Gemfile</code> in your terminal should create a
-Gemfile for you.</p>
-<ul>
-<li>In this Gemfile, list out the gems that you will want installed with
-your app. eg.</li>
-</ul>
-<pre class="ruby"><code># Gemfile
-
-source &quot;https://rubygems.org&quot;
-gem &quot;sinatra&quot;
-gem &quot;sinatra-contrib&quot;</code></pre></li>
-<li><p>Run <code>bundle install</code> in the same directory with the
-Gemfile and this will create for you, <code>Gemfile.lock</code>.
-<strong>Note:</strong> The bundler gem would have to be installed to do
-this. <code>gem install bundler</code> <strong>Note:</strong> Heroku
-requires bundler version 2.</p></li>
-<li><p>In your <code>Config.ru</code> file,</p></li>
-</ul>
-<pre class="ruby"><code># Config.ru
-
-require &#39;./main&#39;
-# ./main refers to  &quot;main.rb&quot;
-
-run Sinatra::Application</code></pre>
-<ul>
-<li><p>With this, your app is ready to deploy.</p></li>
-<li><p>You might encounter an issue,after you deploy to heroku,
-especially with Heroku’s bunder version.</p></li>
-<li><p>The defualt buildpack does not come with bundler version 2. To
-solve this, visit your heroku dashboard, under settings, add this
-buildpack to your apps settings.
-<code>https://github.com/bundler/heroku-buildpack-bundler2</code> Remove
-the default ruby buildpack, you should be ready to go then</p></li>
-</ul>
+<p>**NB: This is no longer active or maintained. Heroku is no longer free"</p>
+<h2>[https://passg.herokuapp.com](https://passg.herokuapp.com) is the sinatra app on heroku.</h2>
+<h3>This is how it got there.</h3>
+-----
+<li>First Create an account, or sign-in to an already existing account.</li>
+<li>Create an app.</li>
+<p>- In my scenario, I connected to github from where I deploy my app, whenever there is a push to the master branch of my repo.</p>
+<li>You will need a <code>Gemfile</code> , <code>Gemfile.lock</code>, <code>Config.ru</code></li>
+<li>Using <code>touch Gemfile</code> in your terminal should create a Gemfile for you.</li>
+  - In this Gemfile, list  out the gems that you will want installed with your app. eg.
+<pre><code>  # Gemfile
+<p>source "https://rubygems.org"
+  gem "sinatra"
+  gem "sinatra-contrib"
+  </code></pre>
+<li>Run <code>bundle install</code> in the same directory with the Gemfile and this will create for you, <code>Gemfile.lock</code>. <strong>Note:</strong> The bundler gem would have to be installed to do this. <code>gem install bundler</code></li>
+<strong>Note:</strong> Heroku requires bundler version 2.</p>
+<li>In your <code>Config.ru</code> file,</li>
+<pre><code><h1>Config.ru</h1>
+<p>require './main'
+<h1>./main refers to  "main.rb"</h1></p>
+<p>run Sinatra::Application
+</code></pre></p>
+<li>With this, your app is ready to deploy.</li>
+<li>You might encounter an issue,after you deploy to heroku, especially with Heroku's bunder version.</li>
+<li>The defualt buildpack does not come with bundler version 2. To solve this, visit your heroku dashboard, under settings, add this buildpack to your apps settings.</li>
+<code>https://github.com/bundler/heroku-buildpack-bundler2</code>
+Remove the default ruby buildpack, you should be ready to go then
       <div class="post-share">
         <div class="post-share__title">Share this post</div>
         <div class="post-share__links">

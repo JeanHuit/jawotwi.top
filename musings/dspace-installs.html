@@ -55,29 +55,17 @@
   <article class="prose">
     <div class="container--prose">
 <p>I have spent over three weeks in trying to get dspace set up.</p>
-<p>It has been one helluva ride. Finally got it working somewhat on a
-windows OS and wanted to document the process for posterity sake.</p>
-<h3 id="what-is-dspace">What is DSpace?</h3>
-<p>DSpace is an open source repository software package typically used
-for creating open access repositories for scholarly and/or published
-digital content. While DSpace shares some feature overlap with content
-management systems and document management systems, the DSpace
-repository software serves a specific need as a digital archives system,
-focused on the long-term storage, access and preservation of digital
-content. - <a href="https://en.wikipedia.org/wiki/DSpace">Wikipedia
-reference</a></p>
+<p>It has been one helluva ride. Finally got it working somewhat on a windows OS and wanted to document the process for posterity sake.</p>
+<h3>What is DSpace?</h3>
+<p>DSpace is an open source repository software package typically used for creating open access repositories for scholarly and/or published digital content. While DSpace shares some feature overlap with content management systems and document management systems, the DSpace repository software serves a specific need as a digital archives system, focused on the long-term storage, access and preservation of digital content. - [Wikipedia reference](https://en.wikipedia.org/wiki/DSpace)</p>
 <p>To get this working, you need:</p>
-<ul>
 <li>Apache Ant</li>
 <li>Apache Maven</li>
 <li>Apache Tomcat</li>
 <li>Postgresql</li>
 <li>Java JDK</li>
 <li>DSpace src-release</li>
-</ul>
-<p>Funny enough, only certain specific versions get to work well with
-each other.</p>
-<ul>
+<p>Funny enough, only certain specific versions get to work well with each other.</p>
 <li>Apache Ant v1.9.9</li>
 <li>Apache Maven v3.3.9</li>
 <li>Apache Tomcat v9.0.0.m18</li>
@@ -85,70 +73,37 @@ each other.</p>
 <li>Java JDK v8u121</li>
 <li>DSpace src-release v6.1</li>
 <li>postgresql admin interface (pgadmin v3 or v4)</li>
-</ul>
-<p>This magic formula was concocted by <a
-href="https://www.youtube.com/watch?v=I-lmBHp6pDE">Dr. Santosh
-Gupta</a></p>
+<p>This magic formula was concocted by [Dr. Santosh Gupta](https://www.youtube.com/watch?v=I-lmBHp6pDE)</p>
 <p>Even in the comments peopole give him praise.</p>
-<h3 id="installation">Installation</h3>
-<ul>
-<li><p>Install Java: Get your environment variables working, so
-<code>java -verion</code> works in the command line</p></li>
-<li><p>Install Apache ant &amp; maven, this is usually simplified by
-extracting them from their respective zip or tar archives and placing
-them in the root of your drive, say “C:/”</p>
-<ul>
-<li>Setup your environmental variables (sytemwide path) that points to
-the bin directories where ant and maven are stored.</li>
-</ul></li>
-<li><p>Create variables JAVA_HOME, ANT_HOME under environmental
-variables (user) and point these to the main directories.</p></li>
-<li><p>Install tomcat, this you can get as an executable.</p></li>
-<li><p>Install postrgresql and pgadmin.</p>
-<ul>
-<li>Start up the postgresql db and add a new login
-<code>name =  dspace</code></li>
-<li>passwords are yours to choose.</li>
-<li>under role priviledges, simply turn all on for user dspace</li>
-<li>Add a new database, <code>name = dspace</code> and
-<code>owner = dspace</code></li>
-<li>set tablespace to the default pg_default.</li>
-<li>Add pg_crypto under extensions.</li>
-<li>DB should be connected and active.</li>
-</ul></li>
-<li><p>Extract the dspace src- release zip file into the root
-directory.</p></li>
-<li><p>Open up the commandline</p>
-<ul>
-<li>test your environmental variables
-<ul>
-<li><code>ant vesion</code> &amp; <code>java version</code></li>
-</ul></li>
-<li>Navigate into the <strong>dspace</strong> folder in
-dspace-6.1-src-release folder</li>
-<li>run <code>mvn package</code> , make sure you have a working internet
-connection</li>
-<li>after the download and installation of various packages are
-done.</li>
-<li>navigate into the config folder and locate a
-<strong>local.cfg</strong> file, scroll through said file and change the
-db password there. default will be dspace. Also change the installation
-directory to <code>C:/dspace</code></li>
-<li>Now create a dspace folder in your root</li>
-<li>Navigate into dspace-6.1-src-release &gt; dspace &gt; target
-&gt;dspace_installer</li>
-<li>Run <code>ant fresh_install</code></li>
-<li>Navigate into the bin folder of the newly created dspace folder at
-your root directory <code>c:\dspace\bin</code></li>
-<li>Run <code>dspace create-administrator</code> to create an admin,
-follow the requirements.</li>
-<li>Copy <code>jspui</code> , <code>xmlui</code> &amp; <code>solr</code>
-from the webapps folder in the new dspace installation to the webapps
-folder of your tomcat installation.</li>
-<li>open your web browser and point it to
-<code>localhost:8080\jspui</code> for your dspace installation.</li>
-</ul></li>
-</ul>
+<h3>Installation</h3>
+<li>Install Java: Get your environment variables working, so `<code>java -verion</code><code> works in the command line</li>
+<li>Install Apache ant & maven, this is usually simplified by extracting them from their respective zip or tar archives and placing them in the root of your drive, say "C:/"</li>
+  - Setup your environmental variables (sytemwide path) that points to the bin directories where ant and maven are stored.
+<li>Create variables JAVA_HOME, ANT_HOME under environmental variables (user) and point these to the main directories.</li>
+<li>Install tomcat, this you can get as an executable.</li>
+<li>Install postrgresql and pgadmin.</li>
+  - Start up the postgresql db and add a new login </code><code>name =  dspace</code><code>
+  - passwords are yours to choose.
+  - under role priviledges, simply turn all on for user dspace
+  - Add a new database, </code><code>name = dspace</code><code>  and </code><code>owner = dspace</code><code>
+  - set tablespace to the default pg_default.
+  - Add pg_crypto under extensions.
+  - DB should be connected and active.
+<li>Extract the dspace src- release zip file into the root directory.</li>
+<li>Open up the commandline</li>
+  - test your environmental variables
+    - </code><code>ant vesion</code><code> &  </code><code>java version</code><code>
+  - Navigate into the  <strong>dspace</strong> folder in  dspace-6.1-src-release folder
+  - run </code><code>mvn package</code><code> , make sure you have a working internet connection
+  - after the download and installation of various packages are done.
+  - navigate into the config folder  and locate a <strong>local.cfg</strong> file, scroll through said file and change the db password there. default will be dspace. Also change the installation directory  to </code><code>C:/dspace</code><code>
+  - Now create a dspace folder in your root
+  - Navigate into dspace-6.1-src-release > dspace > target >dspace_installer
+  - Run </code><code>ant fresh_install</code><code>
+  - Navigate into the bin folder of the newly created dspace folder at your root directory </code><code>c:\dspace\bin</code><code>
+  - Run </code><code> dspace create-administrator</code><code> to create an admin, follow the requirements.
+  - Copy </code><code>jspui</code><code> , </code><code>xmlui</code><code> & </code><code>solr </code><code> from the webapps folder in the new dspace installation to the webapps folder of your tomcat installation.
+  - open your web browser and point it to </code><code>localhost:8080\jspui</code>` for your dspace installation.
 <p>The end (For windows installations)</p>
       <div class="post-share">
         <div class="post-share__title">Share this post</div>

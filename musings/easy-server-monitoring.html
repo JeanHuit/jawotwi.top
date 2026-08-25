@@ -54,19 +54,16 @@
 
   <article class="prose">
     <div class="container--prose">
-<p>Discovered a simple script that allows you to monitor your server in
-a quick glance.</p>
+<p>Discovered a simple script that allows you to monitor your server in a quick glance.</p>
 <p>Found here: https://www.ezservermonitor.com/esm-sh/documentation</p>
 <p>Comes with a web version as well if you are so inclined.</p>
-<p>I opted for the bash script for its simplicity especially with
-dependencies; None.</p>
-<p>One issue I came across was an error in the script due to the fact
-that it was written on a windows platform.</p>
-<pre><code>Bad interpreter: No Such File ^M</code></pre>
-<p>Solution: <code>sed -i -e 's/\r$//' &lt;scriptname.sh&gt;</code></p>
+<p>I opted for the bash script for its simplicity especially with dependencies; None.</p>
+<p>One issue I came across was an error in the script due to the fact that it was written on a windows platform.
+<pre><code>Bad interpreter: No Such File ^M
+</code></pre></p>
+<p>Solution: ``<code>sed -i -e 's/\r$//' <scriptname.sh></code>``</p>
 <p>Others sugest rewriting the whole script in your unix environment.
-Others still, suggest you use <a
-href="http://dos2unix.sourceforge.net/">dos2unix</a></p>
+Others still, suggest you use [dos2unix](http://dos2unix.sourceforge.net/)</p>
       <div class="post-share">
         <div class="post-share__title">Share this post</div>
         <div class="post-share__links">
