@@ -377,7 +377,51 @@ def main():
     update_musings_listing(posts, all_tags)
     print(f"  ✓ musings.html listing updated ({len(posts)} posts)")
 
+    # Update index.html musings section with latest 5 posts
+    update_index_musings(posts)
+    print(f"  ✓ index.html musings updated (latest 5 posts)")
+
     print(f"\nDone. Generated {len(posts)} posts.")
+
+
+def update_index_musings(posts):
+    """Update the musings section in index.html with latest 5 posts."""
+    index_file = BASE / "index.html"
+    if not index_file.exists():
+        return
+
+    content = index_file.read_text(encoding="utf-8")
+
+    # Build the new musings list HTML
+    latest = posts[:5]
+    items = []
+    for p in latest:
+        tags_html = ""
+        for t in p["tags"][:2]:
+            tags_html += f'<span class="musing-tag">{t}</span>\n'
+        items.append(f'''        <li>
+          <a href="musings/{html_filename(p['file'])}" class="musing-row">
+            <div>
+              <div class="musing-row__title">{p['title']}</div>
+              <div class="musing-row__meta">
+                <span class="musing-row__date">{p['short_date']}</span>
+                <span class="musing-row__tags">
+                  {tags_html}
+                </span>
+              </div>
+            </div>
+            <span class="musing-row__date">→</span>
+          </a>
+        </li>''')
+
+    new_list = '<ul class="musings-list" aria-label="Recent posts">\n' + "\n".join(items) + "\n      </ul>"
+
+    # Replace existing musings list
+    import re
+    pattern = r'<ul class="musings-list"[^>]*>.*?</ul>'
+    content = re.sub(pattern, new_list, content, flags=re.DOTALL)
+
+    index_file.write_text(content, encoding="utf-8")
 
 
 if __name__ == "__main__":
