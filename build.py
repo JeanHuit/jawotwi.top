@@ -422,6 +422,50 @@ def write_redirects(posts):
     (BASE / "_redirects").write_text("\n".join(lines) + "\n")
 
 
+# ── Computed homepage stats ───────────────────────────────────────────────
+
+GITHUB_USER = "JeanHuit"
+CAREER_START_YEAR = 2015   # earliest role on the resume (IT Officer, May 2015)
+PLATFORMS_DEPLOYED = "6+"  # no data source; resume says "6+ institutional web platforms"
+REPOS_FALLBACK = 23        # used only if the GitHub API is unreachable at build time
+
+
+def github_repo_count():
+    """Public, non-fork repositories owned by GITHUB_USER. Falls back if the API fails."""
+    import json, urllib.request
+    count, page = 0, 1
+    try:
+        while True:
+            url = f"https://api.github.com/users/{GITHUB_USER}/repos?per_page=100&type=owner&page={page}"
+            req = urllib.request.Request(url, headers={"User-Agent": "jawotwi-build"})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                repos = json.loads(resp.read().decode())
+            count += sum(1 for r in repos if not r.get("fork"))
+            if len(repos) < 100:
+                return count
+            page += 1
+    except Exception as exc:
+        print(f"  ⚠ GitHub repo count unavailable ({exc}); using fallback {REPOS_FALLBACK}")
+        return REPOS_FALLBACK
+
+
+def update_dims(posts):
+    now = datetime.now()
+    rows = [
+        ("Years in the field", f"{now.year - CAREER_START_YEAR}+"),
+        ("Platforms deployed", PLATFORMS_DEPLOYED),
+        ("Entries written", str(len(posts))),
+        ("Repositories", str(github_repo_count())),
+    ]
+    body = "\n".join(
+        f'          <div class="dims__row"><dt>{label}</dt><dd>{value}</dd></div>' for label, value in rows
+    )
+    path = BASE / "index.html"
+    html = replace_between(path.read_text(), "<!-- dims:start -->", "<!-- dims:end -->", body)
+    path.write_text(html)
+    print("  ✓ index.html dimensions: " + ", ".join(f"{l} {v}" for l, v in rows))
+
+
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def main():
@@ -470,6 +514,7 @@ def main():
 
     assign_revs(posts)
     update_home(posts)
+    update_dims(posts)
 
     # Generate blog post HTML files (posts are newest-first: index+1 is older)
     for i, entry in enumerate(posts):

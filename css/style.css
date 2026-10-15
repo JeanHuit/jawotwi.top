@@ -249,13 +249,8 @@ a:hover, a:focus-visible { color: var(--red-text); }
   padding: 24px;
   border-right: var(--rule);
   color: var(--ink);
-  transition: background-color 120ms ease;
 }
 .detail:last-child { border-right: 0; }
-.detail:hover, .detail:focus-visible {
-  color: var(--ink);
-  background-image: var(--hatch);
-}
 .detail__label {
   margin-bottom: 14px;
   color: var(--red-text);
@@ -287,16 +282,8 @@ a:hover, a:focus-visible { color: var(--red-text); }
   line-height: 1;
   text-transform: uppercase;
 }
-.detail:hover .detail__title,
-.detail:focus-visible .detail__title {
-  text-decoration: underline;
-  text-decoration-color: var(--red);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-}
 .detail__desc { font-size: 14px; line-height: 1.6; margin-bottom: 12px; }
 .detail__stack { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
-.detail__ph { margin-top: 8px; font-size: 12px; color: var(--red-text); }
 
 .superseded {
   margin-top: 16px;
