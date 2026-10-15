@@ -8,52 +8,42 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://jawotwi.top/musings/gapps-on-chinese-phones" />
   <title>Gapps on Chinese Phones · John Awotwi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
 
-<header class="site-nav">
-  <div class="site-nav__inner">
-    <a href="../index.html" class="site-nav__logo">John Awotwi</a>
-    <nav aria-label="Main navigation">
-      <ul class="site-nav__links">
-        <li><a href="../index.html#projects">projects</a></li>
-        <li><a href="../index.html#services">services</a></li>
-        <li><a href="../resume.html">resume</a></li>
-        <li><a href="../musings.html" class="active">musings</a></li>
-        <li><a href="mailto:john@jawotwi.top" class="site-nav__cta">get in touch</a></li>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <p class="sheet-head__rev">Sheet 1 of 1 · REV 2026-10</p>
+    <nav class="sheet-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html#projects">Details</a></li>
+        <li><a href="../index.html#parts">Parts list</a></li>
+        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../musings.html" aria-current="page">Revisions</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="contact">Contact ↗</a></li>
       </ul>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main id="main-content">
-  <div class="post-header">
-    <div class="container--prose">
-      <div class="post-header__eyebrow">
-        <a href="../musings.html" class="post-header__back">← musings</a>
-        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3);">android · gapps · google apps · chinese phones · mobile</span>
-      </div>
-      <h1 class="post-header__title">Gapps on Chinese Phones</h1>
-            <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">How to install Google Apps on Chinese Android phones that don't have them pre-installed.</p>
-      <div class="post-meta">
-        <span>Jean Huit</span>
-        <span class="post-meta__sep">·</span>
-        <span>Nov 25, 2016</span>
-      </div>
-      <div class="post-tags">
-        <a href="../musings.html?tag=android" class="post-tag">android</a>
-        <a href="../musings.html?tag=gapps" class="post-tag">gapps</a>
-        <a href="../musings.html?tag=google apps" class="post-tag">google apps</a>
-        <a href="../musings.html?tag=chinese phones" class="post-tag">chinese phones</a>
-        <a href="../musings.html?tag=mobile" class="post-tag">mobile</a>
-        <a href="../musings.html?tag=mobile" class="post-tag">mobile</a>
-      </div>
-    </div>
-  </div>
+  <main id="main" class="wrap">
 
-  <article class="prose">
-    <div class="container--prose">
+    <section class="post-head" aria-labelledby="post-title">
+      <p class="post-meta">REV 15 · 2016-11-25 · <a href="../musings.html?tag=android">android</a> · <a href="../musings.html?tag=gapps">gapps</a> · <a href="../musings.html?tag=google%20apps">google apps</a> · <a href="../musings.html?tag=chinese%20phones">chinese phones</a> · <a href="../musings.html?tag=mobile">mobile</a> · <a href="../musings.html?tag=mobile">mobile</a></p>
+      <h1 class="post-title" id="post-title">Gapps on Chinese Phones</h1>
+      <p class="post-desc">How to install Google Apps on Chinese Android phones that don't have them pre-installed.</p>
+    </section>
+
+    <div class="post-grid">
+      
+
+      <article class="prose">
 <p>For some weird reason, Some android phones do not have Gapps [Google
 Apps] installed on them.</p>
 <p>Yuh! I am talking about the “Chinese phones”. One can make do with
@@ -84,39 +74,46 @@ well as host a version of this wonderful application. Find link below!
 Peace<br />
 <a href="https://github.com/JeanHuit/TheGoogleInstaller">The Google
 Installer</a></p>
-      <div class="post-share">
-        <div class="post-share__title">Share this post</div>
-        <div class="post-share__links">
-          <a href="https://twitter.com/intent/tweet?text=Gapps%20on%20Chinese%20Phones&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgapps-on-chinese-phones" target="_blank" rel="noopener" class="post-share__link">Twitter / X</a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgapps-on-chinese-phones" target="_blank" rel="noopener" class="post-share__link">LinkedIn</a>
-          <button class="post-share__link copy-link-btn" onclick="copyLink()" id="copy-btn">Copy link</button>
+        <div class="post-share">
+          <span>Share</span>
+          <a href="https://twitter.com/intent/tweet?text=Gapps%20on%20Chinese%20Phones&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgapps-on-chinese-phones" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fgapps-on-chinese-phones" target="_blank" rel="noopener">LinkedIn</a>
+          <button type="button" onclick="copyLink()" id="copy-btn">Copy link</button>
         </div>
-      </div>
-      <nav aria-label="Post navigation" style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--border-soft); display: flex; justify-content: space-between; gap: var(--space-4);">
-        <span></span>
-        <a href="../musings.html" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); text-decoration: none;">all posts →</a>
-      </nav>
+      </article>
     </div>
-  </article>
-</main>
 
-<footer class="site-footer">
-  <div class="site-footer__inner">
-    <p class="site-footer__copy">© 2025 John Awotwi · Accra, Ghana</p>
-    <div class="site-footer__links">
-      <a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a>
-      <a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:john@jawotwi.top">Email</a>
+    <nav class="pn" aria-label="Post navigation">
+      <a href="know-your-node.html"><span class="pn__label">PREVIOUS REV ←</span><span class="pn__title">Know Your Node</span></a>
+      <a href="apps-unbecoming.html"><span class="pn__label">NEXT REV →</span><span class="pn__title">Apps Unbecoming</span></a>
+    </nav>
+
+  </main>
+
+  <footer class="title-block">
+    <div class="tb-left">
+      <p class="tb-copy">© 2026 John Awotwi · Accra, Ghana</p>
+      <ul class="tb-social">
+        <li><a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
     </div>
-  </div>
-</footer>
+    <dl class="tb-grid">
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Awotwi</dd></div>
+      <div class="tb-cell"><dt>Scale</dt><dd>1:1</dd></div>
+      <div class="tb-cell"><dt>Location</dt><dd>Accra, Ghana</dd></div>
+      <div class="tb-cell tb-cell--mail"><dt>Contact</dt><dd><a href="mailto:john@jawotwi.top">john@jawotwi.top</a></dd></div>
+    </dl>
+  </footer>
+
+</div>
 
 <script>
 function copyLink() {
   navigator.clipboard.writeText(window.location.href).then(() => {
     const btn = document.getElementById('copy-btn');
-    btn.textContent = 'copied!';
+    btn.textContent = 'Copied!';
     setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
   });
 }

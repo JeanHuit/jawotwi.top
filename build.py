@@ -3,6 +3,7 @@
 
 import os, re, yaml, subprocess
 import html as html_lib
+from urllib.parse import quote
 from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
@@ -171,30 +172,105 @@ def md_to_html(text):
 
 # ── Generate individual blog post ─────────────────────────────────────────
 
-def generate_post(md_file, out_dir):
+def _strip_tags(s):
+    return re.sub(r"<[^>]+>", "", s)
+
+
+def _slugify(s):
+    return re.sub(r"[^a-z0-9]+", "-", html_lib.unescape(s).lower()).strip("-") or "section"
+
+
+def decorate_body(body, title=""):
+    """Demote body H1s, add heading ids, number figures, wrap tables.
+    Returns (html, [(id, label, level)]) for the contents list. Headings that
+    repeat the post title are kept in the body but left out of contents."""
+    body = re.sub(r"<h1([^>]*)>(.*?)</h1>", r"<h2\1>\2</h2>", body, flags=re.S)
+    used = set(re.findall(r'<h[23][^>]*\sid="([^"]+)"', body))
+    headings = []
+    norm_title = _slugify(title)
+
+    def heading(m):
+        level, attrs, inner = m.group(1), m.group(2), m.group(3)
+        idm = re.search(r'\sid="([^"]+)"', attrs)
+        if idm:
+            hid = idm.group(1)
+        else:
+            base = _slugify(_strip_tags(inner))
+            hid, n = base, 2
+            while hid in used:
+                hid, n = f"{base}-{n}", n + 1
+            used.add(hid)
+            attrs = f' id="{hid}"' + attrs
+        label = html_lib.unescape(_strip_tags(inner)).strip()
+        if _slugify(label) != norm_title:
+            headings.append((hid, label, int(level)))
+        return f"<h{level}{attrs}>{inner}</h{level}>"
+
+    body = re.sub(r"<h([23])([^>]*)>(.*?)</h\1>", heading, body, flags=re.S)
+
+    counter = [0]
+
+    def fig(m):
+        inner = m.group(1)
+        counter[0] += 1
+        cap = re.search(r"<figcaption[^>]*>(.*?)</figcaption>", inner, re.S)
+        alt = re.search(r'alt="([^"]*)"', inner)
+        text = html_lib.unescape(_strip_tags(cap.group(1))).strip() if cap else (
+            html_lib.unescape(alt.group(1)).strip() if alt else "")
+        inner = re.sub(r"<figcaption.*?</figcaption>", "", inner, flags=re.S).strip()
+        capt = (f"<figcaption>FIG. {counter[0]} — {html_lib.escape(text, quote=False)}</figcaption>"
+                if text else "")
+        return f"<figure>{inner}{capt}</figure>"
+
+    body = re.sub(r"<figure[^>]*>(.*?)</figure>", fig, body, flags=re.S)
+    body = re.sub(r"<table(.*?)</table>",
+                  lambda m: f'<div class="table-wrap"><table{m.group(1)}</table></div>',
+                  body, flags=re.S)
+    return body, headings
+
+
+def _pn_link(entry, label):
+    if not entry:
+        return "<span></span>"
+    return (f'<a href="{entry["file"]}"><span class="pn__label">{label}</span>'
+            f'<span class="pn__title">{html_lib.escape(entry["title"], quote=False)}</span></a>')
+
+
+def generate_post(md_file, out_dir, entry, prev_entry, next_entry):
+    """entry: this post's listing record (rev, iso, slug, file, tags, title).
+    prev_entry is the older post, next_entry the newer one (or None)."""
     text = md_file.read_text()
     fm, body_text = parse_front_matter(text)
 
     title = fm.get("title", md_file.stem)
-    description = fm.get("description", fm.get("excerpt", ""))
-    date_val = fm.get("date", "")
-    tags = extract_tags(fm)
-    slug = slug_from_filename(md_file.name)
-    out_name = html_filename(md_file.name)
+    description = fm.get("description", fm.get("excerpt", "")) or ""
+    tags = entry["tags"]
+    slug = entry["slug"]
+    out_name = entry["file"]
 
-    display_date = fmt_date(date_val)
+    body_html, headings = decorate_body(md_to_html(body_text), title)
+
+    tag_links = " · ".join(
+        f'<a href="../musings.html?tag={quote(t)}">{html_lib.escape(t, quote=False)}</a>' for t in tags
+    )
+    desc_html = f'<p class="post-desc">{description}</p>' if description else ""
+
+    if headings:
+        items = "\n".join(
+            f'            <li class="contents__item--{level}"><a href="#{hid}">'
+            f'{html_lib.escape(label, quote=False)}</a></li>'
+            for hid, label, level in headings
+        )
+        contents_block = (
+            '      <nav class="contents" aria-labelledby="contents-label">\n'
+            '        <p class="label" id="contents-label">Contents</p>\n'
+            f'        <ol class="contents__list">\n{items}\n        </ol>\n'
+            '      </nav>'
+        )
+    else:
+        contents_block = ""
+
     url_title = title.replace(" ", "%20").replace("—", "%E2%80%94")
-
-    tag_display = " · ".join(tags[:5]) if tags else ""
-    tag_links = ""
-    for tag in tags:
-        tag_links += f'        <a href="../musings.html?tag={tag}" class="post-tag">{tag}</a>\n'
-
-    desc_html = ""
-    if description:
-        desc_html = f'      <p class="post-header__desc" style="color:var(--ink-2);font-size:0.95rem;margin-bottom:var(--space-3);">{description}</p>'
-
-    body_html = md_to_html(body_text)
 
     tmpl = TEMPLATE_FILE.read_text()
     html = tmpl
@@ -202,18 +278,20 @@ def generate_post(md_file, out_dir):
         ("__TITLE__", title),
         ("__DESCRIPTION__", description.replace('"', "&quot;")),
         ("__SLUG__", slug),
-        ("__TAG_DISPLAY__", tag_display),
-        ("__DATE__", display_date),
-        ("__TAG_LINKS__", tag_links.rstrip()),
-        ("__BODY__", body_html),
-        ("__URL_TITLE__", url_title),
+        ("__REV__", str(entry["rev"])),
+        ("__DATE__", entry["iso"]),
+        ("__TAG_LINKS__", tag_links),
         ("__DESC_HTML__", desc_html),
+        ("__CONTENTS_BLOCK__", contents_block),
+        ("__PREV__", _pn_link(prev_entry, "PREVIOUS REV ←")),
+        ("__NEXT__", _pn_link(next_entry, "NEXT REV →")),
+        ("__URL_TITLE__", url_title),
+        ("__BODY__", body_html),
     ]:
         html = html.replace(old, new)
 
-    out_path = out_dir / out_name
-    out_path.write_text(html)
-    return out_name, title, display_date, tags, date_val
+    (out_dir / out_name).write_text(html)
+    return out_name
 
 
 # ── Regenerate musings listing ────────────────────────────────────────────
@@ -371,19 +449,23 @@ def main():
             "short_date": short_date,
             "year": year,
             "sort_date": sort_date,
-            "tags": tags[:3],
+            "tags": tags,
+            "slug": slug_from_filename(md_file.name),
+            "md": md_file,
         })
 
     # Sort newest first
     posts.sort(key=lambda p: p["sort_date"], reverse=True)
 
-    # Generate blog post HTML files
-    for md_file in md_files:
-        generate_post(md_file, MUSINGS_DIR)
-        print(f"  ✓ musings/{html_filename(md_file.name)}")
-
     assign_revs(posts)
     update_home(posts)
+
+    # Generate blog post HTML files (posts are newest-first: index+1 is older)
+    for i, entry in enumerate(posts):
+        prev_entry = posts[i + 1] if i + 1 < len(posts) else None
+        next_entry = posts[i - 1] if i > 0 else None
+        generate_post(entry["md"], MUSINGS_DIR, entry, prev_entry, next_entry)
+        print(f"  ✓ musings/{entry['file']}")
 
     # Update musings.html listing
     update_musings_listing(posts, all_tags)

@@ -532,8 +532,9 @@ a:hover, a:focus-visible { color: var(--red-text); }
 .contents__list li + li { margin-top: 8px; }
 .contents__list a { display: inline-block; line-height: 1.4; }
 .contents__list a:hover { color: var(--red-text); }
+.contents__item--3 { padding-left: 12px; }
 
-.prose { font-size: 16px; line-height: 1.75; min-width: 0; }
+.prose { grid-column: 2; font-size: 16px; line-height: 1.75; min-width: 0; }
 .prose > * + * { margin-top: 1.1em; }
 .prose h2 {
   margin-top: 2.2em;
@@ -639,6 +640,7 @@ a:hover, a:focus-visible { color: var(--red-text); }
   .title-block { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); }
   .post-title { font-size: 60px; }
   .post-grid { grid-template-columns: minmax(0, 1fr); }
+  .prose { grid-column: 1; }
   .contents { position: static; margin-bottom: 8px; }
   .role-row { grid-template-columns: minmax(0, 1fr); }
   .role-row .btn { justify-self: start; }
