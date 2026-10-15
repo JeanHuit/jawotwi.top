@@ -634,7 +634,7 @@ a:hover, a:focus-visible { color: var(--red-text); }
   .name { font-size: clamp(72px, 15vw, 236px); }
   .h1-page, .h2 { font-size: 56px; }
   .notes { grid-template-columns: 1fr; gap: 32px; }
-  .notes__photo { order: -1; }
+  .notes__photo { order: -1; justify-self: center; }
   .photo img { width: 200px; height: 250px; }
   .details { grid-template-columns: 1fr; }
   .detail { border-right: 0; border-bottom: var(--rule); }
