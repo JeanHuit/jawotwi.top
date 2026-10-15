@@ -346,6 +346,8 @@ a:hover, a:focus-visible { color: var(--red-text); }
 .grid-table .num { font-weight: 500; }
 .grid-table ul { list-style: none; }
 .grid-table li + li { margin-top: 10px; }
+.grid-table li { padding-left: 1.2em; position: relative; }
+.grid-table li::before { content: "—"; position: absolute; left: 0; }
 
 /* ── RESUME ───────────────────────────────────────────────────────────── */
 .role-row {
