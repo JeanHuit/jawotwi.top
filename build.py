@@ -219,11 +219,10 @@ def generate_post(md_file, out_dir):
 # ── Regenerate musings listing ────────────────────────────────────────────
 
 def build_listing_html(posts):
-    """Build the posts list HTML section (year groups + rows)."""
+    """Year-grouped revision rows (posts are newest-first)."""
     years = {}
     for p in posts:
-        y = p["year"]
-        years.setdefault(y, []).append(p)
+        years.setdefault(p["year"], []).append(p)
 
     year_order = sorted(years.keys(), reverse=True)
     if "older" in year_order:
@@ -232,97 +231,34 @@ def build_listing_html(posts):
 
     lines = []
     for year in year_order:
-        label = year if year != "older" else "Older"
-        lines.append(f'      <!-- {year} -->')
-        lines.append(f'      <div class="musings-year-group" data-year="{year}">')
-        lines.append(f'        <div class="musings-year-label">{label}</div>')
-        lines.append(f'        <ul class="musings-list">')
-
+        label = f"Year {year}" if year != "older" else "Older"
+        lines.append(f'        <section class="yr-group" data-year="{year}" aria-labelledby="yr-{year}">')
+        lines.append(f'          <h2 class="yr" id="yr-{year}">{label}</h2>')
+        lines.append('          <ul class="revs">')
         for p in years[year]:
-            tag_classes = " ".join(p["tags"])
-            tag_buttons = ""
-            for t in p["tags"]:
-                tag_buttons += f'                    <span class="musing-tag">{t}</span>\n'
-
-            lines.append(f'''          <li data-tags="{tag_classes}">
-            <a href="musings/{p["file"]}" class="musing-row">
-              <div>
-                <div class="musing-row__title">{p["title"]}</div>
-                <div class="musing-row__meta">
-                  <span class="musing-row__date">{p["short_date"]}</span>
-                  <span class="musing-row__tags">
-                    {tag_buttons}                  </span>
-                </div>
-              </div>
-              <span class="musing-row__date">→</span>
-            </a>
-          </li>''')
-
-        lines.append('        </ul>')
-        lines.append('      </div>')
-
-    return '\n'.join(lines)
+            lines.append(rev_row_html(p, indent="            ", with_tags_attr=True))
+        lines.append('          </ul>')
+        lines.append('        </section>')
+    return "\n".join(lines)
 
 
 def build_filters_html(all_tags):
-    """Build filter button HTML from tag frequency."""
-    # Always include 'all' first
-    lines = ['        <button class="filter-btn active" data-tag="all">all</button>']
+    """Tag filter buttons: ALL first, then the 15 most used tags."""
+    lines = ['        <li><button type="button" data-tag="all" aria-pressed="true">all</button></li>']
     for tag, _ in all_tags.most_common(15):
-        lines.append(f'        <button class="filter-btn" data-tag="{tag}">{tag}</button>')
-    return '\n'.join(lines)
+        lines.append(
+            f'        <li><button type="button" data-tag="{html_lib.escape(tag, quote=True)}" '
+            f'aria-pressed="false">{html_lib.escape(tag, quote=False)}</button></li>'
+        )
+    return "\n".join(lines)
 
 
 def update_musings_listing(posts, all_tags):
-    musings_path = BASE / "musings.html"
-    html = musings_path.read_text()
-
-    # Replace the posts list section
-    start_marker = '<div class="musings-index-list" id="posts-list">'
-    end_marker = "</div><!-- /posts-list -->"
-
-    start_idx = html.find(start_marker)
-    end_idx = html.find(end_marker, start_idx)
-
-    if start_idx < 0 or end_idx < 0:
-        print("ERROR: Could not find posts-list markers in musings.html")
-        return
-
-    start_idx = html.rfind("\n", 0, start_idx) + 1
-
-    listing_html = build_listing_html(posts)
-    empty_state = """      <!-- Empty state -->
-      <div id="empty-state" style="display:none; text-align:center; padding: var(--space-12) 0;">
-        <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-3);">
-          no posts match that search.
-        </p>
-      </div>"""
-
-    new_section = f"""    <div class="musings-index-list" id="posts-list">
-
-{listing_html}
-
-{empty_state}
-    </div><!-- /posts-list -->"""
-
-    html = html[:start_idx] + new_section + html[end_idx + len(end_marker):]
-
-    # Replace filter buttons
-    filter_start = '<div class="musings-filters" id="tag-filters" role="group" aria-label="Filter by tag">'
-    filter_end = "</div>"
-
-    fs = html.find(filter_start)
-    fe = html.find(filter_end, fs)
-
-    if fs >= 0 and fe >= 0:
-        fs = html.rfind("\n", 0, fs) + 1
-        filters_html = build_filters_html(all_tags)
-        new_filters = f"""      <div class="musings-filters" id="tag-filters" role="group" aria-label="Filter by tag">
-{filters_html}
-      </div>"""
-        html = html[:fs] + new_filters + html[fe + len("</div>"):]
-
-    musings_path.write_text(html)
+    path = BASE / "musings.html"
+    html = path.read_text()
+    html = replace_between(html, "<!-- filters:start -->", "<!-- filters:end -->", build_filters_html(all_tags))
+    html = replace_between(html, "<!-- posts:start -->", "<!-- posts:end -->", build_listing_html(posts))
+    path.write_text(html)
 
 
 # ── Shared helpers for the redesign ───────────────────────────────────────

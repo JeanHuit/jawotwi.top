@@ -39,6 +39,7 @@
 
 /* ── RESET / BASE ─────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -158,6 +159,7 @@ a:hover, a:focus-visible { color: var(--red-text); }
   text-transform: uppercase;
 }
 .meta a { text-decoration: underline; text-underline-offset: 4px; }
+.accent { color: var(--red-text); }
 .label {
   font-size: 13px;
   font-weight: 500;
