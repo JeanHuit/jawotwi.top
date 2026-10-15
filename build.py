@@ -106,7 +106,7 @@ def extract_tags(fm):
     cleaned = []
     for t in tags:
         t = t.strip().lower()
-        if t:
+        if t and t not in cleaned:
             cleaned.append(t)
     return cleaned
 
