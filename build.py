@@ -2,6 +2,7 @@
 """Build script: converts markdown posts → HTML blog pages + updates musings listing."""
 
 import os, re, yaml, subprocess
+import html as html_lib
 from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
@@ -324,6 +325,78 @@ def update_musings_listing(posts, all_tags):
     musings_path.write_text(html)
 
 
+# ── Shared helpers for the redesign ───────────────────────────────────────
+
+ROOT_PAGES = ["index.html", "resume.html", "musings.html"]
+
+
+def iso_date(sort_date):
+    if sort_date == datetime.min:
+        return "undated"
+    return sort_date.strftime("%Y-%m-%d")
+
+
+def assign_revs(posts):
+    """posts are newest-first. REV counts down from the newest as REV <total>."""
+    total = len(posts)
+    for i, p in enumerate(posts):
+        p["rev"] = total - i
+        p["iso"] = iso_date(p["sort_date"])
+    return posts
+
+
+def rev_row_html(p, indent="  ", with_tags_attr=False):
+    """One revision row: a single link with rev / date / title / tags columns."""
+    tags_attr = f' data-tags="|{"|".join(p["tags"])}|"' if with_tags_attr else ""
+    tags_text = " · ".join(p["tags"])
+    pad = indent
+    return (
+        f'{pad}<li{tags_attr}>\n'
+        f'{pad}  <a class="rev-row" href="musings/{p["file"]}">\n'
+        f'{pad}    <span class="rev-row__rev">REV {p["rev"]}</span>\n'
+        f'{pad}    <span class="rev-row__date">{p["iso"]}</span>\n'
+        f'{pad}    <span class="rev-row__title">{html_lib.escape(p["title"], quote=False)}</span>\n'
+        f'{pad}    <span class="rev-row__tags">{html_lib.escape(tags_text, quote=False)}</span>\n'
+        f'{pad}  </a>\n'
+        f'{pad}</li>'
+    )
+
+
+def replace_between(text, start, end, body):
+    """Replace everything between two marker comments (markers are kept)."""
+    i = text.find(start)
+    j = text.find(end, i + len(start)) if i >= 0 else -1
+    if i < 0 or j < 0:
+        raise SystemExit(f"ERROR: markers {start!r} / {end!r} not found")
+    return text[: i + len(start)] + "\n" + body + "\n" + text[j:]
+
+
+def update_home(posts):
+    """Fill the homepage revision preview with the 5 most recent posts."""
+    path = BASE / "index.html"
+    html = path.read_text()
+    rows = "\n".join(rev_row_html(p) for p in posts[:5])
+    html = replace_between(html, "<!-- revisions:start -->", "<!-- revisions:end -->", rows)
+    path.write_text(html)
+    print(f"  ✓ index.html revision preview (5 of {len(posts)})")
+
+
+def stamp_pages():
+    """Build-time values: sheet REV month and copyright year."""
+    now = datetime.now()
+    rev_stamp = f"REV {now:%Y-%m}"
+    year_stamp = f"© {now:%Y}"
+    targets = [BASE / name for name in ROOT_PAGES] + sorted(MUSINGS_DIR.glob("*.html"))
+    for path in targets:
+        if path.name.startswith("_"):
+            continue
+        html = path.read_text()
+        new = re.sub(r"REV \d{4}-\d{2}", rev_stamp, html)
+        new = re.sub(r"©\s*\d{4}", year_stamp, new)
+        if new != html:
+            path.write_text(new)
+
+
 # ── Main ──────────────────────────────────────────────────────────────────
 
 def main():
@@ -373,8 +446,12 @@ def main():
         generate_post(md_file, MUSINGS_DIR)
         print(f"  ✓ musings/{html_filename(md_file.name)}")
 
+    assign_revs(posts)
+    update_home(posts)
+
     # Update musings.html listing
     update_musings_listing(posts, all_tags)
+    stamp_pages()
     print(f"  ✓ musings.html listing updated ({len(posts)} posts)")
 
     print(f"\nDone. Generated {len(posts)} posts.")
