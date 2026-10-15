@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta property="og:title" content="From Welfare Contributions to Sustainability: A Simple Model for Predicting the Future of Sectorial Welfare Funds" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/from-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds" />
+  <title>From Welfare Contributions to Sustainability: A Simple Model for Predicting the Future of Sectorial Welfare Funds · John Awotwi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <p class="sheet-head__rev">Sheet 1 of 1 · REV 2026-10</p>
+    <nav class="sheet-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html#projects">Details</a></li>
+        <li><a href="../index.html#parts">Parts list</a></li>
+        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../musings.html" aria-current="page">Revisions</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="contact">Contact ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+
+    <section class="post-head" aria-labelledby="post-title">
+      <p class="post-meta">REV 56 · 2026-10-03 · <a href="../musings.html?tag=welfare">welfare</a> · <a href="../musings.html?tag=actuarial-modelling">actuarial-modelling</a> · <a href="../musings.html?tag=ghana">ghana</a> · <a href="../musings.html?tag=sectorial-funds">sectorial-funds</a> · <a href="../musings.html?tag=sustainability">sustainability</a> · <a href="../musings.html?tag=data">data</a> · <a href="../musings.html?tag=decision-support">decision-support</a></p>
+      <h1 class="post-title" id="post-title">From Welfare Contributions to Sustainability: A Simple Model for Predicting the Future of Sectorial Welfare Funds</h1>
+      
+    </section>
+
+    <div class="post-grid">
+            <nav class="contents" aria-labelledby="contents-label">
+        <p class="label" id="contents-label">Contents</p>
+        <ol class="contents__list">
+            <li class="contents__item--2"><a href="#how-a-simple-statistical-model-can-help-welfare-bodies-understand-the-effect-of-claims-on-their-funds">How
+a simple statistical model can help welfare bodies understand the effect
+of claims on their funds</a></li>
+            <li class="contents__item--2"><a href="#the-problem-with-looking-only-at-the-current-fund-balance">The
+problem with looking only at the current fund balance</a></li>
+            <li class="contents__item--2"><a href="#a-simple-example-gh18-versus-gh800">A simple example: GH₵18
+versus GH₵800</a></li>
+            <li class="contents__item--2"><a href="#from-how-much-do-we-pay-to-how-often-will-we-pay">From “How much
+do we pay?” to “How often will we pay?”</a></li>
+            <li class="contents__item--2"><a href="#modelling-each-welfare-event-separately">Modelling each welfare
+event separately</a></li>
+            <li class="contents__item--2"><a href="#building-the-model-from-historical-welfare-data">Building the
+model from historical welfare data</a></li>
+            <li class="contents__item--2"><a href="#the-funding-ratio">The funding ratio</a></li>
+            <li class="contents__item--2"><a href="#why-reserves-matter">Why reserves matter</a></li>
+            <li class="contents__item--2"><a href="#the-importance-of-stress-testing">The importance of stress
+testing</a></li>
+            <li class="contents__item--2"><a href="#retirement-must-be-treated-differently">Retirement must be
+treated differently</a></li>
+            <li class="contents__item--2"><a href="#from-a-calculator-to-a-decision-support-system">From a
+calculator to a decision-support system</a></li>
+            <li class="contents__item--2"><a href="#the-bigger-opportunity-learn-from-the-funds-own-data">The bigger
+opportunity: learn from the fund’s own data</a></li>
+            <li class="contents__item--2"><a href="#the-ultimate-model">The ultimate model</a></li>
+            <li class="contents__item--2"><a href="#why-this-matters-to-sectorial-welfare-bodies">Why this matters
+to sectorial welfare bodies</a></li>
+            <li class="contents__item--2"><a href="#from-assumptions-to-evidence">From assumptions to evidence</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+<h2
+id="how-a-simple-statistical-model-can-help-welfare-bodies-understand-the-effect-of-claims-on-their-funds">How
+a simple statistical model can help welfare bodies understand the effect
+of claims on their funds</h2>
+<p>Welfare schemes are built around a simple principle: members
+contribute regularly into a common fund, and the fund provides financial
+assistance when members experience defined life events such as
+bereavement, childbirth, marriage, medical emergencies or
+retirement.</p>
+<p>The challenge, however, is not collecting contributions.</p>
+<p>The real challenge is answering a much more important question:</p>
+<p>«Will the fund continue to have enough money to meet members’ welfare
+needs as the number and cost of claims change over time?»</p>
+<p>This question becomes particularly important for sectorial welfare
+bodies with hundreds or thousands of members.</p>
+<p>A fund may appear financially healthy today because contributions
+exceed current claims. But what happens if membership changes? What if
+claims increase? What if the average benefit rises from GH₵800 to
+GH₵1,000? What happens when more members approach retirement?</p>
+<p>These are questions that should be answered before the fund
+experiences financial pressure.</p>
+<p>That is the reason for developing the Welfare Scheme Feasibility and
+Sustainability Model.</p>
+<p><strong>You can try it yourself:</strong> the model is published as a
+free, browser-based tool at <a
+href="https://tophermdev.github.io/welfare-feasibility-calculator/">tophermdev.github.io/welfare-feasibility-calculator</a>
+(source on <a
+href="https://github.com/TopHermDev/welfare-feasibility-calculator">GitHub</a>).
+Enter your membership, contribution rate and benefit assumptions, and it
+works out the funding ratio and feasibility status as you type. The rest
+of this post explains what it is doing and why.</p>
+<hr />
+<h2 id="the-problem-with-looking-only-at-the-current-fund-balance">The
+problem with looking only at the current fund balance</h2>
+<p>A common way of assessing a welfare fund is to look at the current
+balance:</p>
+<p>«We have GH₵X million in the account, therefore the fund is
+healthy.»</p>
+<p>The fund balance is important, but it does not tell the whole
+story.</p>
+<p>A welfare fund is a dynamic system.</p>
+<p>Money comes in through:</p>
+<ul>
+<li>monthly member contributions;</li>
+<li>investment income;</li>
+<li>other approved sources.</li>
+</ul>
+<p>Money goes out through:</p>
+<ul>
+<li>bereavement claims;</li>
+<li>birth and maternity claims;</li>
+<li>medical or emergency assistance;</li>
+<li>marriage benefits;</li>
+<li>other welfare claims;</li>
+<li>administrative expenses;</li>
+<li>reserves;</li>
+<li>retirement benefits.</li>
+</ul>
+<p>The financial position of the fund is therefore determined by the
+relationship between contributions, claim frequency, claim severity and
+the timing of those payments.</p>
+<p>In actuarial and insurance modelling, this distinction between the
+frequency of claims and the severity or size of claims is a standard way
+of understanding claim costs.</p>
+<p>The same concept can be applied to a sectorial welfare fund.</p>
+<hr />
+<h2 id="a-simple-example-gh18-versus-gh800">A simple example: GH₵18
+versus GH₵800</h2>
+<p>Consider a welfare scheme in which every member contributes:</p>
+<p><strong>GH₵18 per month</strong></p>
+<p>That gives:</p>
+<p><strong>GH₵216 per member per year.</strong></p>
+<p>Now suppose the average welfare payment is:</p>
+<p><strong>GH₵800 per claim.</strong></p>
+<p>One GH₵800 claim therefore consumes approximately:</p>
+<p><strong>3.7 member-years of contributions.</strong></p>
+<p>That observation is useful, but it is not enough.</p>
+<p>We also need to know:</p>
+<p>«How many claims are expected during the year?»</p>
+<p>This is where the model becomes useful.</p>
+<hr />
+<h2 id="from-how-much-do-we-pay-to-how-often-will-we-pay">From “How much
+do we pay?” to “How often will we pay?”</h2>
+<p>Suppose a welfare body has 1,000 members.</p>
+<p>Annual contribution income is:</p>
+<p><strong>1,000 × GH₵18 × 12 = GH₵216,000</strong></p>
+<p>If the average welfare payment is GH₵800 and the fund experiences 100
+claims during the year:</p>
+<p><strong>100 × GH₵800 = GH₵80,000</strong></p>
+<p>The fund has therefore spent GH₵80,000 on claims against GH₵216,000
+in contributions, before administration, reserves and other
+expenses.</p>
+<p>But what if claims increase to 200?</p>
+<p><strong>200 × GH₵800 = GH₵160,000</strong></p>
+<p>The margin has now become considerably smaller.</p>
+<p>This illustrates the central purpose of the model:</p>
+<p>«The number of claims matters just as much as the amount paid per
+claim.»</p>
+<hr />
+<h2 id="modelling-each-welfare-event-separately">Modelling each welfare
+event separately</h2>
+<p>One of the important design decisions in the model is not to treat
+all welfare claims as one single percentage.</p>
+<p>Instead, the model separates the major welfare events.</p>
+<p>For example:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Benefit</th>
+<th>Expected incidence</th>
+<th>Average benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Birth/maternity</td>
+<td>4%</td>
+<td>GH₵800</td>
+</tr>
+<tr>
+<td>Bereavement/death</td>
+<td>0.5%</td>
+<td>GH₵800</td>
+</tr>
+<tr>
+<td>Medical/emergency</td>
+<td>8%</td>
+<td>GH₵800</td>
+</tr>
+<tr>
+<td>Marriage</td>
+<td>2%</td>
+<td>GH₵800</td>
+</tr>
+<tr>
+<td>Other welfare</td>
+<td>3%</td>
+<td>GH₵800</td>
+</tr>
+</tbody>
+</table></div>
+<p>These numbers are illustrative assumptions, not prescribed Ghanaian
+rates.</p>
+<p>The objective is for each welfare body eventually to replace these
+assumptions with its own historical data.</p>
+<p>For example, if a sectorial body has 2,000 members and recorded 70
+birth claims in a year:</p>
+<p><strong>70 / 2,000 = 3.5%</strong></p>
+<p>Its observed annual birth incidence would be approximately 3.5%.</p>
+<p>This is much more useful than simply guessing a percentage.</p>
+<hr />
+<h2 id="building-the-model-from-historical-welfare-data">Building the
+model from historical welfare data</h2>
+<p>The long-term objective is for sectorial bodies to maintain a simple
+claims database.</p>
+<p>For every year, the body should ideally record:</p>
+<ul>
+<li>number of members;</li>
+<li>member exposure;</li>
+<li>number of claims by category;</li>
+<li>amount paid for each category;</li>
+<li>average claim amount;</li>
+<li>largest claim;</li>
+<li>number of new members;</li>
+<li>number of members leaving;</li>
+<li>number approaching retirement;</li>
+<li>fund balance;</li>
+<li>contribution income;</li>
+<li>investment income;</li>
+<li>administrative expenditure.</li>
+</ul>
+<p>With three to five years of historical information, the body can
+begin developing its own empirical assumptions.</p>
+<p>For example:</p>
+<div class="table-wrap"><table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr>
+<th>Year</th>
+<th>Members</th>
+<th>Birth claims</th>
+<th>Death claims</th>
+<th>Medical claims</th>
+<th>Total claims</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023</td>
+<td>1,500</td>
+<td>54</td>
+<td>8</td>
+<td>102</td>
+<td>164</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>1,620</td>
+<td>58</td>
+<td>7</td>
+<td>119</td>
+<td>184</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>1,710</td>
+<td>63</td>
+<td>9</td>
+<td>128</td>
+<td>200</td>
+</tr>
+</tbody>
+</table></div>
+<p>The model can then calculate claim rates rather than relying entirely
+on assumptions.</p>
+<p>This also makes the system increasingly accurate as more data becomes
+available.</p>
+<hr />
+<h2 id="the-funding-ratio">The funding ratio</h2>
+<p>One of the most useful indicators produced by the model is the
+funding ratio.</p>
+<p>It compares available annual contribution income with expected annual
+welfare expenditure.</p>
+<p><strong>Funding Ratio = Annual Contribution Income ÷ Expected Annual
+Welfare Outgo</strong></p>
+<p>For example:</p>
+<p>Annual contributions:</p>
+<p><strong>GH₵216,000</strong></p>
+<p>Expected total welfare outgo:</p>
+<p><strong>GH₵180,000</strong></p>
+<p>The funding ratio is:</p>
+<p><strong>216,000 / 180,000 = 1.20</strong></p>
+<p>This means the scheme has GH₵1.20 available for every GH₵1.00 of
+expected welfare outgo.</p>
+<p>Conversely, a funding ratio below 1.00 indicates that expected annual
+expenditure exceeds contribution income.</p>
+<p>The purpose of this indicator is not to provide a universal actuarial
+pass/fail threshold. Rather, it gives the welfare committee a simple way
+to see the relationship between income and expected obligations.</p>
+<hr />
+<h2 id="why-reserves-matter">Why reserves matter</h2>
+<p>A welfare fund should not operate on the assumption that claims will
+always equal the historical average.</p>
+<p>Real life does not work that way.</p>
+<p>One year might have unusually few bereavements.</p>
+<p>Another year could experience several deaths, medical emergencies or
+other expensive events.</p>
+<p>This is why the model allows a welfare body to allocate part of its
+contribution income to reserves.</p>
+<p>For example:</p>
+<ul>
+<li>10% administration;</li>
+<li>10% reserve allocation.</li>
+</ul>
+<p>The model then asks:</p>
+<p>«After paying expected claims, administration and reserve
+allocations, is the fund still generating a positive annual
+position?»</p>
+<p>This provides a more realistic picture than simply comparing
+contributions with claims.</p>
+<hr />
+<h2 id="the-importance-of-stress-testing">The importance of stress
+testing</h2>
+<p>Perhaps one of the most useful features of the model is the ability
+to examine different scenarios.</p>
+<p>The model uses three broad scenarios:</p>
+<p><strong>Expected</strong> — the welfare body’s best estimate of
+normal experience.</p>
+<p><strong>Conservative</strong> — claim incidence is increased to test
+what happens if claims are higher than expected.</p>
+<p><strong>Stress</strong> — claim incidence is increased further and
+average benefit amounts are also increased.</p>
+<p>This allows a welfare committee to ask questions such as:</p>
+<p>«What happens if claims increase by 25%?»</p>
+<p>«What happens if the average payment rises from GH₵800 to
+GH₵1,000?»</p>
+<p>«What happens if membership declines?»</p>
+<p>«What happens if several benefit categories experience
+higher-than-normal claims in the same year?»</p>
+<p>These questions are much more valuable for planning than simply
+looking at last year’s balance.</p>
+<hr />
+<h2 id="retirement-must-be-treated-differently">Retirement must be
+treated differently</h2>
+<p>There is another important consideration.</p>
+<p>A welfare body may provide ordinary welfare benefits today while also
+having a retirement obligation.</p>
+<p>These should not automatically be mixed together.</p>
+<p>For example, a fund could have:</p>
+<p>Annual contributions: <strong>GH₵216,000</strong></p>
+<p>Annual welfare claims: <strong>GH₵100,000</strong></p>
+<p>On the surface, this looks healthy.</p>
+<p>But suppose 30 members are reaching retirement and the proposed
+retirement benefit is GH₵20,000 each.</p>
+<p>That creates:</p>
+<p><strong>30 × GH₵20,000 = GH₵600,000</strong></p>
+<p>of retirement payments.</p>
+<p>Suddenly, the financial picture is very different.</p>
+<p>This is why the model displays retirement obligations separately.</p>
+<p>For Ghana’s social security system, age 60 is the compulsory
+pensionable age, and actuarial projections explicitly incorporate
+demographic assumptions such as mortality and retirement at age 60.</p>
+<p>The same principle is relevant when designing a sectorial welfare
+model: future obligations should not be hidden by today’s cash flow.</p>
+<hr />
+<h2 id="from-a-calculator-to-a-decision-support-system">From a
+calculator to a decision-support system</h2>
+<p>The first version of the tool is intentionally simple. It is live now
+at <a
+href="https://tophermdev.github.io/welfare-feasibility-calculator/">tophermdev.github.io/welfare-feasibility-calculator</a>
+— a single page that runs entirely in your browser, with nothing to
+install and no data leaving your machine.</p>
+<p>A welfare body enters:</p>
+<p><strong>Membership</strong></p>
+<ul>
+<li>number of members;</li>
+<li>contribution per month;</li>
+<li>starting fund balance;</li>
+<li>expected membership growth.</li>
+</ul>
+<p><strong>Welfare benefits</strong></p>
+<ul>
+<li>birth incidence;</li>
+<li>bereavement incidence;</li>
+<li>medical/emergency incidence;</li>
+<li>marriage incidence;</li>
+<li>other welfare incidence;</li>
+<li>average benefit for each category.</li>
+</ul>
+<p><strong>Fund management</strong></p>
+<ul>
+<li>administration costs;</li>
+<li>reserve allocation;</li>
+<li>investment income;</li>
+<li>other obligations.</li>
+</ul>
+<p><strong>Retirement</strong></p>
+<ul>
+<li>members approaching retirement;</li>
+<li>retirement benefit.</li>
+</ul>
+<p>The system then calculates:</p>
+<ul>
+<li>annual contribution income;</li>
+<li>expected number of claims;</li>
+<li>expected claim expenditure;</li>
+<li>administration cost;</li>
+<li>reserve allocation;</li>
+<li>total welfare outgo;</li>
+<li>annual surplus or deficit;</li>
+<li>funding ratio;</li>
+<li>retirement obligation;</li>
+<li>projected fund balance.</li>
+</ul>
+<p>The result is then expressed in a simple form:</p>
+<p><strong>FEASIBLE</strong> — <strong>FEASIBLE, LOW MARGIN</strong> —
+or <strong>NOT FEASIBLE</strong></p>
+<p>The declaration is not intended to replace an actuarial valuation. It
+is intended to give welfare committees an accessible early-warning and
+planning mechanism.</p>
+<hr />
+<h2 id="the-bigger-opportunity-learn-from-the-funds-own-data">The bigger
+opportunity: learn from the fund’s own data</h2>
+<p>The real value of this approach will emerge when sectorial bodies
+begin feeding their actual historical claims into the model.</p>
+<p>Imagine a central system where each welfare body can maintain:</p>
+<p><strong>Member population → Claims history → Claim frequency →
+Average severity → Fund balance → Projection</strong></p>
+<p>Over time, the model can answer increasingly useful questions:</p>
+<ul>
+<li>What is our normal claim rate?</li>
+<li>Which welfare category consumes the most money?</li>
+<li>Has our claim frequency been increasing?</li>
+<li>Is our GH₵800 benefit still affordable?</li>
+<li>What happens if we increase the benefit to GH₵1,000?</li>
+<li>How many additional members would we need to support that
+increase?</li>
+<li>What contribution would be required?</li>
+<li>How much should be held as a reserve?</li>
+<li>What happens if membership falls by 10%?</li>
+<li>What happens if claims increase by 20%?</li>
+</ul>
+<p>These are the questions that turn financial records into management
+intelligence.</p>
+<hr />
+<h2 id="the-ultimate-model">The ultimate model</h2>
+<p>The current model can eventually develop into a more sophisticated
+system built around four components:</p>
+<p><strong>1. Demographic model</strong> — understand the composition of
+the membership: age, sex where relevant, membership growth, retirement
+exposure, mortality, and member turnover.</p>
+<p><strong>2. Claim-frequency model</strong> — estimate how often each
+type of welfare event occurs.</p>
+<p><strong>3. Claim-severity model</strong> — estimate how much each
+event costs.</p>
+<p>Frequency and severity are established building blocks in actuarial
+claims modelling.</p>
+<p><strong>4. Fund projection model</strong> — combine contributions,
+investment income and opening reserves against claims, administration,
+retirement benefits and other obligations over multiple years.</p>
+<p>This moves the system from a simple annual calculator toward a
+multi-year collective risk model.</p>
+<hr />
+<h2 id="why-this-matters-to-sectorial-welfare-bodies">Why this matters
+to sectorial welfare bodies</h2>
+<p>Welfare schemes exist to provide security to their members.</p>
+<p>But that security depends on the financial sustainability of the
+fund.</p>
+<p>The objective of this model is therefore not to discourage legitimate
+welfare claims.</p>
+<p>Quite the opposite.</p>
+<p>It is to help welfare bodies understand:</p>
+<ul>
+<li>How many claims can the fund reasonably support?</li>
+<li>What happens when claim frequency changes?</li>
+<li>What benefit level can the fund sustain?</li>
+<li>What contribution level is required?</li>
+<li>How much should be held in reserve?</li>
+<li>What happens when the membership profile changes?</li>
+</ul>
+<p>And perhaps most importantly:</p>
+<p>«Can today’s welfare promise still be honoured tomorrow?»</p>
+<p>A welfare fund should not have to wait until it is struggling to
+discover that its contribution structure and benefit obligations are
+misaligned.</p>
+<p>With even a relatively simple statistical model, welfare committees
+can move from reactive financial management to evidence-based
+planning.</p>
+<hr />
+<h2 id="from-assumptions-to-evidence">From assumptions to evidence</h2>
+<p>The most important next step is therefore not making the calculator
+more complicated.</p>
+<p>It is collecting better data.</p>
+<p>Every welfare claim is information.</p>
+<p>Every contribution is information.</p>
+<p>Every member who joins, leaves or reaches retirement age is
+information.</p>
+<p>When that information is systematically captured, the welfare body
+can begin to understand its own risk profile and make decisions based on
+actual experience rather than intuition.</p>
+<p>The GH₵18 contribution and GH₵800 average benefit are therefore not
+the conclusion of the model.</p>
+<p>They are the starting point.</p>
+<p>The real objective is to develop a system that allows every sectorial
+welfare body to answer, with evidence:</p>
+<p>«Given our membership, our contribution rate and our historical
+pattern of claims, what is likely to happen to our fund?»</p>
+<p>That is the purpose of the Welfare Scheme Feasibility and
+Sustainability Model.</p>
+        <div class="post-share">
+          <span>Share</span>
+          <a href="https://twitter.com/intent/tweet?text=From%20Welfare%20Contributions%20to%20Sustainability:%20A%20Simple%20Model%20for%20Predicting%20the%20Future%20of%20Sectorial%20Welfare%20Funds&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Ffrom-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Ffrom-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds" target="_blank" rel="noopener">LinkedIn</a>
+          <button type="button" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </article>
+    </div>
+
+    <nav class="pn" aria-label="Post navigation">
+      <a href="i-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk.html"><span class="pn__label">PREVIOUS REV ←</span><span class="pn__title">I Built Two Android Apps From My Phone Today — No Laptop, No Coding Desk</span></a>
+      <span></span>
+    </nav>
+
+  </main>
+
+  <footer class="title-block">
+    <div class="tb-left">
+      <p class="tb-copy">© 2026 John Awotwi · Accra, Ghana</p>
+      <ul class="tb-social">
+        <li><a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <dl class="tb-grid">
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Awotwi</dd></div>
+      <div class="tb-cell"><dt>Scale</dt><dd>1:1</dd></div>
+      <div class="tb-cell"><dt>Location</dt><dd>Accra, Ghana</dd></div>
+      <div class="tb-cell tb-cell--mail"><dt>Contact</dt><dd><a href="mailto:john@jawotwi.top">john@jawotwi.top</a></dd></div>
+    </dl>
+  </footer>
+
+</div>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

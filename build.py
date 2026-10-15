@@ -4,7 +4,7 @@
 import os, re, yaml, subprocess
 import html as html_lib
 from urllib.parse import quote
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from collections import Counter
 
@@ -46,6 +46,9 @@ def parse_date(date_val):
         return None
     if isinstance(date_val, datetime):
         dt = date_val
+    elif isinstance(date_val, date):
+        # yaml turns unquoted YYYY-MM-DD into a date object
+        dt = datetime(date_val.year, date_val.month, date_val.day)
     elif isinstance(date_val, (int, float)):
         dt = datetime.fromtimestamp(date_val)
     elif isinstance(date_val, str):

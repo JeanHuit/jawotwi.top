@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Two app projects landed in my inbox as GitHub invitations. By the end of the day both had working installable apps — and I never opened a laptop." />
+  <meta property="og:title" content="I Built Two Android Apps From My Phone Today — No Laptop, No Coding Desk" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/i-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk" />
+  <title>I Built Two Android Apps From My Phone Today — No Laptop, No Coding Desk · John Awotwi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <p class="sheet-head__rev">Sheet 1 of 1 · REV 2026-10</p>
+    <nav class="sheet-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html#projects">Details</a></li>
+        <li><a href="../index.html#parts">Parts list</a></li>
+        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../musings.html" aria-current="page">Revisions</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="contact">Contact ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+
+    <section class="post-head" aria-labelledby="post-title">
+      <p class="post-meta">REV 55 · 2026-10-02 · <a href="../musings.html?tag=hermes-agent">hermes-agent</a> · <a href="../musings.html?tag=android">android</a> · <a href="../musings.html?tag=automation">automation</a> · <a href="../musings.html?tag=github">github</a> · <a href="../musings.html?tag=telegram">telegram</a> · <a href="../musings.html?tag=mobile">mobile</a> · <a href="../musings.html?tag=apps">apps</a></p>
+      <h1 class="post-title" id="post-title">I Built Two Android Apps From My Phone Today — No Laptop, No Coding Desk</h1>
+      <p class="post-desc">Two app projects landed in my inbox as GitHub invitations. By the end of the day both had working installable apps — and I never opened a laptop.</p>
+    </section>
+
+    <div class="post-grid">
+            <nav class="contents" aria-labelledby="contents-label">
+        <p class="label" id="contents-label">Contents</p>
+        <ol class="contents__list">
+            <li class="contents__item--2"><a href="#nothing-but-a-chat-window">Nothing but a chat window</a></li>
+            <li class="contents__item--2"><a href="#app-1-the-one-that-had-never-built-successfully">App 1: the one
+that had never built successfully</a></li>
+            <li class="contents__item--2"><a href="#then-my-phone-refused-to-install-the-app">Then my phone refused
+to install the app</a></li>
+            <li class="contents__item--2"><a href="#app-2-the-one-that-couldnt-build-at-all">App 2: the one that
+couldn’t build at all</a></li>
+            <li class="contents__item--2"><a href="#then-i-made-a-real-change-ghanaian-cedi">Then I made a real
+change: Ghanaian cedi</a></li>
+            <li class="contents__item--2"><a href="#how-i-knew-it-actually-worked">How I knew it actually
+worked</a></li>
+            <li class="contents__item--2"><a href="#two-honest-caveats">Two honest caveats</a></li>
+            <li class="contents__item--2"><a href="#what-i-keep-coming-back-to">What I keep coming back to</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+<h2
+id="i-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk">I
+Built Two Android Apps From My Phone Today — No Laptop, No Coding
+Desk</h2>
+<h2 id="nothing-but-a-chat-window">Nothing but a chat window</h2>
+<p>Today I took two Android app projects from “someone shared the code
+with me” to “here’s the installable app file” — and I did the whole
+thing from my phone, inside a Telegram chat with <a
+href="https://hermes-agent.nousresearch.com/">Hermes</a>, my AI
+assistant.</p>
+<p>No laptop. No Android Studio. No programming tools installed
+anywhere. I sent messages, and the finished app files came back to the
+same conversation.</p>
+<p>Here’s how the day went, including the two things that went
+wrong.</p>
+<h2 id="app-1-the-one-that-had-never-built-successfully">App 1: the one
+that had never built successfully</h2>
+<p>First up was a finance tracker app. Someone had sent me an invitation
+to the project on GitHub — a place where developers store and share
+code. The project had two versions: a web version, and an Android
+version.</p>
+<p>I looked at both and picked the Android one. It was already a real
+phone app, so there was no reason to rebuild anything from scratch.</p>
+<p>There was already an automatic build system set up for it. It had
+also <strong>never worked</strong>. Two attempts, two failures.</p>
+<p>The error message was small but telling: one of the settings the app
+needed was coming through <em>empty</em>, when it had to have a value in
+it — like submitting a form with the name field left blank. The fix was
+simple once I understood the cause: put a stand-in value in place when
+the real one isn’t there.</p>
+<p>Build passed after that.</p>
+<h2 id="then-my-phone-refused-to-install-the-app">Then my phone refused
+to install the app</h2>
+<p>This is where Android stepped in. Google’s built-in security, Play
+Protect, blocks apps that aren’t properly signed — a bit like a wax seal
+on a letter, proving who it’s from.</p>
+<p>Development versions of apps share one generic seal that every
+developer on earth uses, so Play Protect doesn’t trust them. The fix is
+to create a proper, personal seal for the app — called a signing key —
+and use that instead.</p>
+<p>I created one, stored it safely in the project’s settings, and set
+things up so every future build is automatically sealed and checked
+before it gets shared. If the seal is missing or broken, the build stops
+rather than handing you a file you can’t install.</p>
+<h2 id="app-2-the-one-that-couldnt-build-at-all">App 2: the one that
+couldn’t build at all</h2>
+<p>The second project, a stock tracker, arrived the same way — but in
+worse shape. It was missing the basic startup script its build system
+needed, it had never had an automatic build set up, and it was carrying
+some files that were only meant to stay on the original developer’s
+machine.</p>
+<p>I supplied what was missing, tidied up before building, and set up
+the same automatic system.</p>
+<p>Both parts of that build worked first time.</p>
+<h2 id="then-i-made-a-real-change-ghanaian-cedi">Then I made a real
+change: Ghanaian cedi</h2>
+<p>Between the two projects, I updated the finance app to use Ghanaian
+cedi instead of US dollars.</p>
+<p>Before changing anything, I ran a quick test to see what the app
+would actually show. It came back <code>GH₵1,234.56</code> — exactly
+right.</p>
+<p>While I was in there, I taught the app to recognise cedi in text
+messages too. In Ghana, mobile money notifications say things like “GHS
+50.00” — the app now understands those, not just dollar amounts.</p>
+<p>I also swapped the app’s icon for a new one: a folder with an arrow
+rising out of it, sized to fit every kind of phone screen.</p>
+<h2 id="how-i-knew-it-actually-worked">How I knew it actually
+worked</h2>
+<p>Here’s the part I’d tell anyone doing this: <strong>don’t just trust
+that the build finished.</strong></p>
+<p>Files inside an Android app are deliberately renamed and shuffled
+around, so it’s easy to check the wrong thing and think you’re done.
+Instead, I confirmed it three ways:</p>
+<ul>
+<li>Every icon file I generated matched, exactly, what ended up inside
+the app</li>
+<li>The finished app reported the correct currency</li>
+<li>The app’s own signature checked out — the personal seal was really
+there</li>
+</ul>
+<p>A green tick from the build system only means the process finished.
+It doesn’t mean the right things are inside the file. Checking properly
+is what turns “it built” into “it works.”</p>
+<h2 id="two-honest-caveats">Two honest caveats</h2>
+<p>The signing key I created has the finance app’s name on it, and it
+now signs both apps. Harmless, but if I ever want a cleaner name on it,
+anyone who already installed the apps would have to uninstall first.</p>
+<p>And because these apps aren’t distributed through the Google Play
+Store, your phone may still show an “unrecognized app” warning when
+installing. That one has an <strong>Install anyway</strong> option — a
+different thing from the hard block that stopped the first version.</p>
+<p>There’s also some digital clutter waiting in both projects — the
+usual bits and pieces. Next time I’m at a proper keyboard, I’ll clear
+it.</p>
+<h2 id="what-i-keep-coming-back-to">What I keep coming back to</h2>
+<p>The loop was simple: <em>message from my phone → changes saved online
+→ automatic build runs → finished app file arrives back in the same chat
+→ install.</em></p>
+<p>Twice, with a real feature change squeezed in between.</p>
+<p>And the best part isn’t today. It’s that this setup is permanent.
+From now on, whenever those projects get updated, a properly sealed,
+properly checked app builds itself automatically — no laptop
+required.</p>
+<p>Today was just the day it all got switched on. From a phone.</p>
+        <div class="post-share">
+          <span>Share</span>
+          <a href="https://twitter.com/intent/tweet?text=I%20Built%20Two%20Android%20Apps%20From%20My%20Phone%20Today%20%E2%80%94%20No%20Laptop,%20No%20Coding%20Desk&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fi-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fi-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk" target="_blank" rel="noopener">LinkedIn</a>
+          <button type="button" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </article>
+    </div>
+
+    <nav class="pn" aria-label="Post navigation">
+      <a href="my-fire-tablet-wouldnt-stop-restarting-so-hermes-fixed-it-over-usb.html"><span class="pn__label">PREVIOUS REV ←</span><span class="pn__title">My Fire Tablet Wouldn't Stop Restarting — So Hermes Fixed It Over USB</span></a>
+      <a href="from-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds.html"><span class="pn__label">NEXT REV →</span><span class="pn__title">From Welfare Contributions to Sustainability: A Simple Model for Predicting the Future of Sectorial Welfare Funds</span></a>
+    </nav>
+
+  </main>
+
+  <footer class="title-block">
+    <div class="tb-left">
+      <p class="tb-copy">© 2026 John Awotwi · Accra, Ghana</p>
+      <ul class="tb-social">
+        <li><a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <dl class="tb-grid">
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Awotwi</dd></div>
+      <div class="tb-cell"><dt>Scale</dt><dd>1:1</dd></div>
+      <div class="tb-cell"><dt>Location</dt><dd>Accra, Ghana</dd></div>
+      <div class="tb-cell tb-cell--mail"><dt>Contact</dt><dd><a href="mailto:john@jawotwi.top">john@jawotwi.top</a></dd></div>
+    </dl>
+  </footer>
+
+</div>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

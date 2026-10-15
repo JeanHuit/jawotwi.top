@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Amazon Fire HD 8 kept restarting every few hours — and whenever I opened an app. Turns out it wasn't dying hardware at all. It was a crash-looping Amazon service, a wedged kids profile, and a reboot illusion that only shows up in the logs." />
+  <meta property="og:title" content="My Fire Tablet Wouldn't Stop Restarting — So Hermes Fixed It Over USB" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jawotwi.top/musings/my-fire-tablet-wouldnt-stop-restarting-so-hermes-fixed-it-over-usb" />
+  <title>My Fire Tablet Wouldn't Stop Restarting — So Hermes Fixed It Over USB · John Awotwi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+  <header class="sheet-head">
+    <p class="sheet-head__rev">Sheet 1 of 1 · REV 2026-10</p>
+    <nav class="sheet-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="../index.html#projects">Details</a></li>
+        <li><a href="../index.html#parts">Parts list</a></li>
+        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../musings.html" aria-current="page">Revisions</a></li>
+        <li><a href="mailto:john@jawotwi.top" class="contact">Contact ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+
+    <section class="post-head" aria-labelledby="post-title">
+      <p class="post-meta">REV 54 · 2026-09-08 · <a href="../musings.html?tag=fire-tablet">fire-tablet</a> · <a href="../musings.html?tag=amazon">amazon</a> · <a href="../musings.html?tag=android">android</a> · <a href="../musings.html?tag=adb">adb</a> · <a href="../musings.html?tag=fire-os">fire-os</a> · <a href="../musings.html?tag=troubleshooting">troubleshooting</a> · <a href="../musings.html?tag=debugging">debugging</a> · <a href="../musings.html?tag=ai-assistant">ai-assistant</a> · <a href="../musings.html?tag=hermes-agent">hermes-agent</a> · <a href="../musings.html?tag=technology">technology</a></p>
+      <h1 class="post-title" id="post-title">My Fire Tablet Wouldn't Stop Restarting — So Hermes Fixed It Over USB</h1>
+      <p class="post-desc">My Amazon Fire HD 8 kept restarting every few hours — and whenever I opened an app. Turns out it wasn't dying hardware at all. It was a crash-looping Amazon service, a wedged kids profile, and a reboot illusion that only shows up in the logs.</p>
+    </section>
+
+    <div class="post-grid">
+            <nav class="contents" aria-labelledby="contents-label">
+        <p class="label" id="contents-label">Contents</p>
+        <ol class="contents__list">
+            <li class="contents__item--2"><a href="#the-setup">The setup</a></li>
+            <li class="contents__item--2"><a href="#plot-twist-it-was-never-really-rebooting">Plot twist: it was
+never really rebooting</a></li>
+            <li class="contents__item--2"><a href="#finding-the-culprits-in-the-crash-logs">Finding the culprits in
+the crash logs</a></li>
+            <li class="contents__item--2"><a href="#the-fix-three-commands-deep">The fix, three commands deep</a></li>
+            <li class="contents__item--2"><a href="#going-full-de-amazon">Going full de-Amazon</a></li>
+            <li class="contents__item--2"><a href="#what-i-learned">What I learned</a></li>
+        </ol>
+      </nav>
+
+      <article class="prose">
+<h2
+id="my-fire-tablet-wouldnt-stop-restarting-so-hermes-fixed-it-over-usb">My
+Fire Tablet Wouldn’t Stop Restarting — So Hermes Fixed It Over USB</h2>
+<h2 id="the-setup">The setup</h2>
+<p>My Amazon Fire HD 8 (2020) started doing something deeply annoying:
+restarting “on the regular,” and almost on cue whenever I launched an
+app. Full restarts, too — Amazon logo, boot animation, the works. My
+first instinct, like anyone’s, was hardware. An old tablet with an old
+battery, randomly power-cycling under load? Classic.</p>
+<p>I plugged it into my PC, fired up <a
+href="https://hermes-agent.nousresearch.com/">Hermes</a> — my AI agent —
+and asked it to take a look over USB. What followed was one of the most
+satisfying debugging sessions I’ve had in a while, and the fix wasn’t a
+new battery. It wasn’t even a factory reset.</p>
+<h2 id="plot-twist-it-was-never-really-rebooting">Plot twist: it was
+never really rebooting</h2>
+<p>The first clue was a contradiction. Hermes pulled the kernel uptime:
+<strong>7 days</strong>. The tablet had supposedly been “restarting” all
+week — yet the kernel had not once gone down. What I was seeing was a
+<em>soft reboot</em>: Android’s core process
+(<code>system_server</code>) was crashing, and the framework was
+auto-restarting itself. On a Fire tablet, a framework restart replays
+the full boot animation from scratch. To the user — me — that
+<em>is</em> a restart. To the kernel, nothing happened. The USB
+connection never even blinked.</p>
+<p>So the question changed from “why is the battery dying?” to “what
+keeps killing system_server?”</p>
+<h2 id="finding-the-culprits-in-the-crash-logs">Finding the culprits in
+the crash logs</h2>
+<p>This is where having an agent that can actually read the device paid
+off. Fire tablets keep a hidden dropbox of crash reports, and Hermes
+pulled three days of them:</p>
+<ol type="1">
+<li><p><strong>Amazon’s dcpms service was crash-looping.</strong>
+<code>com.amazon.dcpms.fos.service</code> — Amazon’s “Device Control
+&amp; Policy Management” — had hard-crashed 8 times in 3 days, roughly
+every 6 hours. Its signature error was a lifecycle bug: it kept getting
+torn down mid user-switch, firing “receiver not registered”
+crashes.</p></li>
+<li><p><strong>The kids profile was wedging the system.</strong> The
+tablet had a kids profile , which Fire OS runs as a separate Android
+user (<code>user 10</code>). The log right before one restart said it
+all: <code>User switch timeout: from 10 to 0</code> — a profile switch
+that got stuck and took <code>system_server</code> down with it. Throw
+in a 2 GB tablet running on fumes (70 MB of free RAM, load average 16),
+and launching an app was all it took to tip the whole house of
+cards.</p></li>
+<li><p>The old battery got a cameo — the boot log from a week earlier
+showed a genuine battery-forced shutdown. But it was a red herring for
+the <em>current</em> problem. The restarts were software, not
+silicon.</p></li>
+</ol>
+<h2 id="the-fix-three-commands-deep">The fix, three commands deep</h2>
+<p>All of it was doable over USB, no root required:</p>
+<pre><code>adb shell pm clear com.amazon.dcpms.fos.service   # wipe dcpms&#39;s corrupted state
+adb shell pm remove-user 10                        # remove the kids profile
+adb reboot                                         # clean start</code></pre>
+<p>Clearing dcpms’s data let Amazon’s own service rebuild itself from
+scratch. Removing the kids profile deleted the entire second-user
+machinery that kept jamming the system — and, as a bonus, freed about
+<strong>9 GB</strong> of space it had been hoarding. The tablet booted
+in 25 seconds and the crash log went silent.</p>
+<h2 id="going-full-de-amazon">Going full de-Amazon</h2>
+<p>While we were in there, we went further. I don’t use the Amazon
+ecosystem — I sideload APKs — so we killed the noise at the source:</p>
+<ul>
+<li>Deregistered the Amazon account (the one step that needs a thumb
+instead of a terminal — it’s a server-side operation). No account means
+the launcher’s endless “account needs recovery” retry loop has nothing
+left to reach for, and Amazon stops pushing OS updates to the device
+entirely.</li>
+<li>Disabled the background bloat that was spamming errors: Alexa (both
+components), Prime Video, and the wallpaper service. All reversible with
+<code>pm enable</code>.</li>
+</ul>
+<p>Result: a Fire tablet with 21 GB free, no Amazon account nagging, no
+crash-looping services, and no kids profile waiting to wedge the next
+profile switch.</p>
+<h2 id="what-i-learned">What I learned</h2>
+<ul>
+<li><strong>“Restarting” on a Fire tablet is often a soft
+reboot.</strong> Boot animation ≠ kernel reboot. Check
+<code>uptime</code> before you blame the battery.</li>
+<li><strong>The crash logs are there — you just need someone to read
+them.</strong> Amazon’s dropbox, boot reasons, and process forensics
+told us more in ten minutes than weeks of “just factory reset it” advice
+ever would.</li>
+<li><strong>You can do a lot to a Fire tablet over adb without
+root</strong> — clear system-app data, manage users, disable Amazon’s
+bloat. Root wasn’t needed and, on this model, isn’t even available.</li>
+<li><strong>The old battery is still worth respecting.</strong> It’s a
+2019-era tablet with a tired cell — it now lives on a proper wall
+charger instead of a PC’s anemic USB port.</li>
+</ul>
+<p>The tablet has been stable since the fix. If it ever restarts again,
+the crash log will tell us exactly why — and Hermes will be one USB
+cable away.</p>
+<p><em>This debugging session was a collaboration between me and Hermes,
+my AI agent. I drove the questions; it read the logs, found the
+patterns, and walked me through every fix over adb. If your device is
+doing something weird, let an agent read its logs before you buy a
+replacement.</em></p>
+        <div class="post-share">
+          <span>Share</span>
+          <a href="https://twitter.com/intent/tweet?text=My%20Fire%20Tablet%20Wouldn't%20Stop%20Restarting%20%E2%80%94%20So%20Hermes%20Fixed%20It%20Over%20USB&url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fmy-fire-tablet-wouldnt-stop-restarting-so-hermes-fixed-it-over-usb" target="_blank" rel="noopener">Twitter / X</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fjawotwi.top%2Fmusings%2Fmy-fire-tablet-wouldnt-stop-restarting-so-hermes-fixed-it-over-usb" target="_blank" rel="noopener">LinkedIn</a>
+          <button type="button" onclick="copyLink()" id="copy-btn">Copy link</button>
+        </div>
+      </article>
+    </div>
+
+    <nav class="pn" aria-label="Post navigation">
+      <a href="gh-link-vs-visamastercard-what-happened-to-ghanas-homegrown-payment-card.html"><span class="pn__label">PREVIOUS REV ←</span><span class="pn__title">GH-Link vs Visa/Mastercard: What Happened to Ghana's Homegrown Payment Card?</span></a>
+      <a href="i-built-two-android-apps-from-my-phone-today-no-laptop-no-coding-desk.html"><span class="pn__label">NEXT REV →</span><span class="pn__title">I Built Two Android Apps From My Phone Today — No Laptop, No Coding Desk</span></a>
+    </nav>
+
+  </main>
+
+  <footer class="title-block">
+    <div class="tb-left">
+      <p class="tb-copy">© 2026 John Awotwi · Accra, Ghana</p>
+      <ul class="tb-social">
+        <li><a href="https://twitter.com/JeanHuit" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="https://github.com/JeanHuit" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/johnawotwi/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <dl class="tb-grid">
+      <div class="tb-cell"><dt>Drawn by</dt><dd>J. Awotwi</dd></div>
+      <div class="tb-cell"><dt>Scale</dt><dd>1:1</dd></div>
+      <div class="tb-cell"><dt>Location</dt><dd>Accra, Ghana</dd></div>
+      <div class="tb-cell tb-cell--mail"><dt>Contact</dt><dd><a href="mailto:john@jawotwi.top">john@jawotwi.top</a></dd></div>
+    </dl>
+  </footer>
+
+</div>
+
+<script>
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
