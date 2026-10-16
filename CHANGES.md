@@ -38,17 +38,17 @@ Branch: `redesign/engineering-drawing` (from `v5`).
   - `gh-link-vs-visamastercard-what-happened-to-ghanas-homegrown-payment-card`
   - `from-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds`
   - Three had `created:` instead of `date:`. A `date:` line was added with the same value. Nothing else changed.
-- **Resume: dates and titles from the CV (source of truth).** Senior Technical Officer 2025–present; the 2015–2019 role is titled "Web Developer | Systems Administrator | Technical Support"; the employer is "CSIR-INSTI, Communications Division"; education dates and degree names match the CV. The Mar 2019 date on the homepage Resume strip is unchanged (see open questions).
+- **Resume: experience from the CV (source of truth).** All five CV roles are listed, in CV order and wording: Senior Technical Officer (2025–present), Technical Officer (2019–2024), Web Developer | Systems Administrator | Technical Support (2015–2019), Developer / Researcher — GSTDP (2013–2014), Teaching Assistant (Sep 2013 – Jul 2014). Employer names and education dates/degrees match the CV. The homepage Resume strip also shows 2025 – present. The Profile paragraph, the Technical skills table and the Projects archived list are unchanged from the old resume.
 - **Certifications.** The resume's Certifications table now lists the ten entries from your ATS CV (2004–2023). Nothing else on the resume was changed from the CV.
 - **Resume download.** The CV is not linked or copied. The "Save as PDF ↓" link (print) is unchanged.
 - **Email.** `mail@jawotwi.top` everywhere (mailto links and visible text).
-- **Nav and headings.** "Revisions" is now "Musings" (nav on every page, homepage section, index heading, "All musings →"). The per-post `REV n` labels are unchanged.
+- **Nav and headings.** "Revisions" is now "Musings" (nav on every page, homepage section, index heading, "All musings →"). "Parts list" is now "Services" (nav on every page, homepage heading). Anchor ids (`#parts`) and CSS class names are unchanged. The per-post `REV n` labels are unchanged.
 - **Detail views.** The cells are no longer links, and the `[PLACEHOLDER: project link]` lines are gone. Hover hatch and title underline removed. The `--hatch` token is still defined.
 - Earlier cuts still apply: hero copy and bio replaced by the General Notes; services use the shortened descriptions; the "Archived" block is now the SUPERSEDED line (full descriptions still on the resume under "Projects archived"); the post author line is removed from post meta.
 
 ## Placeholders still visible
 
-- Resume, IT Officer row: `[PLACEHOLDER: stack not listed in source]`.
+- Resume, four experience rows: `[PLACEHOLDER: stack not listed in source]` (see open questions).
 - Photo: `[PLACEHOLDER: photo]`, only if `moi.png` fails to load.
 
 ## Source issues (not changed)
@@ -90,7 +90,5 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 
 ## Open questions
 
-1. **Experience history.** The CV lists more roles than the resume: Technical Officer, CSIR-INSTI (2019–2024); Developer/Researcher, GSTDP (2013–2014); Teaching Assistant, National Service (2013–2014). The resume only shows two rows. Should I add the rest?
-2. **Homepage resume strip.** It still says "Mar 2019 – present" and "Senior Technical Officer". Should it match the CV (2025 – present)?
-3. **Repository count.** The profile shows 43 public repos, which includes 20 forks. If you want owned, non-fork repos only, the count is 23.
-4. **Platforms deployed (6+).** Still a constant. No source to compute it from.
+1. **Stack column.** The CV does not list a stack per role, so four of the five rows show `[PLACEHOLDER: stack not listed in source]`. Supply the stacks, or I can drop the column.
+2. **Platforms deployed (6+).** Still a constant. No source to compute it from.
