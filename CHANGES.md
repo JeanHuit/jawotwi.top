@@ -38,7 +38,9 @@ Branch: `redesign/engineering-drawing` (from `v5`).
   - `gh-link-vs-visamastercard-what-happened-to-ghanas-homegrown-payment-card`
   - `from-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds`
   - Three had `created:` instead of `date:`. A `date:` line was added with the same value. Nothing else changed.
-- **Resume: experience from the CV (source of truth).** All five CV roles are listed, in CV order and wording: Senior Technical Officer (2025–present), Technical Officer (2019–2024), Web Developer | Systems Administrator | Technical Support (2015–2019), Developer / Researcher — GSTDP (2013–2014), Teaching Assistant (Sep 2013 – Jul 2014). Employer names and education dates/degrees match the CV. The homepage Resume strip also shows 2025 – present. The Profile paragraph, the Technical skills table and the Projects archived list are unchanged from the old resume.
+- **Resume: experience from the CV (source of truth).** All five CV roles are listed, in CV order and wording: Senior Technical Officer (2025–present), Technical Officer (2019–2024), Web Developer | Systems Administrator | Technical Support (2015–2019), Developer / Researcher — GSTDP (2013–2014), Teaching Assistant (Sep 2013 – Jul 2014). Employer names and education dates/degrees match the CV. The homepage Resume strip also shows 2025 – present.
+- **Stack column.** The CV lists no per-role stack, so all five rows use the Senior Technical Officer stack (PHP · Python · Linux · Proxmox · Docker · Git/CI-CD · MariaDB). It is accurate for the two CSIR-INSTI roles; for the MESTI/COTVET and National Service rows it is inherited, not verified.
+- **AWS removed** from the experience stack, the homepage strip and the Cloud & Data skills row. The Profile paragraph, the Technical skills table and the Projects archived list are unchanged from the old resume.
 - **Certifications.** The resume's Certifications table now lists the ten entries from your ATS CV (2004–2023). Nothing else on the resume was changed from the CV.
 - **Resume download.** The CV is not linked or copied. The "Save as PDF ↓" link (print) is unchanged.
 - **Email.** `mail@jawotwi.top` everywhere (mailto links and visible text).
@@ -48,7 +50,7 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 
 ## Placeholders still visible
 
-- Resume, four experience rows: `[PLACEHOLDER: stack not listed in source]` (see open questions).
+- None. (The photo placeholder remains, shown only if `moi.png` fails to load.)
 - Photo: `[PLACEHOLDER: photo]`, only if `moi.png` fails to load.
 
 ## Source issues (not changed)
@@ -90,5 +92,5 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 
 ## Open questions
 
-1. **Stack column.** The CV does not list a stack per role, so four of the five rows show `[PLACEHOLDER: stack not listed in source]`. Supply the stacks, or I can drop the column.
+1. **Stack column.** All five rows share the Senior Technical Officer stack at your instruction. Correct for the two CSIR-INSTI roles; please confirm the MESTI/COTVET and National Service rows.
 2. **Platforms deployed (6+).** Still a constant. No source to compute it from.
