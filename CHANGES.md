@@ -10,7 +10,7 @@ Branch: `redesign/engineering-drawing` (from `v5`).
   - Homepage revision preview: the 5 newest posts (between `<!-- revisions:start/end -->`).
   - Homepage dimensions, computed (between `<!-- dims:start/end -->`):
     - Entries written = number of posts.
-    - Repositories = public, non-fork repos of `JeanHuit` from the GitHub API. Falls back to 23 if the API is unreachable at build time.
+    - Repositories = `public_repos` from the GitHub profile API (`/users/JeanHuit`), the number GitHub shows on the profile. Falls back to 43 if the API is unreachable at build time.
     - Years in the field = current year minus 2015 (start of the earliest role on the resume).
     - Platforms deployed = `6+`, a constant (no data source).
   - Sheet stamp `REV YYYY-MM` and copyright `© YYYY` from the build date.
@@ -23,7 +23,8 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 - `index.html`: homepage. `resume.html`: resume. `musings.html`: index. `musings/_template.html`: post template.
 - `build.py`: listing, revision preview, stats, post generation, stamps, redirects.
 - `posts/`: five posts restored from the vault (see below).
-- `favicon.png` (64px, transparent) and `apple-touch-icon.png` (180px, paper background), both generated from the logo.
+- `favicon.png` (64px, transparent) and `apple-touch-icon.png` (180px, paper background), monochrome, generated from the logo's alpha channel.
+- `logo.png`: the original logo, committed unchanged.
 - `moi.png`: resized to 480x600 (cover crop). Displayed at 240x300.
 - `og.png` (1200x630) and the `og:image` tags on the homepage.
 - `_redirects` (generated).
@@ -37,6 +38,7 @@ Branch: `redesign/engineering-drawing` (from `v5`).
   - `gh-link-vs-visamastercard-what-happened-to-ghanas-homegrown-payment-card`
   - `from-welfare-contributions-to-sustainability-a-simple-model-for-predicting-the-future-of-sectorial-welfare-funds`
   - Three had `created:` instead of `date:`. A `date:` line was added with the same value. Nothing else changed.
+- **Resume: dates and titles from the CV (source of truth).** Senior Technical Officer 2025–present; the 2015–2019 role is titled "Web Developer | Systems Administrator | Technical Support"; the employer is "CSIR-INSTI, Communications Division"; education dates and degree names match the CV. The Mar 2019 date on the homepage Resume strip is unchanged (see open questions).
 - **Certifications.** The resume's Certifications table now lists the ten entries from your ATS CV (2004–2023). Nothing else on the resume was changed from the CV.
 - **Resume download.** The CV is not linked or copied. The "Save as PDF ↓" link (print) is unchanged.
 - **Email.** `mail@jawotwi.top` everywhere (mailto links and visible text).
@@ -65,7 +67,7 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 - Post contents include H2 and H3 (H3 indented), skipping any heading equal to the post title.
 - Photo uses `src="moi.png"` (relative). Same file as the old absolute URL.
 - Theme colour: light `#F1F2EE`; dark `#14161A` (the dark paper token).
-- Logo colours (navy and gold) are not part of the palette. Used only for favicon and touch icon.
+- Favicon and touch icon are monochrome (ink mark from the logo's alpha channel). `logo.png` is committed as-is in the repo root.
 
 ## Contrast
 
@@ -88,10 +90,7 @@ Branch: `redesign/engineering-drawing` (from `v5`).
 
 ## Open questions
 
-1. **Repository count.** The old site says 24. The API gives 43 public repos: 20 forks and 23 owned non-fork repos. I used 23. Which definition should it be?
-2. **Years in the field.** Computed as 11+ (from May 2015). The old site said 8+, and your CV says "10+ years of professional experience". Confirm the start year to use.
-3. **Platforms deployed (6+).** Kept as a constant. Is there a source to compute it from?
-4. **Resume dates vs CV.** The site says Senior Technical Officer Mar 2019 – present. The CV says Senior Technical Officer 2025 – present, and Technical Officer 2019–2024. Which should the resume show? I did not change the resume text.
-5. **Vault sync naming.** I used slug-based filenames (lowercase, hyphenated) so the URLs match. The agent's earlier sync used Title-Case filenames (e.g. `Hardening-Your-Server-After-a-Fresh-Install.md`). Both generate the same slug, but the agent could create duplicates if it doesn't see these files. Should it skip existing slugs, or should I rename them to Title-Case?
-6. **Logo in the repo root.** `logo.png` is untracked in the repo root. I generated the icons from `~/Downloads/logo.png`. Should the repo keep it, or should I delete it?
-7. **Logo colours.** The navy/gold palette is outside the spec. Keep it in the favicon, or use a monochrome version?
+1. **Experience history.** The CV lists more roles than the resume: Technical Officer, CSIR-INSTI (2019–2024); Developer/Researcher, GSTDP (2013–2014); Teaching Assistant, National Service (2013–2014). The resume only shows two rows. Should I add the rest?
+2. **Homepage resume strip.** It still says "Mar 2019 – present" and "Senior Technical Officer". Should it match the CV (2025 – present)?
+3. **Repository count.** The profile shows 43 public repos, which includes 20 forks. If you want owned, non-fork repos only, the count is 23.
+4. **Platforms deployed (6+).** Still a constant. No source to compute it from.

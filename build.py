@@ -427,23 +427,18 @@ def write_redirects(posts):
 GITHUB_USER = "JeanHuit"
 CAREER_START_YEAR = 2015   # earliest role on the resume (IT Officer, May 2015)
 PLATFORMS_DEPLOYED = "6+"  # no data source; resume says "6+ institutional web platforms"
-REPOS_FALLBACK = 23        # used only if the GitHub API is unreachable at build time
+REPOS_FALLBACK = 43        # used only if the GitHub API is unreachable at build time (last seen public_repos)
 
 
 def github_repo_count():
-    """Public, non-fork repositories owned by GITHUB_USER. Falls back if the API fails."""
+    """Public repository count shown on the GitHub profile (GET /users/<user>).
+    Falls back if the API is unreachable at build time."""
     import json, urllib.request
-    count, page = 0, 1
+    url = f"https://api.github.com/users/{GITHUB_USER}"
     try:
-        while True:
-            url = f"https://api.github.com/users/{GITHUB_USER}/repos?per_page=100&type=owner&page={page}"
-            req = urllib.request.Request(url, headers={"User-Agent": "jawotwi-build"})
-            with urllib.request.urlopen(req, timeout=10) as resp:
-                repos = json.loads(resp.read().decode())
-            count += sum(1 for r in repos if not r.get("fork"))
-            if len(repos) < 100:
-                return count
-            page += 1
+        req = urllib.request.Request(url, headers={"User-Agent": "jawotwi-build", "Accept": "application/vnd.github+json"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return int(json.loads(resp.read().decode())["public_repos"])
     except Exception as exc:
         print(f"  ⚠ GitHub repo count unavailable ({exc}); using fallback {REPOS_FALLBACK}")
         return REPOS_FALLBACK
